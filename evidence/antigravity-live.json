@@ -1,8 +1,8 @@
 {
-  "verifiedAt": "2026-11-23T14:48:24.950Z",
+  "verifiedAt": "2026-11-23T14:50:16.937Z",
   "sdk": "hiveagents-runtime@0.1.0-beta.4",
-  "sdkIntegrity": "sha512-+m1uCL6R7kZAjH3i5wMO8PYqGhwQL7FE+rixHtD6At1oU/ROJOq8M8ZByNYjlPKVpbjHIcsaZmKn/zlz0YA1vQ==",
-  "sdkTarballSha256": "a00aaf76d85ce65885426d0e014a90580778489a6639c6583e975d313c0e74d4",
+  "sdkIntegrity": "sha512-gqP7W9wxsIUwMrHK6s26RdZkL41uB2JhI4rr13j20q8xj7AwElWxYyrxK400wQ7UNlwyplfBVE/Zb2MO5NatLg==",
+  "sdkTarballSha256": "25f0014506f44366f4cc6b49ab22e8422baa6a4aed6738e3c0d3c5dc8bb15dea",
   "nativeVersion": "1.5.15",
   "nativeExecutableSha256": "8097b24de18aba93324ee24d0d3f060906c58ba58562f4f1bd66f380906056a2",
   "model": "antigravity/gemini-3.8-flash-low",
@@ -18,16 +18,16 @@
     {
       "phase": "initial",
       "status": "completed",
-      "resultDigest": "7dd40b5982bbc6d55544505a1e7ff252e68f2fc9f7e5fab241a27238342e5b6b",
-      "sessionDigest": "cbaad04728c4291b6e339eed82912c40190e896f5b3d04cf6e4bda46c6144071",
-      "elapsedMs": 9347,
+      "resultDigest": "76afe55226bda4487bdb9bc020dbfe5ee3b5d5abae49afdeaf0956b4a5c46490",
+      "sessionDigest": "932b9a3367ee14e183dd26214c5fe3a0a4b1bf1b02ef677616d52c25616110e4",
+      "elapsedMs": 12571,
       "usage": {
         "costMeaning": "unavailable",
-        "inputTokens": 21891,
+        "inputTokens": 21893,
         "outputTokens": 37,
         "cachedInputTokens": 0
       },
-      "deltas": 2,
+      "deltas": 3,
       "toolEvents": 0,
       "preflightAuthentication": "unknown",
       "permissionEnforcement": []
@@ -35,13 +35,13 @@
     {
       "phase": "resume",
       "status": "completed",
-      "resultDigest": "7dd40b5982bbc6d55544505a1e7ff252e68f2fc9f7e5fab241a27238342e5b6b",
-      "sessionDigest": "cbaad04728c4291b6e339eed82912c40190e896f5b3d04cf6e4bda46c6144071",
-      "elapsedMs": 9679,
+      "resultDigest": "76afe55226bda4487bdb9bc020dbfe5ee3b5d5abae49afdeaf0956b4a5c46490",
+      "sessionDigest": "932b9a3367ee14e183dd26214c5fe3a0a4b1bf1b02ef677616d52c25616110e4",
+      "elapsedMs": 10316,
       "usage": {
         "costMeaning": "unavailable"
       },
-      "deltas": 5,
+      "deltas": 3,
       "toolEvents": 0,
       "preflightAuthentication": "unknown",
       "permissionEnforcement": []
