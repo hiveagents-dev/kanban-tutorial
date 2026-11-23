@@ -1,0 +1,71 @@
+{
+  "at": "2026-11-23T14:44:51.758Z",
+  "sdk": "0.1.0-beta.3",
+  "platform": "darwin",
+  "node": "v22.23.2",
+  "scriptSha256": "510954bebff0f4d3591efd54ae29814abd56b0805362baaf75eb08790e0f4ec7",
+  "model": "gemini/gemini-3.7-flash",
+  "authMode": "vertex",
+  "stages": [
+    {
+      "name": "first-turn",
+      "launched": 1,
+      "status": "completed",
+      "authSource": "cloud-provider",
+      "authStateAtPreflight": "unknown",
+      "cli": "0.56.0",
+      "cliReportedRequestedModel": true,
+      "elapsedMs": 7035,
+      "toolCallObserved": false,
+      "writeToolCallObserved": false,
+      "usage": {
+        "costMeaning": "unavailable",
+        "inputTokens": 7042,
+        "outputTokens": 12,
+        "cachedInputTokens": 0
+      },
+      "diagnostics": []
+    },
+    {
+      "name": "cross-process-resume",
+      "launched": 1,
+      "status": "completed",
+      "authSource": "cloud-provider",
+      "authStateAtPreflight": "unknown",
+      "cli": "0.56.0",
+      "cliReportedRequestedModel": true,
+      "elapsedMs": 8901,
+      "toolCallObserved": false,
+      "writeToolCallObserved": false,
+      "usage": {
+        "costMeaning": "unavailable",
+        "inputTokens": 7068,
+        "outputTokens": 12,
+        "cachedInputTokens": 0
+      },
+      "diagnostics": []
+    },
+    {
+      "name": "write-canary",
+      "launched": 1,
+      "status": "completed",
+      "authSource": "cloud-provider",
+      "authStateAtPreflight": "unknown",
+      "cli": "0.56.0",
+      "cliReportedRequestedModel": true,
+      "elapsedMs": 14862,
+      "toolCallObserved": false,
+      "writeToolCallObserved": false,
+      "usage": {
+        "costMeaning": "unavailable",
+        "inputTokens": 7044,
+        "outputTokens": 2,
+        "cachedInputTokens": 0
+      },
+      "diagnostics": []
+    }
+  ],
+  "sessionIdentityMatched": true,
+  "writeCanaryAbsent": true,
+  "passed": true
+}

@@ -4,6 +4,8 @@ Construí un tablero en el que cada tarjeta encarga un documento Markdown. Vos d
 
 **Si querés conocer todo el SDK**, el mapa de ejemplos muestra qué cubre la ventana, qué podés probar con procesos locales y cuáles son las pruebas que dependen de un proveedor. Incluye un consumidor ejecutable para cada una de las 11 entradas públicas de la beta. [Cobertura y laboratorios por funcionalidad](labs/README.md)
 
+La comparación de proveedores usa las mismas tareas de prioridad, redacción y revisión. Los resultados incluyen los controles y la latencia por turno. [Cómo medir y repetir la comparación](labs/benchmark.md)
+
 ## 1. Abrí el tablero
 
 ```sh

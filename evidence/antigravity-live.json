@@ -1,0 +1,50 @@
+{
+  "verifiedAt": "2026-11-23T14:48:24.950Z",
+  "sdk": "hiveagents-runtime@0.1.0-beta.4",
+  "sdkIntegrity": "sha512-+m1uCL6R7kZAjH3i5wMO8PYqGhwQL7FE+rixHtD6At1oU/ROJOq8M8ZByNYjlPKVpbjHIcsaZmKn/zlz0YA1vQ==",
+  "sdkTarballSha256": "a00aaf76d85ce65885426d0e014a90580778489a6639c6583e975d313c0e74d4",
+  "nativeVersion": "1.5.15",
+  "nativeExecutableSha256": "8097b24de18aba93324ee24d0d3f060906c58ba58562f4f1bd66f380906056a2",
+  "model": "antigravity/gemini-3.8-flash-low",
+  "os": "darwin",
+  "arch": "arm64",
+  "node": "v22.23.2",
+  "nativeDispatches": 2,
+  "independentNodeProcesses": true,
+  "fileCanaryUnchanged": true,
+  "unexpectedWorkspaceEntries": 0,
+  "permissionMode": "edit/request-review",
+  "turns": [
+    {
+      "phase": "initial",
+      "status": "completed",
+      "resultDigest": "7dd40b5982bbc6d55544505a1e7ff252e68f2fc9f7e5fab241a27238342e5b6b",
+      "sessionDigest": "cbaad04728c4291b6e339eed82912c40190e896f5b3d04cf6e4bda46c6144071",
+      "elapsedMs": 9347,
+      "usage": {
+        "costMeaning": "unavailable",
+        "inputTokens": 21891,
+        "outputTokens": 37,
+        "cachedInputTokens": 0
+      },
+      "deltas": 2,
+      "toolEvents": 0,
+      "preflightAuthentication": "unknown",
+      "permissionEnforcement": []
+    },
+    {
+      "phase": "resume",
+      "status": "completed",
+      "resultDigest": "7dd40b5982bbc6d55544505a1e7ff252e68f2fc9f7e5fab241a27238342e5b6b",
+      "sessionDigest": "cbaad04728c4291b6e339eed82912c40190e896f5b3d04cf6e4bda46c6144071",
+      "elapsedMs": 9679,
+      "usage": {
+        "costMeaning": "unavailable"
+      },
+      "deltas": 5,
+      "toolEvents": 0,
+      "preflightAuthentication": "unknown",
+      "permissionEnforcement": []
+    }
+  ]
+}

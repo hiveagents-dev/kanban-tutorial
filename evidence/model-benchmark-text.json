@@ -1,0 +1,454 @@
+{
+  "formatVersion": 1,
+  "kind": "kanban-provider-benchmark",
+  "sdk": "hiveagents-runtime@0.1.0-beta.3",
+  "startedAt": "2026-11-23T14:44:48.304Z",
+  "finishedAt": "2026-11-23T14:46:33.944Z",
+  "format": "text",
+  "repeats": 1,
+  "host": {
+    "platform": "darwin",
+    "arch": "arm64",
+    "node": "v22.23.2"
+  },
+  "corpusSha256": "14c5e70e783907bb5b916354e296fa406bec3cb28b4c8efc627ac0812d7446c8",
+  "runnerSha256": "8a36c09d72690bcaad876b69e848923f4d0436bb740cae5203d7d709cd32ba1c",
+  "method": {
+    "selectedCases": [
+      "prioridad-incidente",
+      "redaccion-resumen",
+      "revision-rechazo",
+      "revision-aprobacion"
+    ],
+    "order": "rotated model order per case",
+    "timings": "wall clock, total includes preflight and close",
+    "latencySample": "turns passing every check",
+    "retries": 0,
+    "workspace": "isolated temporary directory per turn",
+    "timeoutMs": 120000,
+    "output": "checks and digest only"
+  },
+  "cells": [
+    {
+      "model": "claude/claude-sonnet-5",
+      "role": "planificar",
+      "case": "prioridad-incidente",
+      "round": 1,
+      "status": "completed",
+      "passed": true,
+      "cliVersion": "2.1.228",
+      "authSource": "subscription",
+      "preflightMs": 1534,
+      "turnMs": 4609,
+      "usage": {
+        "inputTokens": 1171,
+        "outputTokens": 105,
+        "cachedInputTokens": 0,
+        "cacheCreationTokens": 0,
+        "reportedCostUsd": 0.00344,
+        "costMeaning": "api-equivalent"
+      },
+      "outputSha256": "90ecbbb39580a79ed99d2fb86a5d064cf272157bb6a46ee81b22c94408cb93a3",
+      "checks": {
+        "respeta elegibilidad e impacto de operación": true
+      },
+      "totalMs": 6144
+    },
+    {
+      "model": "codex/gpt-5.6-sol",
+      "role": "planificar",
+      "case": "prioridad-incidente",
+      "round": 1,
+      "status": "completed",
+      "passed": true,
+      "cliVersion": "0.153.4",
+      "authSource": "subscription",
+      "preflightMs": 174,
+      "turnMs": 4488,
+      "usage": {
+        "inputTokens": 13757,
+        "outputTokens": 11,
+        "cachedInputTokens": 10496,
+        "cacheCreationTokens": 0,
+        "costMeaning": "unavailable"
+      },
+      "outputSha256": "90ecbbb39580a79ed99d2fb86a5d064cf272157bb6a46ee81b22c94408cb93a3",
+      "checks": {
+        "respeta elegibilidad e impacto de operación": true
+      },
+      "totalMs": 4662
+    },
+    {
+      "model": "gemini/gemini-3.7-flash",
+      "role": "planificar",
+      "case": "prioridad-incidente",
+      "round": 1,
+      "status": "completed",
+      "passed": true,
+      "cliVersion": "0.56.0",
+      "authSource": "cloud-provider",
+      "preflightMs": 1876,
+      "turnMs": 8769,
+      "usage": {
+        "inputTokens": 7188,
+        "outputTokens": 7,
+        "cachedInputTokens": 0,
+        "costMeaning": "unavailable"
+      },
+      "outputSha256": "90ecbbb39580a79ed99d2fb86a5d064cf272157bb6a46ee81b22c94408cb93a3",
+      "checks": {
+        "respeta elegibilidad e impacto de operación": true
+      },
+      "totalMs": 10644
+    },
+    {
+      "model": "codex/gpt-5.6-sol",
+      "role": "redactar",
+      "case": "redaccion-resumen",
+      "round": 1,
+      "status": "completed",
+      "passed": true,
+      "cliVersion": "0.153.4",
+      "authSource": "subscription",
+      "preflightMs": 362,
+      "turnMs": 5855,
+      "usage": {
+        "inputTokens": 13764,
+        "outputTokens": 46,
+        "cachedInputTokens": 10496,
+        "cacheCreationTokens": 0,
+        "costMeaning": "unavailable"
+      },
+      "outputSha256": "ff93f6cd313146a570f90cb67f92ef036a2ecd79839a0743721fb9248b0040b0",
+      "checks": {
+        "columnas en orden": true,
+        "separador Markdown válido": true,
+        "registros exactos sin filas extra": true
+      },
+      "totalMs": 6218
+    },
+    {
+      "model": "gemini/gemini-3.7-flash",
+      "role": "redactar",
+      "case": "redaccion-resumen",
+      "round": 1,
+      "status": "completed",
+      "passed": true,
+      "cliVersion": "0.56.0",
+      "authSource": "cloud-provider",
+      "preflightMs": 3222,
+      "turnMs": 11734,
+      "usage": {
+        "inputTokens": 7200,
+        "outputTokens": 41,
+        "cachedInputTokens": 0,
+        "costMeaning": "unavailable"
+      },
+      "outputSha256": "e82b45e5c6cc2c69c7d95f367cbe203aa99f1fa592592c200f8ba4d7ef58397c",
+      "checks": {
+        "columnas en orden": true,
+        "separador Markdown válido": true,
+        "registros exactos sin filas extra": true
+      },
+      "totalMs": 14956
+    },
+    {
+      "model": "claude/claude-sonnet-5",
+      "role": "redactar",
+      "case": "redaccion-resumen",
+      "round": 1,
+      "status": "completed",
+      "passed": true,
+      "cliVersion": "2.1.228",
+      "authSource": "subscription",
+      "preflightMs": 1755,
+      "turnMs": 5769,
+      "usage": {
+        "inputTokens": 1178,
+        "outputTokens": 208,
+        "cachedInputTokens": 0,
+        "cacheCreationTokens": 0,
+        "reportedCostUsd": 0.0050219999999999996,
+        "costMeaning": "api-equivalent"
+      },
+      "outputSha256": "e82b45e5c6cc2c69c7d95f367cbe203aa99f1fa592592c200f8ba4d7ef58397c",
+      "checks": {
+        "columnas en orden": true,
+        "separador Markdown válido": true,
+        "registros exactos sin filas extra": true
+      },
+      "totalMs": 7525
+    },
+    {
+      "model": "gemini/gemini-3.7-flash",
+      "role": "revisar",
+      "case": "revision-rechazo",
+      "round": 1,
+      "status": "completed",
+      "passed": true,
+      "cliVersion": "0.56.0",
+      "authSource": "cloud-provider",
+      "preflightMs": 1989,
+      "turnMs": 19033,
+      "usage": {
+        "inputTokens": 7238,
+        "outputTokens": 11,
+        "cachedInputTokens": 0,
+        "costMeaning": "unavailable"
+      },
+      "outputSha256": "14bad3344d61b356cf503f60f7a1b0626958c324203cacc0f54716df24cbdaeb",
+      "checks": {
+        "detecta la falsa reanudación": true
+      },
+      "totalMs": 21023
+    },
+    {
+      "model": "claude/claude-sonnet-5",
+      "role": "revisar",
+      "case": "revision-rechazo",
+      "round": 1,
+      "status": "completed",
+      "passed": true,
+      "cliVersion": "2.1.228",
+      "authSource": "subscription",
+      "preflightMs": 1454,
+      "turnMs": 4265,
+      "usage": {
+        "inputTokens": 1361,
+        "outputTokens": 40,
+        "cachedInputTokens": 0,
+        "cacheCreationTokens": 0,
+        "reportedCostUsd": 0.0028970000000000003,
+        "costMeaning": "api-equivalent"
+      },
+      "outputSha256": "14bad3344d61b356cf503f60f7a1b0626958c324203cacc0f54716df24cbdaeb",
+      "checks": {
+        "detecta la falsa reanudación": true
+      },
+      "totalMs": 5718
+    },
+    {
+      "model": "codex/gpt-5.6-sol",
+      "role": "revisar",
+      "case": "revision-rechazo",
+      "round": 1,
+      "status": "completed",
+      "passed": true,
+      "cliVersion": "0.153.4",
+      "authSource": "subscription",
+      "preflightMs": 159,
+      "turnMs": 4417,
+      "usage": {
+        "inputTokens": 13809,
+        "outputTokens": 15,
+        "cachedInputTokens": 10496,
+        "cacheCreationTokens": 0,
+        "costMeaning": "unavailable"
+      },
+      "outputSha256": "14bad3344d61b356cf503f60f7a1b0626958c324203cacc0f54716df24cbdaeb",
+      "checks": {
+        "detecta la falsa reanudación": true
+      },
+      "totalMs": 4576
+    },
+    {
+      "model": "claude/claude-sonnet-5",
+      "role": "revisar",
+      "case": "revision-aprobacion",
+      "round": 1,
+      "status": "completed",
+      "passed": true,
+      "cliVersion": "2.1.228",
+      "authSource": "subscription",
+      "preflightMs": 1149,
+      "turnMs": 5539,
+      "usage": {
+        "inputTokens": 1317,
+        "outputTokens": 39,
+        "cachedInputTokens": 0,
+        "cacheCreationTokens": 0,
+        "reportedCostUsd": 0.002804,
+        "costMeaning": "api-equivalent"
+      },
+      "outputSha256": "8deef8c6e3d7ad040af520b7c191425ad8b93551f94262c7f70f2c2e6470f82d",
+      "checks": {
+        "aprueba el procedimiento correcto": true
+      },
+      "totalMs": 6689
+    },
+    {
+      "model": "codex/gpt-5.6-sol",
+      "role": "revisar",
+      "case": "revision-aprobacion",
+      "round": 1,
+      "status": "completed",
+      "passed": true,
+      "cliVersion": "0.153.4",
+      "authSource": "subscription",
+      "preflightMs": 167,
+      "turnMs": 4354,
+      "usage": {
+        "inputTokens": 13795,
+        "outputTokens": 14,
+        "cachedInputTokens": 10496,
+        "cacheCreationTokens": 0,
+        "costMeaning": "unavailable"
+      },
+      "outputSha256": "8deef8c6e3d7ad040af520b7c191425ad8b93551f94262c7f70f2c2e6470f82d",
+      "checks": {
+        "aprueba el procedimiento correcto": true
+      },
+      "totalMs": 4521
+    },
+    {
+      "model": "gemini/gemini-3.7-flash",
+      "role": "revisar",
+      "case": "revision-aprobacion",
+      "round": 1,
+      "status": "completed",
+      "passed": true,
+      "cliVersion": "0.56.0",
+      "authSource": "cloud-provider",
+      "preflightMs": 1876,
+      "turnMs": 11068,
+      "usage": {
+        "inputTokens": 7233,
+        "outputTokens": 19,
+        "cachedInputTokens": 0,
+        "costMeaning": "unavailable"
+      },
+      "outputSha256": "8deef8c6e3d7ad040af520b7c191425ad8b93551f94262c7f70f2c2e6470f82d",
+      "checks": {
+        "aprueba el procedimiento correcto": true
+      },
+      "totalMs": 12944
+    }
+  ],
+  "summary": [
+    {
+      "model": "claude/claude-sonnet-5",
+      "attempted": 4,
+      "completed": 4,
+      "passed": 4,
+      "medianPassedTurnMs": 5074,
+      "medianPassedTotalMs": 6416.5,
+      "cost": {
+        "meaning": "api-equivalent",
+        "sumUsd": 0.014162999999999999,
+        "turns": 4
+      },
+      "byRole": {
+        "planificar": {
+          "attempted": 1,
+          "completed": 1,
+          "passed": 1,
+          "medianPassedTurnMs": 4609,
+          "medianPassedTotalMs": 6144,
+          "cost": {
+            "meaning": "api-equivalent",
+            "sumUsd": 0.00344,
+            "turns": 1
+          }
+        },
+        "redactar": {
+          "attempted": 1,
+          "completed": 1,
+          "passed": 1,
+          "medianPassedTurnMs": 5769,
+          "medianPassedTotalMs": 7525,
+          "cost": {
+            "meaning": "api-equivalent",
+            "sumUsd": 0.0050219999999999996,
+            "turns": 1
+          }
+        },
+        "revisar": {
+          "attempted": 2,
+          "completed": 2,
+          "passed": 2,
+          "medianPassedTurnMs": 4902,
+          "medianPassedTotalMs": 6203.5,
+          "cost": {
+            "meaning": "api-equivalent",
+            "sumUsd": 0.005701,
+            "turns": 2
+          }
+        }
+      }
+    },
+    {
+      "model": "codex/gpt-5.6-sol",
+      "attempted": 4,
+      "completed": 4,
+      "passed": 4,
+      "medianPassedTurnMs": 4452.5,
+      "medianPassedTotalMs": 4619,
+      "cost": null,
+      "byRole": {
+        "planificar": {
+          "attempted": 1,
+          "completed": 1,
+          "passed": 1,
+          "medianPassedTurnMs": 4488,
+          "medianPassedTotalMs": 4662,
+          "cost": null
+        },
+        "redactar": {
+          "attempted": 1,
+          "completed": 1,
+          "passed": 1,
+          "medianPassedTurnMs": 5855,
+          "medianPassedTotalMs": 6218,
+          "cost": null
+        },
+        "revisar": {
+          "attempted": 2,
+          "completed": 2,
+          "passed": 2,
+          "medianPassedTurnMs": 4385.5,
+          "medianPassedTotalMs": 4548.5,
+          "cost": null
+        }
+      }
+    },
+    {
+      "model": "gemini/gemini-3.7-flash",
+      "attempted": 4,
+      "completed": 4,
+      "passed": 4,
+      "medianPassedTurnMs": 11401,
+      "medianPassedTotalMs": 13950,
+      "cost": null,
+      "byRole": {
+        "planificar": {
+          "attempted": 1,
+          "completed": 1,
+          "passed": 1,
+          "medianPassedTurnMs": 8769,
+          "medianPassedTotalMs": 10644,
+          "cost": null
+        },
+        "redactar": {
+          "attempted": 1,
+          "completed": 1,
+          "passed": 1,
+          "medianPassedTurnMs": 11734,
+          "medianPassedTotalMs": 14956,
+          "cost": null
+        },
+        "revisar": {
+          "attempted": 2,
+          "completed": 2,
+          "passed": 2,
+          "medianPassedTurnMs": 15050.5,
+          "medianPassedTotalMs": 16983.5,
+          "cost": null
+        }
+      }
+    }
+  ],
+  "sdkArtifact": {
+    "source": "npm-registry",
+    "integrity": "sha512-NZ+/ctR7YIBIpcOGQ5FDI3voRZ2srpYUJgF64kEKwfPgnEXfk6bR43HGLJ3lh9ONzQjGmu+bvw/cgdTbkWdKBA=="
+  }
+}

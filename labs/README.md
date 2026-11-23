@@ -59,9 +59,17 @@ Cada fila enlaza un consumidor que importa esa entrada. El inventario se contras
 | `hiveagents-runtime/memory-tools` | [herramientas de memoria](memory.mjs) | Búsqueda y propuestas con alcance por tarjeta |
 | `hiveagents-runtime/hosted` | [worker](hosted.mjs) | Ejecución y denegación de admisión por un Host |
 
-### Qué queda por validar en entornos reales
+## Pruebas en vivo y comparación de proveedores
 
-Las prioridades pendientes son registrar un turno y una reanudación de Gemini y Antigravity con versiones y autenticación compatibles, ejercitar aprobaciones y herramientas de Control con cada combinación que se quiera recomendar y validar el worker contra el Host elegido para producción. Si vas a recomendar un modelo por calidad, costo o latencia, reuní evidencia de una carga representativa con tareas nuevas, métricas comparables y un conjunto de evaluación independiente. Los ejemplos locales permiten aprender y reproducir los mecanismos antes de invertir en esas pruebas.
+El tablero se verificó con Claude Code y Codex. Los laboratorios de texto usan el SDK con las capacidades propias de cada CLI. El estudio comparó los cuatro proveedores sobre los mismos casos verificables de Kanban. [Método, resultados y comando para repetirlo](benchmark.md)
+
+- **Gemini CLI 0.56.0.** La beta publicada verificó envío y reanudación entre procesos con Vertex AI y `gemini-3.7-flash`. [Ejercicio](gemini.md) · [Evidencia](../evidence/gemini-live.json)
+- **Antigravity CLI 1.5.15.** La beta.4 verificó dos turnos de texto con deltas y la reanudación entre procesos con el mismo ID nativo. El SDK requirió `edit` y el archivo de comprobación quedó intacto durante la prueba. [Ejercicio](antigravity-live.md) · [Evidencia](../evidence/antigravity-live.json)
+- **Control experimental.** Verificamos con Claude Code y Codex una lectura y una escritura autorizadas por la aplicación, con comprobación del resultado. [Evidencia](../evidence/control-live.json)
+
+### Alcance de la evidencia
+
+La evidencia comercial queda vinculada a la versión, modelo y método de autenticación de cada corrida. Control valida las herramientas de la app en ambos transportes. La cobertura de aprobaciones nativas depende del proveedor y del tipo de interacción. El laboratorio de Hosted usa un Host de referencia en memoria. Para estimar calidad editorial y costo en una aplicación concreta, ampliá el corpus con tareas de esa carga y contrastá el consumo con la facturación del proveedor.
 
 ## Herramientas acotadas en Control
 
@@ -80,3 +88,5 @@ node --experimental-strip-types examples/control-tools.mjs claude claude/sonnet
 ```
 
 El ejemplo autoriza operaciones concretas con su propio callback. El tratamiento de aprobaciones de herramientas nativas depende de cada proveedor. [Definición y autorizadores](../examples/control-tools.ts)
+
+El 23 de noviembre de 2026 ambos perfiles usaron herramientas reales y pasaron la comprobación del archivo final. [Resultados de Claude y Codex](../evidence/control-live.json)

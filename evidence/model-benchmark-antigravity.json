@@ -1,0 +1,168 @@
+{
+  "formatVersion": 1,
+  "kind": "kanban-provider-benchmark",
+  "sdk": "hiveagents-runtime@0.1.0-beta.3",
+  "startedAt": "2026-11-23T14:45:12.394Z",
+  "finishedAt": "2026-11-23T14:45:51.468Z",
+  "format": "text",
+  "repeats": 1,
+  "host": {
+    "platform": "darwin",
+    "arch": "arm64",
+    "node": "v22.23.2"
+  },
+  "corpusSha256": "14c5e70e783907bb5b916354e296fa406bec3cb28b4c8efc627ac0812d7446c8",
+  "runnerSha256": "8a36c09d72690bcaad876b69e848923f4d0436bb740cae5203d7d709cd32ba1c",
+  "method": {
+    "selectedCases": [
+      "prioridad-incidente",
+      "redaccion-resumen",
+      "revision-rechazo",
+      "revision-aprobacion"
+    ],
+    "order": "rotated model order per case",
+    "timings": "wall clock, total includes preflight and close",
+    "latencySample": "turns passing every check",
+    "retries": 0,
+    "workspace": "isolated temporary directory per turn",
+    "timeoutMs": 120000,
+    "output": "checks and digest only"
+  },
+  "cells": [
+    {
+      "model": "antigravity/gemini-3.8-flash-low",
+      "role": "planificar",
+      "case": "prioridad-incidente",
+      "round": 1,
+      "status": "completed",
+      "passed": true,
+      "cliVersion": "1.5.15",
+      "authSource": "unknown",
+      "preflightMs": 1499,
+      "turnMs": 8667,
+      "usage": {
+        "inputTokens": 21985,
+        "outputTokens": 7,
+        "cachedInputTokens": 0,
+        "costMeaning": "unavailable"
+      },
+      "outputSha256": "90ecbbb39580a79ed99d2fb86a5d064cf272157bb6a46ee81b22c94408cb93a3",
+      "checks": {
+        "respeta elegibilidad e impacto de operación": true
+      },
+      "totalMs": 10166
+    },
+    {
+      "model": "antigravity/gemini-3.8-flash-low",
+      "role": "redactar",
+      "case": "redaccion-resumen",
+      "round": 1,
+      "status": "completed",
+      "passed": true,
+      "cliVersion": "1.5.15",
+      "authSource": "unknown",
+      "preflightMs": 362,
+      "turnMs": 8837,
+      "usage": {
+        "inputTokens": 22000,
+        "outputTokens": 41,
+        "cachedInputTokens": 0,
+        "costMeaning": "unavailable"
+      },
+      "outputSha256": "e82b45e5c6cc2c69c7d95f367cbe203aa99f1fa592592c200f8ba4d7ef58397c",
+      "checks": {
+        "columnas en orden": true,
+        "separador Markdown válido": true,
+        "registros exactos sin filas extra": true
+      },
+      "totalMs": 9199
+    },
+    {
+      "model": "antigravity/gemini-3.8-flash-low",
+      "role": "revisar",
+      "case": "revision-rechazo",
+      "round": 1,
+      "status": "completed",
+      "passed": true,
+      "cliVersion": "1.5.15",
+      "authSource": "unknown",
+      "preflightMs": 348,
+      "turnMs": 9602,
+      "usage": {
+        "inputTokens": 2045,
+        "outputTokens": 11,
+        "cachedInputTokens": 19999,
+        "costMeaning": "unavailable"
+      },
+      "outputSha256": "14bad3344d61b356cf503f60f7a1b0626958c324203cacc0f54716df24cbdaeb",
+      "checks": {
+        "detecta la falsa reanudación": true
+      },
+      "totalMs": 9950
+    },
+    {
+      "model": "antigravity/gemini-3.8-flash-low",
+      "role": "revisar",
+      "case": "revision-aprobacion",
+      "round": 1,
+      "status": "completed",
+      "passed": true,
+      "cliVersion": "1.5.15",
+      "authSource": "unknown",
+      "preflightMs": 407,
+      "turnMs": 9342,
+      "usage": {
+        "inputTokens": 22030,
+        "outputTokens": 10,
+        "cachedInputTokens": 0,
+        "costMeaning": "unavailable"
+      },
+      "outputSha256": "8deef8c6e3d7ad040af520b7c191425ad8b93551f94262c7f70f2c2e6470f82d",
+      "checks": {
+        "aprueba el procedimiento correcto": true
+      },
+      "totalMs": 9749
+    }
+  ],
+  "summary": [
+    {
+      "model": "antigravity/gemini-3.8-flash-low",
+      "attempted": 4,
+      "completed": 4,
+      "passed": 4,
+      "medianPassedTurnMs": 9089.5,
+      "medianPassedTotalMs": 9849.5,
+      "cost": null,
+      "byRole": {
+        "planificar": {
+          "attempted": 1,
+          "completed": 1,
+          "passed": 1,
+          "medianPassedTurnMs": 8667,
+          "medianPassedTotalMs": 10166,
+          "cost": null
+        },
+        "redactar": {
+          "attempted": 1,
+          "completed": 1,
+          "passed": 1,
+          "medianPassedTurnMs": 8837,
+          "medianPassedTotalMs": 9199,
+          "cost": null
+        },
+        "revisar": {
+          "attempted": 2,
+          "completed": 2,
+          "passed": 2,
+          "medianPassedTurnMs": 9472,
+          "medianPassedTotalMs": 9849.5,
+          "cost": null
+        }
+      }
+    }
+  ],
+  "sdkArtifact": {
+    "source": "local-candidate",
+    "sha256": "41c008adc412e146ec66afc284c2c87312708ec9b025e8acd4cdf279c2e6ca7d"
+  }
+}
