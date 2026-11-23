@@ -6,6 +6,8 @@ Construí un tablero en el que cada tarjeta encarga un documento Markdown. Vos d
 
 Los recorridos avanzados muestran el ciclo de aprendizaje con promoción y rollback, la ejecución entre un Host y un worker, y el manejo de aprobaciones nativas de Claude Code y Codex. [Tutoriales avanzados](labs/README.md#recorridos-avanzados)
 
+Podés pedirle al SDK que elija sin indicar un modelo ni enumerar candidatos. El laboratorio muestra la selección inicial y cómo usar resultados verificados para decidir por tarea. [Selección automática de modelos](labs/auto-model.md)
+
 La comparación de proveedores usa las mismas tareas de prioridad, redacción y revisión. Los resultados incluyen los controles y la latencia por turno. [Cómo medir y repetir la comparación](labs/benchmark.md)
 
 ## 1. Abrí el tablero

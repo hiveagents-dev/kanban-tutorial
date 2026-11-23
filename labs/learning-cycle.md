@@ -20,6 +20,12 @@ La corrida tarda unos 25 segundos en una máquina de desarrollo. Crea un directo
 | Reinicio | Otro proceso abre SQLite y recupera el puntero. Una tarjeta nueva selecciona `especialista`. | `LEARNED` |
 | Rollback | El fixture cambia sus respuestas. Se vuelven a ejecutar los casos fijos y se reserva otro conjunto nuevo. Otro proceso verifica el puntero restaurado. | `rolled-back` con 6 victorias de `base` y generación 2 |
 
+## Elegí sin pasar un modelo en cada tarea
+
+El laboratorio fija un objetivo de calidad. La aplicación usa `runtime.models()` para obtener los modelos registrados y prepara los candidatos que exige `LearningRouter`. Cada tarea de uso normal llama al router con su entrada y un verificador. Durante la evaluación el laboratorio ejecuta ambos candidatos para medirlos con las mismas tarjetas.
+
+La política inicial usa el primer candidato elegible. Después de promover la política, el SDK puede elegir otro candidato cuando encuentra evidencia suficiente para ese tipo de tarea. El preflight verifica que el candidato pueda ejecutar. La evidencia de calidad viene de comparar las respuestas con el resultado conocido. [Candidatos a partir del catálogo](fixtures/learning-cycle-provider.mjs) · [Ejecución por tarea](learning-cycle.mjs)
+
 ## Vinculá las decisiones con la evidencia
 
 - `LearningRouter.run()` registra el intento y pasa el resultado a un verificador controlado por la app. El resultado esperado se mantiene separado de la entrada que recibe el candidato. El contexto [1, 0] identifica una consulta de prioridad y [0, 1] una consulta de estado.

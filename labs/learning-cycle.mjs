@@ -169,15 +169,20 @@ async function run() {
     await writeFile(join(directory, 'phase.txt'), 'initial');
     // 16 training calls, 16 promotion cells, 1 use per policy and 16 rollback cells.
     const budget = launchBudget(50);
-    study = { ...open(directory), runtime: fixtureRuntime(), definition: fixtureDefinition(directory), budget };
+    const runtime = fixtureRuntime();
+    const definition = await fixtureDefinition(runtime, directory);
+    const [firstCandidate, secondCandidate] = definition.model.candidates.map(candidate => candidate.id);
+    assert.equal(definition.model.candidates.length, 2);
+    study = { ...open(directory), runtime, definition, budget };
     assert.deepEqual({ ...await study.router.inspect() }, { generation: 0, active: null, previous: null });
     const baseline = await runCard(study, training[0]);
     assert.equal(baseline.receipt.reason, 'INCUMBENT');
-    assert.equal(baseline.receipt.selected.id, 'base');
+    assert.equal(baseline.receipt.selected.id, firstCandidate);
     assert.equal(baseline.observation.quality.passed, false);
-    for (const item of training) {
-      if (item !== training[0]) await runCard(study, item, { evaluationArmId: 'base' });
-      await runCard(study, item, { evaluationArmId: 'especialista' });
+    for (const [index, item] of training.entries()) {
+      // The initial turn already provides the first case for its selected candidate.
+      const candidates = index === 0 ? [secondCandidate] : [firstCandidate, secondCandidate];
+      for (const candidate of candidates) await runCard(study, item, { evaluationArmId: candidate });
     }
     const shadow = await study.router.shadow(study.definition, { runtime: study.runtime, task: training[0].task, timeoutMs });
     assert.equal(shadow.rows.length, 16);
@@ -201,7 +206,7 @@ async function run() {
     Object.assign(study, open(directory));
     const learned = await runCard(study, card('produccion-aprendida', 'Prioridad', 'cerrada', 'alta'));
     assert.equal(learned.receipt.reason, 'LEARNED');
-    assert.equal(learned.receipt.selected.id, 'especialista');
+    assert.equal(learned.receipt.selected.id, secondCandidate);
     assert.equal(learned.observation.quality.passed, true);
 
     // Only the fixture changes its outcome. The rollback still needs another measured gate.
@@ -213,7 +218,7 @@ async function run() {
     assert.deepEqual({ ...rollback.commit.after }, { generation: 2, active: null, previous: shadow.digest });
     const restored = await runCard(study, card('produccion-restaurada', 'Prioridad', 'revisión', 'baja'));
     assert.equal(restored.receipt.reason, 'INCUMBENT');
-    assert.equal(restored.receipt.selected.id, 'base');
+    assert.equal(restored.receipt.selected.id, firstCandidate);
     assert.equal(restored.observation.quality.passed, true);
     assert.deepEqual(await study.store.pending(domainId), []);
     assert.deepEqual(budget.report(), { launches: 50, held: false });

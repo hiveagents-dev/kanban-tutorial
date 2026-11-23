@@ -84,13 +84,15 @@ export function fixtureRuntime() {
   });
 }
 
-export function fixtureDefinition(cwd) {
+export async function fixtureDefinition(runtime, cwd) {
+  const catalog = await runtime.models(id);
+  const candidates = catalog.map(model => ({ id: model.id, model: model.provider + '/' + model.id }));
   return {
     cwd,
     // This exception is for the registration above. The fixture has no login or credentials.
     model: {
       mode: 'auto', allowUnknownAuth: true, providers: [id],
-      candidates: models.map(model => ({ id: model.id, model: id + '/' + model.id })),
+      candidates,
     },
     permissions: { mode: 'analyze' },
     environment: { mode: 'minimal' },

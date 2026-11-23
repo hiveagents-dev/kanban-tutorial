@@ -1,6 +1,6 @@
 {
   "name": "hiveagents-kanban-tutorial",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "private": true,
   "description": "Tablero Kanban de escritorio con entregables y revisión de agentes",
   "type": "module",

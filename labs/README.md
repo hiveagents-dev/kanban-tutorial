@@ -33,6 +33,10 @@ Podés repetir sólo un ejercicio con `node labs/nombre.mjs`. Para recorrerlos c
 | ¿Cómo usa evidencia previa el selector de modelos? | [learning.mjs](learning.mjs) | Compara dos redactores sintéticos sobre diez encargos distintos. El estimador pasa del primer candidato a uno con mejores resultados verificados. La política en sombra se evalúa en memoria. |
 | ¿Qué recibe un worker cuando el Host le niega admisión? | [hosted.mjs](hosted.mjs) | Un Host simulado procesa una revisión y rechaza la segunda cuando se ocupa el cupo. El ejemplo usa el protocolo público dentro de un proceso. |
 
+## Selección automática sin indicar un modelo
+
+Ejecutá `node labs/auto-model.mjs` para que el SDK tome los candidatos del catálogo y elija uno compatible con tu instalación. El recorrido de aprendizaje deriva sus candidatos del catálogo y decide con evidencia verificada de la tarea. [Selección automática y selección aprendida](auto-model.md)
+
 ## Recorridos avanzados
 
 Después de `npm ci`, corré `npm run labs:advanced` para verificar los tres recorridos con datos sintéticos. Cada guía explica cómo ejecutar y observar el caso por separado.
@@ -58,7 +62,7 @@ Cada fila enlaza un consumidor que importa esa entrada. El inventario se contras
 | Entrada de npm | Consumidor | Qué usa |
 | --- | --- | --- |
 | `hiveagents-runtime` | [roles del tablero](../src/agents.mjs) | Runtime, configuración de proveedor y agentes |
-| `hiveagents-runtime/routing` | [selector del tablero](../src/agents.mjs) | Preflight y recibos de selección |
+| `hiveagents-runtime/routing` | [selección sin pasar un modelo](auto-model.mjs) | Catálogo registrado, preflight y recibo de selección |
 | `hiveagents-runtime/routing/learning` | [ciclo de aprendizaje](learning-cycle.mjs) | Evaluación por tarea, promoción y rollback con SQLite |
 | `hiveagents-runtime/adapter-kit` | [CLI propio](custom-cli.mjs) | Ejecución de un proceso y validación de su respuesta |
 | `hiveagents-runtime/orchestration` | [cupos](capacity.mjs) | Admisión compartida; otros ejercicios usan inbox, contexto y almacenamiento |
