@@ -15,7 +15,7 @@ console.table(report.providers.map(({ provider, installation, auth, models, warn
 })));
 
 for (const [model, mode] of [
-  ['gemini/gemini-2.5-flash', 'analyze'],
+  ['gemini/gemini-3.7-flash', 'analyze'],
   ['antigravity/flash-low', 'edit'],
 ]) {
   const agent = new Agent({ model, permissions: { mode }, environment: { mode: 'minimal' } }, runtime);

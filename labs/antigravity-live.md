@@ -2,21 +2,23 @@
 
 Este ejercicio usa Antigravity CLI **1.5.15** y `hiveagents-runtime@0.1.0-beta.4`. Instalá y autenticá Antigravity con el procedimiento habitual de Google. El laboratorio usa la sesión local y envía dos turnos con un token sintético. [Guía de modo headless](https://antigravity.google/docs/cli/headless/)
 
-Desde la carpeta de la app con sus dependencias instaladas:
+Si la app ya tiene beta.4 instalada, podés reproducir la prueba directamente desde su carpeta.
 
 ```sh
 node labs/antigravity-live.mjs --allow-live
 ```
 
-Para validar el tarball exacto de una beta desde un consumidor temporal, copiá este laboratorio e instalá el archivo con npm. El argumento final vincula la integridad del lock con los bytes del tarball.
+Para repetir la prueba con el artefacto exacto, instalá el SDK en un consumidor temporal. El argumento final vincula la integridad del lock con los bytes del tarball.
 
 ```sh
 proof_dir=$(mktemp -d)
 mkdir -p "$proof_dir/labs"
 cp labs/antigravity-live.mjs "$proof_dir/labs/"
 cd "$proof_dir"
-npm install /ruta/absoluta/hiveagents-runtime.tgz
-node labs/antigravity-live.mjs --allow-live /ruta/absoluta/hiveagents-runtime.tgz
+curl --fail --location --output hiveagents-runtime-0.1.0-beta.4.tgz \
+  https://github.com/hiveagents-dev/kanban-tutorial/releases/download/v1.0.0/hiveagents-runtime-0.1.0-beta.4.tgz
+npm install ./hiveagents-runtime-0.1.0-beta.4.tgz
+node labs/antigravity-live.mjs --allow-live "$proof_dir/hiveagents-runtime-0.1.0-beta.4.tgz"
 ```
 
 Podés apuntar `HIVE_ANTIGRAVITY_BIN` a la ruta absoluta de una copia local del ejecutable. La prueba compara su huella antes de cada turno y al terminar. Una actualización del ejecutable durante la prueba invalida esa corrida.
