@@ -33,6 +33,16 @@ Podés repetir sólo un ejercicio con `node labs/nombre.mjs`. Para recorrerlos c
 | ¿Cómo usa evidencia previa el selector de modelos? | [learning.mjs](learning.mjs) | Compara dos redactores sintéticos sobre diez encargos distintos. El estimador pasa del primer candidato a uno con mejores resultados verificados. La política en sombra se evalúa en memoria. |
 | ¿Qué recibe un worker cuando el Host le niega admisión? | [hosted.mjs](hosted.mjs) | Un Host simulado procesa una revisión y rechaza la segunda cuando se ocupa el cupo. El ejemplo usa el protocolo público dentro de un proceso. |
 
+## Recorridos avanzados
+
+Después de `npm ci`, corré `npm run labs:advanced` para verificar los tres recorridos con datos sintéticos. Cada guía explica cómo ejecutar y observar el caso por separado.
+
+| Recorrido | Qué podés reproducir |
+| --- | --- |
+| [Evaluar, promover y revertir una política](learning-cycle.md) | Entrená una política en sombra, medila en un conjunto fijo y otro nuevo, verificá la promoción tras reiniciar y revertí con evidencia nueva cuando el resultado cambie. |
+| [Host y worker en procesos separados](hosted-process.md) | Ejecutá un trabajo a través del Host, comprobá que el límite de cupos y el ámbito del worker impiden despachos, y volvé a ejecutar después de liberar el cupo. |
+| [Aprobaciones nativas en Control](native-approval.md) | Observá una solicitud nativa, respondé con la identidad asociada al turno y comprobá el permiso efectivo, la denegación y el cierre de la interacción. |
+
 ## Comprobá tu instalación y elegí cuándo gastar turnos
 
 - **Diagnóstico de cuatro CLIs.** Ejecutá `node labs/providers.mjs`. Inspecciona las instalaciones y el catálogo, y negocia Gemini con `analyze` y Antigravity con `edit`. La consulta admite que falten binarios o que una versión sea incompatible. Consume cero turnos. [Diagnóstico](providers.mjs)
@@ -49,7 +59,7 @@ Cada fila enlaza un consumidor que importa esa entrada. El inventario se contras
 | --- | --- | --- |
 | `hiveagents-runtime` | [roles del tablero](../src/agents.mjs) | Runtime, configuración de proveedor y agentes |
 | `hiveagents-runtime/routing` | [selector del tablero](../src/agents.mjs) | Preflight y recibos de selección |
-| `hiveagents-runtime/routing/learning` | [aprendizaje](learning.mjs) | Evidencia por tarea y estimador contextual |
+| `hiveagents-runtime/routing/learning` | [ciclo de aprendizaje](learning-cycle.mjs) | Evaluación por tarea, promoción y rollback con SQLite |
 | `hiveagents-runtime/adapter-kit` | [CLI propio](custom-cli.mjs) | Ejecución de un proceso y validación de su respuesta |
 | `hiveagents-runtime/orchestration` | [cupos](capacity.mjs) | Admisión compartida; otros ejercicios usan inbox, contexto y almacenamiento |
 | `hiveagents-runtime/orchestration/graph` | [dependencias](plan.mjs) | Orden de ejecución y ciclos |
@@ -69,7 +79,7 @@ El tablero se verificó con Claude Code y Codex. Los laboratorios de texto usan 
 
 ### Alcance de la evidencia
 
-La evidencia comercial queda vinculada a la versión, modelo y método de autenticación de cada corrida. Control valida las herramientas de la app en ambos transportes. La cobertura de aprobaciones nativas depende del proveedor y del tipo de interacción. El laboratorio de Hosted usa un Host de referencia en memoria. Para estimar calidad editorial y costo en una aplicación concreta, ampliá el corpus con tareas de esa carga y contrastá el consumo con la facturación del proveedor.
+La evidencia comercial queda vinculada a la versión, modelo y método de autenticación de cada corrida. Control valida las herramientas de la app en ambos transportes. La cobertura de aprobaciones nativas depende del proveedor y del tipo de interacción. Hosted incluye un ejercicio introductorio en memoria y un Host local con IPC y admisión en SQLite. La plataforma también pasó pruebas de contención y reinicio al reconstruirla contra la beta publicada. [Verificación de la plataforma](../evidence/hosted-platform.json) Para estimar calidad editorial y costo en una aplicación concreta, ampliá el corpus con tareas de esa carga y contrastá el consumo con la facturación del proveedor.
 
 ## Herramientas acotadas en Control
 

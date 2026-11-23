@@ -1,0 +1,30 @@
+{
+  "date": "2026-11-23",
+  "platform": "darwin-arm64",
+  "node": "22.23.2",
+  "sdk": {
+    "name": "hiveagents-runtime",
+    "version": "0.1.0-beta.3",
+    "npmIntegrity": "sha512-NZ+/ctR7YIBIpcOGQ5FDI3voRZ2srpYUJgF64kEKwfPgnEXfk6bR43HGLJ3lh9ONzQjGmu+bvw/cgdTbkWdKBA=="
+  },
+  "host": {
+    "sourceCommit": "0a25a32b80432803df3c35131ae03479abe7c174",
+    "copiedFilesCompared": 677,
+    "isolation": "rebuilt in a separate checkout; the historical dependency specifier was resolved to the exact npm beta and the test fixture took its adapter version from that SDK",
+    "buildSha256": {
+      "host": "10b40b4cfaf19f22decc8e72de39d71321e47d7a8a88e7cd7cb41f01707e6ab5",
+      "worker": "28a8a3faa9adebcf173423fb02a0fa036a71d9a0ab0d1136320b8b4ab64ab131",
+      "declarativeWorker": "b69ec8406aab3621ce5dd43e0b42a9d99bf579d743325ac2b3915a1d5a9300cf"
+    }
+  },
+  "checks": {
+    "testFilesPassed": 2,
+    "testsPassed": 6,
+    "workerAndProviderConfinement": true,
+    "verifiedShutdownAndRestart": true,
+    "missingContainmentPolicyRejectedBeforeDispatch": true,
+    "boundedWorkerProtocol": true,
+    "commercialModelTurns": 0
+  },
+  "scope": "Local platform Host with a synthetic executable and workspace. The public tutorial provides an independently runnable reference Host over IPC."
+}

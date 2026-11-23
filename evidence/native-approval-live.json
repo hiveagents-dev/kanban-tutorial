@@ -1,0 +1,36 @@
+{
+  "date": "2026-11-23",
+  "sdk": "hiveagents-runtime@0.1.0-beta.3",
+  "platform": "macOS arm64",
+  "transport": "control",
+  "workspace": "synthetic temporary directory",
+  "claudeAgentSdk": "0.3.252",
+  "claude": [
+    {
+      "cliVersion": "2.1.228",
+      "scenario": "allow",
+      "method": "canUseTool",
+      "tool": "Read",
+      "nativeApprovals": 1,
+      "observedExactFileText": true
+    },
+    {
+      "cliVersion": "2.1.228",
+      "scenario": "deny",
+      "method": "canUseTool",
+      "tool": "Read",
+      "nativeApprovals": 1,
+      "observedDenialMarker": true
+    }
+  ],
+  "codex": {
+    "cliVersion": "0.153.4",
+    "mode": "analyze",
+    "approvalsReviewer": "user",
+    "nativeApprovals": 1,
+    "method": "item/fileChange/requestApproval",
+    "decision": "decline",
+    "editEvents": 1,
+    "fileUnchanged": true
+  }
+}
