@@ -1,0 +1,504 @@
+{
+  "verifiedAt": "2026-11-23T13:33:12.161Z",
+  "sdk": "hiveagents-runtime@0.1.0-beta.3",
+  "electron": "45.4.1",
+  "platform": "darwin",
+  "arch": "arm64",
+  "routingReceipts": [
+    {
+      "format": 1,
+      "purpose": "selection-proposal",
+      "id": "ea6659db-0eef-4b38-8212-a67e5f6c7761",
+      "createdAt": 1795440688604,
+      "configDigest": "d40c3ac37105f604d6829b3246356fbe52d2c1c282df52558cf6baaf5142c259",
+      "taskDigest": "66a4eccea65a932602f5c552f1447814cd3ac1318dc909cee6228eb71b9a2ca4",
+      "policy": {
+        "mode": "auto",
+        "version": "priority-v1"
+      },
+      "decision": "selected",
+      "reason": "PRIORITY",
+      "candidates": [
+        {
+          "model": "codex/gpt-5.6-sol",
+          "provider": "codex",
+          "modelId": "gpt-5.6-sol",
+          "status": "eligible",
+          "code": "READY",
+          "authState": "authenticated",
+          "authSource": "subscription",
+          "transport": "exec",
+          "fingerprintDigest": "d1866a8a873b940e66c6fb7fcbf01cae08f0ea90d07de2b2b736d12fd9341914"
+        }
+      ],
+      "nativeDispatches": 0,
+      "selected": {
+        "model": "codex/gpt-5.6-sol",
+        "provider": "codex",
+        "modelId": "gpt-5.6-sol",
+        "transport": "exec",
+        "fingerprintDigest": "d1866a8a873b940e66c6fb7fcbf01cae08f0ea90d07de2b2b736d12fd9341914"
+      },
+      "digest": "21cba061d6fe80026785dab1ec22cb33c30a0f830332b47158d15de75326af4c"
+    },
+    {
+      "format": 1,
+      "purpose": "selection-proposal",
+      "id": "4707b840-1ca1-4eb8-9583-1b94f2aa3afc",
+      "createdAt": 1795440747379,
+      "configDigest": "d40c3ac37105f604d6829b3246356fbe52d2c1c282df52558cf6baaf5142c259",
+      "taskDigest": "66a4eccea65a932602f5c552f1447814cd3ac1318dc909cee6228eb71b9a2ca4",
+      "policy": {
+        "mode": "auto",
+        "version": "priority-v1"
+      },
+      "decision": "selected",
+      "reason": "PRIORITY",
+      "candidates": [
+        {
+          "model": "codex/gpt-5.6-sol",
+          "provider": "codex",
+          "modelId": "gpt-5.6-sol",
+          "status": "eligible",
+          "code": "READY",
+          "authState": "authenticated",
+          "authSource": "subscription",
+          "transport": "exec",
+          "fingerprintDigest": "457d0288e0c50beeef0b2f7f738e29f76c7b016a8d5db3b3784f768c36e47e66"
+        }
+      ],
+      "nativeDispatches": 0,
+      "selected": {
+        "model": "codex/gpt-5.6-sol",
+        "provider": "codex",
+        "modelId": "gpt-5.6-sol",
+        "transport": "exec",
+        "fingerprintDigest": "457d0288e0c50beeef0b2f7f738e29f76c7b016a8d5db3b3784f768c36e47e66"
+      },
+      "digest": "f6a704b195e12581d9d22f215ca2ba1856b5ef19c8a2d3ce8c12394302489209"
+    },
+    {
+      "format": 1,
+      "purpose": "selection-proposal",
+      "id": "f3a69b9c-cb39-497d-8c9a-03a26b0edf71",
+      "createdAt": 1795440756785,
+      "configDigest": "9c3a9ac8b5260eab5e226e70e9336ad3b67975e8d643cadf49813ed6ac5a6583",
+      "taskDigest": "84ff7c723ee58df6e890d95d9c3853903cd4892636c792a38b413b3d86b8aa7c",
+      "policy": {
+        "mode": "auto",
+        "version": "priority-v1"
+      },
+      "decision": "selected",
+      "reason": "PRIORITY",
+      "candidates": [
+        {
+          "model": "codex/gpt-5.6-sol",
+          "provider": "codex",
+          "modelId": "gpt-5.6-sol",
+          "status": "eligible",
+          "code": "READY",
+          "authState": "authenticated",
+          "authSource": "subscription",
+          "transport": "exec",
+          "fingerprintDigest": "06fd6fcdda8a79103c311144c59c78467b398724c237f782a7687e88f7a2b8a9"
+        }
+      ],
+      "nativeDispatches": 0,
+      "selected": {
+        "model": "codex/gpt-5.6-sol",
+        "provider": "codex",
+        "modelId": "gpt-5.6-sol",
+        "transport": "exec",
+        "fingerprintDigest": "06fd6fcdda8a79103c311144c59c78467b398724c237f782a7687e88f7a2b8a9"
+      },
+      "digest": "0e7665348867f237e1a1b9dc79137d2d71466203868b2cbe9f4080db722695fe"
+    },
+    {
+      "format": 1,
+      "purpose": "selection-proposal",
+      "id": "0526b857-407f-4d0b-909c-60b3113b2618",
+      "createdAt": 1795440777160,
+      "configDigest": "9fd20170f67bc4677c082d18db82901c938da337efb3501ef10390e285f5d15d",
+      "taskDigest": "54ff721fd580d5100fa4dba444d40fd2363f4f7c8aa003697919af1a4ab7b3fc",
+      "policy": {
+        "mode": "auto",
+        "version": "priority-v1"
+      },
+      "decision": "selected",
+      "reason": "PRIORITY",
+      "candidates": [
+        {
+          "model": "codex/gpt-5.6-sol",
+          "provider": "codex",
+          "modelId": "gpt-5.6-sol",
+          "status": "eligible",
+          "code": "READY",
+          "authState": "authenticated",
+          "authSource": "subscription",
+          "transport": "exec",
+          "fingerprintDigest": "4cf0399c0581175a8bf60cfbeeca583af4f8202ca3c4fc5b0912846b54f8646d"
+        }
+      ],
+      "nativeDispatches": 0,
+      "selected": {
+        "model": "codex/gpt-5.6-sol",
+        "provider": "codex",
+        "modelId": "gpt-5.6-sol",
+        "transport": "exec",
+        "fingerprintDigest": "4cf0399c0581175a8bf60cfbeeca583af4f8202ca3c4fc5b0912846b54f8646d"
+      },
+      "digest": "2b9b2ab6eb961db485e9e47c9e45c12b446683598156d079635a4b5512950d6f"
+    },
+    {
+      "format": 1,
+      "purpose": "selection-proposal",
+      "id": "b6013ba1-2c27-4c99-bd8e-c93fde0c79a8",
+      "createdAt": 1795440648878,
+      "configDigest": "d40c3ac37105f604d6829b3246356fbe52d2c1c282df52558cf6baaf5142c259",
+      "taskDigest": "77b49038ac25488139a8806405bd665109b651551a15bbce68277a8877e86569",
+      "policy": {
+        "mode": "auto",
+        "version": "priority-v1"
+      },
+      "decision": "selected",
+      "reason": "PRIORITY",
+      "candidates": [
+        {
+          "model": "codex/gpt-5.6-sol",
+          "provider": "codex",
+          "modelId": "gpt-5.6-sol",
+          "status": "eligible",
+          "code": "READY",
+          "authState": "authenticated",
+          "authSource": "subscription",
+          "transport": "exec",
+          "fingerprintDigest": "ab8158720a0fee055300d691fc464b992ea624bddf772310467d0efbb271a4f4"
+        }
+      ],
+      "nativeDispatches": 0,
+      "selected": {
+        "model": "codex/gpt-5.6-sol",
+        "provider": "codex",
+        "modelId": "gpt-5.6-sol",
+        "transport": "exec",
+        "fingerprintDigest": "ab8158720a0fee055300d691fc464b992ea624bddf772310467d0efbb271a4f4"
+      },
+      "digest": "c3de909b26f2753362f98e8b077e528177df829a497ab292200485a556b48d99"
+    },
+    {
+      "format": 1,
+      "purpose": "selection-proposal",
+      "id": "c5d9cedf-c443-4685-8e31-148e43201aee",
+      "createdAt": 1795440658914,
+      "configDigest": "9fd20170f67bc4677c082d18db82901c938da337efb3501ef10390e285f5d15d",
+      "taskDigest": "e1b1b2ec3a65b7bf1a1037b2cde0dec9fb7e426f6105ccc4390e92bfa4c8c03e",
+      "policy": {
+        "mode": "auto",
+        "version": "priority-v1"
+      },
+      "decision": "selected",
+      "reason": "PRIORITY",
+      "candidates": [
+        {
+          "model": "codex/gpt-5.6-sol",
+          "provider": "codex",
+          "modelId": "gpt-5.6-sol",
+          "status": "eligible",
+          "code": "READY",
+          "authState": "authenticated",
+          "authSource": "subscription",
+          "transport": "exec",
+          "fingerprintDigest": "a4dd7d43d59de06de44c7a3e087ffd1dd77af0628d5fdee7df94271a5d2954c4"
+        }
+      ],
+      "nativeDispatches": 0,
+      "selected": {
+        "model": "codex/gpt-5.6-sol",
+        "provider": "codex",
+        "modelId": "gpt-5.6-sol",
+        "transport": "exec",
+        "fingerprintDigest": "a4dd7d43d59de06de44c7a3e087ffd1dd77af0628d5fdee7df94271a5d2954c4"
+      },
+      "digest": "6c29ee9974072f98a404662757aadce913f7372cb7aa75e3ff3d97031e2e3e04"
+    },
+    {
+      "format": 1,
+      "purpose": "selection-proposal",
+      "id": "0d5286b8-a3b4-4a4d-b4db-f859112a8c21",
+      "createdAt": 1795440670104,
+      "configDigest": "9c3a9ac8b5260eab5e226e70e9336ad3b67975e8d643cadf49813ed6ac5a6583",
+      "taskDigest": "e94a5dbdea6b768252c0d846b9c0ebb45c0b2ea298b1bd898f968e1efd068a99",
+      "policy": {
+        "mode": "auto",
+        "version": "priority-v1"
+      },
+      "decision": "selected",
+      "reason": "PRIORITY",
+      "candidates": [
+        {
+          "model": "codex/gpt-5.6-sol",
+          "provider": "codex",
+          "modelId": "gpt-5.6-sol",
+          "status": "eligible",
+          "code": "READY",
+          "authState": "authenticated",
+          "authSource": "subscription",
+          "transport": "exec",
+          "fingerprintDigest": "2713701b4fdb69c882b4dde936c12599a37a9e539b52e6d0dbde716684691947"
+        }
+      ],
+      "nativeDispatches": 0,
+      "selected": {
+        "model": "codex/gpt-5.6-sol",
+        "provider": "codex",
+        "modelId": "gpt-5.6-sol",
+        "transport": "exec",
+        "fingerprintDigest": "2713701b4fdb69c882b4dde936c12599a37a9e539b52e6d0dbde716684691947"
+      },
+      "digest": "2b59b5ba2562356f5019c4cde0ac68af0d81fc34e0663453d5d37fc5b0282223"
+    },
+    {
+      "format": 1,
+      "purpose": "selection-proposal",
+      "id": "f0da86ba-0b39-4f26-8c16-ba05de84c193",
+      "createdAt": 1795440677183,
+      "configDigest": "9fd20170f67bc4677c082d18db82901c938da337efb3501ef10390e285f5d15d",
+      "taskDigest": "c073fe3234b867d2b2d0ef3f7a0ed03ff13e6fc8362386d88b195a2770ef4b25",
+      "policy": {
+        "mode": "auto",
+        "version": "priority-v1"
+      },
+      "decision": "selected",
+      "reason": "PRIORITY",
+      "candidates": [
+        {
+          "model": "codex/gpt-5.6-sol",
+          "provider": "codex",
+          "modelId": "gpt-5.6-sol",
+          "status": "eligible",
+          "code": "READY",
+          "authState": "authenticated",
+          "authSource": "subscription",
+          "transport": "exec",
+          "fingerprintDigest": "c12ab8a4630485637786adeffe3a63e048ff34da5d861550a09233a2826868cb"
+        }
+      ],
+      "nativeDispatches": 0,
+      "selected": {
+        "model": "codex/gpt-5.6-sol",
+        "provider": "codex",
+        "modelId": "gpt-5.6-sol",
+        "transport": "exec",
+        "fingerprintDigest": "c12ab8a4630485637786adeffe3a63e048ff34da5d861550a09233a2826868cb"
+      },
+      "digest": "e2e9a8e9da87a393b5476966a61571cfcd631a6e16a60266d1a8a3ca277ab5ac"
+    }
+  ],
+  "cards": [
+    {
+      "id": "e0cc2eb6-6b97-45a4-a11f-59428c854015",
+      "title": "Preparar una tarjeta verificable",
+      "brief": "Escribí una guía breve para quien abre su primera tarjeta en este tablero. Explicá cómo describir el entregable, elegir términos comprobables y revisar el resultado. Incluí un ejemplo concreto de una tarjeta para documentar un producto.",
+      "requiredTerms": [
+        "Criterios de aceptación",
+        "Evidencia"
+      ],
+      "status": "done",
+      "artifact": "# Guía para abrir tu primera tarjeta\n\nUna tarjeta clara debe indicar qué documento Markdown se espera y qué información tiene que contener. Describí un único resultado concreto, su público y su alcance; evitá pedidos ambiguos como “mejorar la documentación”.\n\n## Cómo definir el entregable\n\nEspecificá:\n\n- El tipo de documento que se debe entregar.\n- El tema y el público destinatario.\n- Las secciones o datos obligatorios.\n- Los límites relevantes, como extensión, idioma o aspectos excluidos.\n\nEl tablero muestra el Markdown como texto y no ejecuta ejemplos de código ni genera imágenes. Por eso, pedí resultados que puedan evaluarse leyendo el documento.\n\n## Criterios de aceptación\n\nElegí términos comprobables que deban aparecer literalmente en el documento. Conviene usar nombres de secciones o conceptos esenciales, por ejemplo `Instalación`, `Garantía` o `Preguntas frecuentes`. Evitá palabras demasiado generales y no uses términos para exigir una validación que el tablero no puede realizar.\n\nLos términos son una comprobación mínima: su presencia no garantiza por sí sola que el contenido sea correcto. Después de esa comprobación, un revisor independiente evalúa si el documento cumple toda la consigna.\n\n## Revisión del resultado\n\nAntes de aprobar, verificá que:\n\n- El documento no esté vacío.\n- Todos los términos requeridos aparezcan de forma literal.\n- La consigna esté resuelta por completo y no solo mencionada.\n- La información sea coherente, específica y fácil de leer.\n- La **Evidencia** esté dentro del propio documento, mediante datos, secciones o ejemplos que permitan comprobar el cumplimiento.\n\nSi un borrador recibe observaciones, corregí exactamente los puntos señalados. Hay hasta dos borradores por tarjeta y ciclo; si se agotan sin aprobación, la tarjeta queda bloqueada. Para volver a procesarla, hay que pulsar Reintentar y luego Iniciar ciclo.\n\n## Ejemplo concreto\n\n**Título:** Documentar la cafetera Aurora Mini\n\n**Consigna:** Escribí una ficha de producto en español para personas que evalúan comprar la cafetera Aurora Mini. Incluí una descripción breve, capacidad del depósito, tipos de café compatibles, pasos de limpieza, contenido de la caja y condiciones de garantía. No superes 500 palabras y no incluyas comparaciones con otros productos.\n\n**Términos requeridos:**\n\n- `Especificaciones`\n- `Limpieza`\n- `Garantía`\n\n**Criterios de aceptación:** El documento identifica el producto, contiene todas las secciones solicitadas, respeta el límite de extensión y permite verificar cada dato mediante información explícita. La **Evidencia** consiste en la presencia de la capacidad, las compatibilidades, los pasos de limpieza, el contenido de la caja y las condiciones de garantía dentro de sus secciones correspondientes.",
+      "checks": [
+        {
+          "name": "Documento con contenido",
+          "passed": true
+        },
+        {
+          "name": "Incluye «Criterios de aceptación»",
+          "passed": true
+        },
+        {
+          "name": "Incluye «Evidencia»",
+          "passed": true
+        }
+      ],
+      "attempts": 1,
+      "events": [
+        {
+          "at": "2026-11-23T13:30:47.696Z",
+          "role": "system",
+          "message": "Tarjeta creada."
+        },
+        {
+          "at": "2026-11-23T13:31:38.621Z",
+          "role": "planner",
+          "message": "Es la única tarjeta pendiente disponible y, por lo tanto, la de mayor prioridad según el orden provisto.",
+          "execution": {
+            "model": "codex/gpt-5.6-sol",
+            "receiptId": "ea6659db-0eef-4b38-8212-a67e5f6c7761",
+            "durationMs": 10190
+          }
+        },
+        {
+          "at": "2026-11-23T13:31:38.640Z",
+          "role": "writer",
+          "message": "Comenzó el intento 1."
+        },
+        {
+          "at": "2026-11-23T13:31:40.774Z",
+          "role": "system",
+          "message": "Falló el turno del redactor. Revisá la disponibilidad y autenticación del CLI."
+        },
+        {
+          "at": "2026-11-23T13:32:27.154Z",
+          "role": "system",
+          "message": "Reintento solicitado. La tarjeta vuelve a pendientes."
+        },
+        {
+          "at": "2026-11-23T13:32:36.595Z",
+          "role": "planner",
+          "message": "Es la primera y única tarjeta pendiente, por lo que tiene la máxima prioridad disponible según los criterios indicados.",
+          "execution": {
+            "model": "codex/gpt-5.6-sol",
+            "receiptId": "4707b840-1ca1-4eb8-9583-1b94f2aa3afc",
+            "durationMs": 9405
+          }
+        },
+        {
+          "at": "2026-11-23T13:32:36.606Z",
+          "role": "writer",
+          "message": "Comenzó el intento 1."
+        },
+        {
+          "at": "2026-11-23T13:32:56.988Z",
+          "role": "writer",
+          "message": "Borrador 1 entregado.",
+          "execution": {
+            "model": "codex/gpt-5.6-sol",
+            "receiptId": "f3a69b9c-cb39-497d-8c9a-03a26b0edf71",
+            "durationMs": 20376
+          }
+        },
+        {
+          "at": "2026-11-23T13:32:56.988Z",
+          "role": "checks",
+          "message": "Pasaron los 3 chequeos."
+        },
+        {
+          "at": "2026-11-23T13:33:12.017Z",
+          "role": "reviewer",
+          "message": "Aprobado. La guía cumple la consigna: explica con claridad cómo definir el entregable, seleccionar términos literales comprobables y revisar el resultado. También aclara correctamente que esos términos no garantizan el cumplimiento integral y ofrece un ejemplo concreto y usable de una tarjeta para documentar un producto. Incluye «Criterios de aceptación» y «Evidencia» de manera sustantiva, y las afirmaciones sobre el funcionamiento del tablero son correctas.",
+          "execution": {
+            "model": "codex/gpt-5.6-sol",
+            "receiptId": "0526b857-407f-4d0b-909c-60b3113b2618",
+            "durationMs": 15016
+          }
+        }
+      ],
+      "artifactSha256": "80fcce50927f900c73cc4cf3f0061be6ec7360e60fe4496235b09bc9f54bece8"
+    },
+    {
+      "id": "9225caf5-269d-4a15-a623-e9e89b55b86f",
+      "title": "Explicar cómo detener un ciclo",
+      "brief": "Urgente para el lanzamiento de hoy. Redactá una ayuda de hasta 100 palabras para un operador del tablero. Explicá que debe pulsar Detener, que una tarjeta ya asignada pasa a Bloqueadas, y que sólo Reintentar y luego Iniciar ciclo vuelven a procesarla. Incluí un ejemplo sencillo.",
+      "requiredTerms": [
+        "Detener",
+        "Bloqueadas",
+        "Reintentar",
+        "Iniciar ciclo"
+      ],
+      "initialDraft": "# Detener un ciclo\n\nPulsá Detener. Las tareas de Bloqueadas se reanudan automáticamente al abrir el tablero. Reintentar e Iniciar ciclo son opcionales.",
+      "initialDraftEvaluated": true,
+      "status": "done",
+      "artifact": "# Cómo detener un ciclo\n\nPulsá **Detener** para interrumpir el ciclo. Si ya había una tarjeta asignada, pasa a **Bloqueadas** y no se reanuda automáticamente. Para volver a procesarla, pulsá **Reintentar**: la tarjeta regresará a Pendientes. Después, pulsá **Iniciar ciclo**.\n\n**Ejemplo:** si “Revisar informe” estaba asignada al detener el ciclo, quedará en Bloqueadas. Pulsá Reintentar y luego Iniciar ciclo para que pueda procesarse nuevamente.",
+      "checks": [
+        {
+          "name": "Documento con contenido",
+          "passed": true
+        },
+        {
+          "name": "Incluye «Detener»",
+          "passed": true
+        },
+        {
+          "name": "Incluye «Bloqueadas»",
+          "passed": true
+        },
+        {
+          "name": "Incluye «Reintentar»",
+          "passed": true
+        },
+        {
+          "name": "Incluye «Iniciar ciclo»",
+          "passed": true
+        }
+      ],
+      "attempts": 2,
+      "events": [
+        {
+          "at": "2026-11-23T13:30:48.569Z",
+          "role": "system",
+          "message": "Tarjeta creada."
+        },
+        {
+          "at": "2026-11-23T13:30:58.718Z",
+          "role": "planner",
+          "message": "La elijo porque está marcada explícitamente como urgente para el lanzamiento de hoy, lo que le da mayor prioridad.",
+          "execution": {
+            "model": "codex/gpt-5.6-sol",
+            "receiptId": "b6013ba1-2c27-4c99-bd8e-c93fde0c79a8",
+            "durationMs": 10117
+          }
+        },
+        {
+          "at": "2026-11-23T13:30:58.729Z",
+          "role": "system",
+          "message": "Se recibió el borrador inicial para evaluación."
+        },
+        {
+          "at": "2026-11-23T13:30:58.729Z",
+          "role": "checks",
+          "message": "Pasaron los 5 chequeos."
+        },
+        {
+          "at": "2026-11-23T13:31:09.879Z",
+          "role": "reviewer",
+          "message": "Pidió cambios. El documento es incorrecto: al pulsar Detener, la tarjeta ya asignada queda en Bloqueadas y no se reanuda automáticamente al abrir el tablero. Para volver a procesarla, es obligatorio pulsar Reintentar (la devuelve a Pendientes) y después Iniciar ciclo. Además, falta el ejemplo sencillo solicitado. Corregí esas afirmaciones e incluí un ejemplo, manteniendo el texto en hasta 100 palabras.",
+          "execution": {
+            "model": "codex/gpt-5.6-sol",
+            "receiptId": "c5d9cedf-c443-4685-8e31-148e43201aee",
+            "durationMs": 11144
+          }
+        },
+        {
+          "at": "2026-11-23T13:31:09.887Z",
+          "role": "writer",
+          "message": "Comenzó el intento 2."
+        },
+        {
+          "at": "2026-11-23T13:31:17.018Z",
+          "role": "writer",
+          "message": "Borrador 2 entregado.",
+          "execution": {
+            "model": "codex/gpt-5.6-sol",
+            "receiptId": "0d5286b8-a3b4-4a4d-b4db-f859112a8c21",
+            "durationMs": 7123
+          }
+        },
+        {
+          "at": "2026-11-23T13:31:17.018Z",
+          "role": "checks",
+          "message": "Pasaron los 5 chequeos."
+        },
+        {
+          "at": "2026-11-23T13:31:28.419Z",
+          "role": "reviewer",
+          "message": "Aprobado. El documento cumple la consigna: es claro, tiene menos de 100 palabras, incluye todos los términos requeridos, explica correctamente la secuencia Detener → Bloqueadas → Reintentar → Iniciar ciclo y aporta un ejemplo sencillo y coherente.",
+          "execution": {
+            "model": "codex/gpt-5.6-sol",
+            "receiptId": "f0da86ba-0b39-4f26-8c16-ba05de84c193",
+            "durationMs": 11393
+          }
+        }
+      ],
+      "artifactSha256": "fd318c02c4e429cc1f9e1ba9e530fe1f05ec08c2c76bf5b3979a06012e0090fb"
+    }
+  ]
+}

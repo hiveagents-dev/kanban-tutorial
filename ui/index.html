@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; script-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+  <title>Tablero de agentes · HiveAgents</title>
+  <link rel="stylesheet" href="./board.css">
+  <script src="./board.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="mark" aria-hidden="true"><i></i><i></i><i></i></span>HiveAgents</div>
+    <span class="divider" aria-hidden="true"></span>
+    <span class="workspace">Kanban</span>
+    <span id="connection" class="connection" role="status"><i aria-hidden="true"></i><span>Cargando…</span></span>
+  </header>
+  <main>
+    <div class="heading">
+      <div>
+        <h1>Tablero de agentes</h1>
+        <p class="lead">Cada tarjeta produce un documento Markdown. Iniciá un ciclo para que los agentes elijan, redacten y revisen las tareas pendientes.</p>
+      </div>
+      <div class="actions">
+        <button id="new-card" class="button secondary" disabled><span aria-hidden="true" class="plus">+</span> Nueva tarjeta</button>
+        <button id="run" class="button primary" disabled><span aria-hidden="true" class="play"></span> Iniciar ciclo</button>
+        <button id="stop" class="button secondary" hidden><span aria-hidden="true" class="stop-icon"></span> Detener</button>
+      </div>
+    </div>
+    <p id="error" class="error" role="alert" hidden></p>
+    <div id="columns" class="columns" aria-label="Columnas del tablero"></div>
+    <section id="blocked" class="blocked" hidden aria-labelledby="blocked-title">
+      <div class="column-heading"><span class="dot blocked-dot" aria-hidden="true"></span><h2 id="blocked-title">Bloqueadas</h2><span id="blocked-count" class="count"></span></div>
+      <div id="blocked-cards" class="blocked-grid"></div>
+    </section>
+  </main>
+  <dialog id="create-dialog" aria-labelledby="create-heading">
+    <form id="create-form">
+      <div class="dialog-heading">
+        <h2 id="create-heading">Nueva tarjeta</h2>
+        <button class="close" type="button" data-close aria-label="Cerrar">×</button>
+      </div>
+      <label for="title">Título</label>
+      <input id="title" name="title" maxlength="120" required autofocus placeholder="Guía para iniciar el proyecto">
+      <label for="brief">Consigna</label>
+      <textarea id="brief" name="brief" maxlength="2000" rows="4" required placeholder="¿Qué tiene que explicar el documento y para quién?"></textarea>
+      <label for="terms">Términos obligatorios</label>
+      <span class="hint" id="terms-hint">Escribí de 1 a 8 términos, uno por línea y de hasta 80 caracteres. El tablero los busca en el entregable.</span>
+      <textarea id="terms" name="terms" rows="3" required aria-describedby="terms-hint" placeholder="npm install"></textarea>
+      <label for="initial-draft">Borrador inicial</label>
+      <span class="hint" id="draft-hint">Opcional. Los agentes lo revisan antes de reescribirlo.</span>
+      <textarea id="initial-draft" name="initialDraft" maxlength="8000" rows="3" aria-describedby="draft-hint"></textarea>
+      <p id="form-error" class="error" role="alert" hidden></p>
+      <div class="form-actions">
+        <button type="button" class="button secondary" data-close>Cancelar</button>
+        <button id="submit-card" type="submit" class="button primary">Crear tarjeta</button>
+      </div>
+    </form>
+  </dialog>
+  <dialog id="detail-dialog" class="detail" aria-labelledby="detail-title">
+    <div class="dialog-heading detail-heading">
+      <div><div id="detail-status" class="state"></div><h2 id="detail-title"></h2></div>
+      <button class="close" type="button" data-close aria-label="Cerrar">×</button>
+    </div>
+    <div class="detail-grid">
+      <div>
+        <section><h3>Consigna</h3><p id="detail-brief" class="preserve"></p></section>
+        <section><h3>Términos obligatorios</h3><ul id="detail-terms" class="terms"></ul></section>
+        <section><h3>Validaciones</h3><ul id="detail-checks" class="checks"></ul></section>
+      </div>
+      <div>
+        <section>
+          <h3>Entregable Markdown</h3>
+          <pre id="detail-artifact" tabindex="0"></pre>
+          <details id="compare-draft" hidden>
+            <summary>Comparar con el borrador inicial</summary>
+            <pre id="detail-initial-draft" tabindex="0"></pre>
+          </details>
+        </section>
+        <section><h3>Historial de la tarjeta</h3><ol id="detail-events" class="timeline"></ol></section>
+      </div>
+    </div>
+    <p id="retry-error" class="error" role="alert" hidden></p>
+    <div class="form-actions"><button id="retry" class="button primary" hidden>Reintentar</button></div>
+  </dialog>
+</body>
+</html>

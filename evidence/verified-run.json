@@ -1,0 +1,703 @@
+{
+  "verifiedAt": "2026-11-23T13:30:03.201Z",
+  "sdk": "hiveagents-runtime@0.1.0-beta.3",
+  "electron": "45.4.1",
+  "platform": "darwin",
+  "arch": "arm64",
+  "routingReceipts": [
+    {
+      "format": 1,
+      "purpose": "selection-proposal",
+      "id": "0cee7c5b-0a00-413c-91b7-443a287599e1",
+      "createdAt": 1795440352886,
+      "configDigest": "830214a9395666224034db3a901a412e0495666773e57aa9a39d285dd32354ae",
+      "taskDigest": "b02023e267ebced25e65a557766cc0142020339378c36d970876ffac442c51ff",
+      "policy": {
+        "mode": "auto",
+        "version": "priority-v1"
+      },
+      "decision": "selected",
+      "reason": "PRIORITY",
+      "candidates": [
+        {
+          "model": "claude/claude-sonnet-5",
+          "provider": "claude",
+          "modelId": "claude-sonnet-5",
+          "status": "eligible",
+          "code": "READY",
+          "authState": "authenticated",
+          "authSource": "subscription",
+          "transport": "exec",
+          "fingerprintDigest": "39173630a288d25b46e8d79bf92e11928a650d273f6b769c968abf60d7d2e333"
+        }
+      ],
+      "nativeDispatches": 0,
+      "selected": {
+        "model": "claude/claude-sonnet-5",
+        "provider": "claude",
+        "modelId": "claude-sonnet-5",
+        "transport": "exec",
+        "fingerprintDigest": "39173630a288d25b46e8d79bf92e11928a650d273f6b769c968abf60d7d2e333"
+      },
+      "digest": "f7b7acd3ad8753469306841855a3a4e6a2a0b0ef3376a446300c69255e8005b0"
+    },
+    {
+      "format": 1,
+      "purpose": "selection-proposal",
+      "id": "9e853408-c6f6-49f0-a5e2-e915f71bd012",
+      "createdAt": 1795440358932,
+      "configDigest": "fa7ae934f4860e6f2e4aad5a7092a644fa86b21ebe8ab1bfb52ae1b143cb2c8b",
+      "taskDigest": "cdc52e3c0e64678554d06384c23f2ba036e608c8163f9ef922dc3841a6c06906",
+      "policy": {
+        "mode": "auto",
+        "version": "priority-v1"
+      },
+      "decision": "selected",
+      "reason": "PRIORITY",
+      "candidates": [
+        {
+          "model": "claude/claude-sonnet-5",
+          "provider": "claude",
+          "modelId": "claude-sonnet-5",
+          "status": "eligible",
+          "code": "READY",
+          "authState": "authenticated",
+          "authSource": "subscription",
+          "transport": "exec",
+          "fingerprintDigest": "1e7f1be1e7d311ad8c4c876be6d99c853ce00575ba0435085e3e5b840cc9da5d"
+        }
+      ],
+      "nativeDispatches": 0,
+      "selected": {
+        "model": "claude/claude-sonnet-5",
+        "provider": "claude",
+        "modelId": "claude-sonnet-5",
+        "transport": "exec",
+        "fingerprintDigest": "1e7f1be1e7d311ad8c4c876be6d99c853ce00575ba0435085e3e5b840cc9da5d"
+      },
+      "digest": "a228c461824e81ab0f9ac44f9ef4ad0dfee7aebf75c59e420a4291e86f016497"
+    },
+    {
+      "format": 1,
+      "purpose": "selection-proposal",
+      "id": "c4e2eb54-b28f-41e4-a693-4d66931fe0a0",
+      "createdAt": 1795440379488,
+      "configDigest": "0fcc3cb19dbd96b4cf2678b9bb02807448806a2cf74de755a5c598b17c11cba5",
+      "taskDigest": "d9fdb0b84e11fb65af1ea058a8e36f3274391c66647ca8fe45d0b74f2e43f093",
+      "policy": {
+        "mode": "auto",
+        "version": "priority-v1"
+      },
+      "decision": "selected",
+      "reason": "PRIORITY",
+      "candidates": [
+        {
+          "model": "claude/claude-sonnet-5",
+          "provider": "claude",
+          "modelId": "claude-sonnet-5",
+          "status": "eligible",
+          "code": "READY",
+          "authState": "authenticated",
+          "authSource": "subscription",
+          "transport": "exec",
+          "fingerprintDigest": "6dbf84eb1e73298beedda5ef9a6416014c3d7ed57c8c0e4a2809c05326b7b7e6"
+        }
+      ],
+      "nativeDispatches": 0,
+      "selected": {
+        "model": "claude/claude-sonnet-5",
+        "provider": "claude",
+        "modelId": "claude-sonnet-5",
+        "transport": "exec",
+        "fingerprintDigest": "6dbf84eb1e73298beedda5ef9a6416014c3d7ed57c8c0e4a2809c05326b7b7e6"
+      },
+      "digest": "184558e112c361aec9a95e4c3d66e5fad64ff9213875f85c337359c34ed4468f"
+    },
+    {
+      "format": 1,
+      "purpose": "selection-proposal",
+      "id": "62ca75fe-d9c5-42ec-bcc4-d55beb3b3f0d",
+      "createdAt": 1795440430019,
+      "configDigest": "fa7ae934f4860e6f2e4aad5a7092a644fa86b21ebe8ab1bfb52ae1b143cb2c8b",
+      "taskDigest": "c19153066a809e4c54889ba23749ede9b2f6c33e9873d7237d3edc65ddab7975",
+      "policy": {
+        "mode": "auto",
+        "version": "priority-v1"
+      },
+      "decision": "selected",
+      "reason": "PRIORITY",
+      "candidates": [
+        {
+          "model": "claude/claude-sonnet-5",
+          "provider": "claude",
+          "modelId": "claude-sonnet-5",
+          "status": "eligible",
+          "code": "READY",
+          "authState": "authenticated",
+          "authSource": "subscription",
+          "transport": "exec",
+          "fingerprintDigest": "09ad25ca5ad2ca9c9140fa2b0fb6b5329a8b5084ff8b5808081b95a41a2e36e2"
+        }
+      ],
+      "nativeDispatches": 0,
+      "selected": {
+        "model": "claude/claude-sonnet-5",
+        "provider": "claude",
+        "modelId": "claude-sonnet-5",
+        "transport": "exec",
+        "fingerprintDigest": "09ad25ca5ad2ca9c9140fa2b0fb6b5329a8b5084ff8b5808081b95a41a2e36e2"
+      },
+      "digest": "1394cd70f00d15891b84e9946d32a31845ebc68f5c2d166938f86a283cc3eaac"
+    },
+    {
+      "format": 1,
+      "purpose": "selection-proposal",
+      "id": "9850256a-c7cc-44e8-8aca-ddd4e4ab1509",
+      "createdAt": 1795440450624,
+      "configDigest": "0fcc3cb19dbd96b4cf2678b9bb02807448806a2cf74de755a5c598b17c11cba5",
+      "taskDigest": "41a079d4c34567a91af0a22a67993a44d67878d9dde45278e5d54958b4bb79d5",
+      "policy": {
+        "mode": "auto",
+        "version": "priority-v1"
+      },
+      "decision": "selected",
+      "reason": "PRIORITY",
+      "candidates": [
+        {
+          "model": "claude/claude-sonnet-5",
+          "provider": "claude",
+          "modelId": "claude-sonnet-5",
+          "status": "eligible",
+          "code": "READY",
+          "authState": "authenticated",
+          "authSource": "subscription",
+          "transport": "exec",
+          "fingerprintDigest": "c1571de8444dc855a46367bac16f71929f9c4127f35b9d993500759e2675cbdc"
+        }
+      ],
+      "nativeDispatches": 0,
+      "selected": {
+        "model": "claude/claude-sonnet-5",
+        "provider": "claude",
+        "modelId": "claude-sonnet-5",
+        "transport": "exec",
+        "fingerprintDigest": "c1571de8444dc855a46367bac16f71929f9c4127f35b9d993500759e2675cbdc"
+      },
+      "digest": "80457d92ba21521d3e8f5289b3acd3394c1039e433a607ca329fff350ddee8b4"
+    },
+    {
+      "format": 1,
+      "purpose": "selection-proposal",
+      "id": "cc83edf0-8c09-4049-943a-b207c5cee993",
+      "createdAt": 1795440538745,
+      "configDigest": "830214a9395666224034db3a901a412e0495666773e57aa9a39d285dd32354ae",
+      "taskDigest": "b02023e267ebced25e65a557766cc0142020339378c36d970876ffac442c51ff",
+      "policy": {
+        "mode": "auto",
+        "version": "priority-v1"
+      },
+      "decision": "selected",
+      "reason": "PRIORITY",
+      "candidates": [
+        {
+          "model": "claude/claude-sonnet-5",
+          "provider": "claude",
+          "modelId": "claude-sonnet-5",
+          "status": "eligible",
+          "code": "READY",
+          "authState": "authenticated",
+          "authSource": "subscription",
+          "transport": "exec",
+          "fingerprintDigest": "5ad02e79985fd3b1682f61d46f21d3a0364e3f5ce2aea17f483546e7b0e162c0"
+        }
+      ],
+      "nativeDispatches": 0,
+      "selected": {
+        "model": "claude/claude-sonnet-5",
+        "provider": "claude",
+        "modelId": "claude-sonnet-5",
+        "transport": "exec",
+        "fingerprintDigest": "5ad02e79985fd3b1682f61d46f21d3a0364e3f5ce2aea17f483546e7b0e162c0"
+      },
+      "digest": "9be60548d5ae7ddd4cd4cb76c0f3771c1d98b3996ec1834469c65266fd2c3ab6"
+    },
+    {
+      "format": 1,
+      "purpose": "selection-proposal",
+      "id": "edf9e281-935f-4af6-ad39-170619bcedcc",
+      "createdAt": 1795440544574,
+      "configDigest": "708fc9872d555103693ff1673e035abf225e894c9751e997ca8ac568d8c1fff7",
+      "taskDigest": "978f1e311329216db47eeb846963f5a2262fb44184163a562bea1c2a3fdd33d2",
+      "policy": {
+        "mode": "auto",
+        "version": "priority-v1"
+      },
+      "decision": "selected",
+      "reason": "PRIORITY",
+      "candidates": [
+        {
+          "model": "claude/claude-sonnet-5",
+          "provider": "claude",
+          "modelId": "claude-sonnet-5",
+          "status": "eligible",
+          "code": "READY",
+          "authState": "authenticated",
+          "authSource": "subscription",
+          "transport": "exec",
+          "fingerprintDigest": "40d528611c0714e08ce3e1d67a0569653adaa69034f703276257a706eac1816e"
+        }
+      ],
+      "nativeDispatches": 0,
+      "selected": {
+        "model": "claude/claude-sonnet-5",
+        "provider": "claude",
+        "modelId": "claude-sonnet-5",
+        "transport": "exec",
+        "fingerprintDigest": "40d528611c0714e08ce3e1d67a0569653adaa69034f703276257a706eac1816e"
+      },
+      "digest": "48ba000795e6906b7b6f939613af93d245b4a8e34195c00ea3f3c0dbd8c49727"
+    },
+    {
+      "format": 1,
+      "purpose": "selection-proposal",
+      "id": "f9ad65ca-3af2-4aa8-a9ae-757feb868fdb",
+      "createdAt": 1795440564411,
+      "configDigest": "ff323c9d96aecdc69a414f6675615f02e94cf5e24e70f303dce5a17f999b0110",
+      "taskDigest": "d2e077d5837fda018df4924c82bf9b40d07010dfca9c409ee85d7bb7ee4adb98",
+      "policy": {
+        "mode": "auto",
+        "version": "priority-v1"
+      },
+      "decision": "selected",
+      "reason": "PRIORITY",
+      "candidates": [
+        {
+          "model": "claude/claude-sonnet-5",
+          "provider": "claude",
+          "modelId": "claude-sonnet-5",
+          "status": "eligible",
+          "code": "READY",
+          "authState": "authenticated",
+          "authSource": "subscription",
+          "transport": "exec",
+          "fingerprintDigest": "cdd4fd8c8998e938120414001edde9640e9700ddf4d8af84fa82807d18a40944"
+        }
+      ],
+      "nativeDispatches": 0,
+      "selected": {
+        "model": "claude/claude-sonnet-5",
+        "provider": "claude",
+        "modelId": "claude-sonnet-5",
+        "transport": "exec",
+        "fingerprintDigest": "cdd4fd8c8998e938120414001edde9640e9700ddf4d8af84fa82807d18a40944"
+      },
+      "digest": "aaf328218b61aaadf076e22eb18a11feb194f0c3b32a232c27c97cd164023eb0"
+    },
+    {
+      "format": 1,
+      "purpose": "selection-proposal",
+      "id": "047b9cfb-e589-440c-b312-e4eed9f364ce",
+      "createdAt": 1795440308982,
+      "configDigest": "830214a9395666224034db3a901a412e0495666773e57aa9a39d285dd32354ae",
+      "taskDigest": "bc973181e246bea9a38107cae8358b4ec61c5b254f85f47ee7ff4302f1dbf760",
+      "policy": {
+        "mode": "auto",
+        "version": "priority-v1"
+      },
+      "decision": "selected",
+      "reason": "PRIORITY",
+      "candidates": [
+        {
+          "model": "claude/claude-sonnet-5",
+          "provider": "claude",
+          "modelId": "claude-sonnet-5",
+          "status": "eligible",
+          "code": "READY",
+          "authState": "authenticated",
+          "authSource": "subscription",
+          "transport": "exec",
+          "fingerprintDigest": "41b4dbce62a8dc4888d21ebde61e0de7d01b23b2b0ad74791f0a258bd257936e"
+        }
+      ],
+      "nativeDispatches": 0,
+      "selected": {
+        "model": "claude/claude-sonnet-5",
+        "provider": "claude",
+        "modelId": "claude-sonnet-5",
+        "transport": "exec",
+        "fingerprintDigest": "41b4dbce62a8dc4888d21ebde61e0de7d01b23b2b0ad74791f0a258bd257936e"
+      },
+      "digest": "fee7bb20d2cc538b3626a853952226d5d06a32e9c7bf9710d61e0d9f408fac4c"
+    },
+    {
+      "format": 1,
+      "purpose": "selection-proposal",
+      "id": "2efd77b4-435d-4569-a393-a5b5491100dd",
+      "createdAt": 1795440315130,
+      "configDigest": "0fcc3cb19dbd96b4cf2678b9bb02807448806a2cf74de755a5c598b17c11cba5",
+      "taskDigest": "cd8529bd364d6cdbfbd96188aebd24203140a81d55333a7f1bd5d2d6d739d526",
+      "policy": {
+        "mode": "auto",
+        "version": "priority-v1"
+      },
+      "decision": "selected",
+      "reason": "PRIORITY",
+      "candidates": [
+        {
+          "model": "claude/claude-sonnet-5",
+          "provider": "claude",
+          "modelId": "claude-sonnet-5",
+          "status": "eligible",
+          "code": "READY",
+          "authState": "authenticated",
+          "authSource": "subscription",
+          "transport": "exec",
+          "fingerprintDigest": "3d3cd7123622fbaacb4b974245fb16fb3c4aef5e22b5c4d5ac0bb360607ee8cd"
+        }
+      ],
+      "nativeDispatches": 0,
+      "selected": {
+        "model": "claude/claude-sonnet-5",
+        "provider": "claude",
+        "modelId": "claude-sonnet-5",
+        "transport": "exec",
+        "fingerprintDigest": "3d3cd7123622fbaacb4b974245fb16fb3c4aef5e22b5c4d5ac0bb360607ee8cd"
+      },
+      "digest": "19cabeed2eb01995e1b2011475a8b77a210b36afa6c137b8e7a0d7283a8e3654"
+    },
+    {
+      "format": 1,
+      "purpose": "selection-proposal",
+      "id": "0fa9b9eb-c2f5-4168-9ded-13f91485f2ae",
+      "createdAt": 1795440329215,
+      "configDigest": "fa7ae934f4860e6f2e4aad5a7092a644fa86b21ebe8ab1bfb52ae1b143cb2c8b",
+      "taskDigest": "735b56a4cd963f24246a6d4f88af47a6ed2f9cd8de99bc853411ba6c8a72d029",
+      "policy": {
+        "mode": "auto",
+        "version": "priority-v1"
+      },
+      "decision": "selected",
+      "reason": "PRIORITY",
+      "candidates": [
+        {
+          "model": "claude/claude-sonnet-5",
+          "provider": "claude",
+          "modelId": "claude-sonnet-5",
+          "status": "eligible",
+          "code": "READY",
+          "authState": "authenticated",
+          "authSource": "subscription",
+          "transport": "exec",
+          "fingerprintDigest": "f9b1407c2f8dd05e9d2fe83da088a78213f8a05c26917ac5fec273eb6df7f80b"
+        }
+      ],
+      "nativeDispatches": 0,
+      "selected": {
+        "model": "claude/claude-sonnet-5",
+        "provider": "claude",
+        "modelId": "claude-sonnet-5",
+        "transport": "exec",
+        "fingerprintDigest": "f9b1407c2f8dd05e9d2fe83da088a78213f8a05c26917ac5fec273eb6df7f80b"
+      },
+      "digest": "599ba1965c7d02be9dcdf88ec9cdc18db3afb11afc7e9088d87da9e72a0fb69b"
+    },
+    {
+      "format": 1,
+      "purpose": "selection-proposal",
+      "id": "af590b80-0d80-4c43-b4eb-5df2f57ba8d8",
+      "createdAt": 1795440336233,
+      "configDigest": "0fcc3cb19dbd96b4cf2678b9bb02807448806a2cf74de755a5c598b17c11cba5",
+      "taskDigest": "c7adc25370374837530758a6090b0a19d9640f504f035d35d5e2dc062c954bf1",
+      "policy": {
+        "mode": "auto",
+        "version": "priority-v1"
+      },
+      "decision": "selected",
+      "reason": "PRIORITY",
+      "candidates": [
+        {
+          "model": "claude/claude-sonnet-5",
+          "provider": "claude",
+          "modelId": "claude-sonnet-5",
+          "status": "eligible",
+          "code": "READY",
+          "authState": "authenticated",
+          "authSource": "subscription",
+          "transport": "exec",
+          "fingerprintDigest": "943964cb647f7a4f7d3f032be90e438dc08b00918cff6340605d2000fbbd58c1"
+        }
+      ],
+      "nativeDispatches": 0,
+      "selected": {
+        "model": "claude/claude-sonnet-5",
+        "provider": "claude",
+        "modelId": "claude-sonnet-5",
+        "transport": "exec",
+        "fingerprintDigest": "943964cb647f7a4f7d3f032be90e438dc08b00918cff6340605d2000fbbd58c1"
+      },
+      "digest": "0a25a62aed18c4b8f3aa97700e1685575727e856fc70314dfc9db8a5336e3156"
+    }
+  ],
+  "cards": [
+    {
+      "id": "daa81efd-b91a-440b-acd9-ea4f1559c2dd",
+      "title": "Preparar una tarjeta verificable",
+      "brief": "Escribí una guía breve para quien abre su primera tarjeta en este tablero. Explicá cómo describir el entregable, elegir términos comprobables y revisar el resultado. Incluí un ejemplo concreto de una tarjeta para documentar un producto.",
+      "requiredTerms": [
+        "Criterios de aceptación",
+        "Evidencia"
+      ],
+      "status": "done",
+      "artifact": "# Guía para preparar una tarjeta verificable\n\nEsta guía está pensada para quien abre su primera tarjeta en el tablero. Su objetivo es ayudarte a describir el entregable de forma clara, elegir términos comprobables y entender cómo se revisa el resultado antes de que la tarjeta se complete.\n\n## 1. Describí el entregable\n\nAl redactar una tarjeta, indicá con precisión **qué documento o resultado se espera obtener**. Evitá descripciones vagas como \"mejorar la documentación\" y preferí frases concretas: qué secciones debe tener, qué información debe incluir y para quién está destinado.\n\nPreguntas que te pueden ayudar:\n\n- ¿Qué formato tiene el entregable? (en este tablero, siempre es un documento Markdown)\n- ¿Qué secciones o apartados no pueden faltar?\n- ¿Hay ejemplos, listas o fragmentos de código que deban incluirse?\n\n## 2. Elegí términos comprobables\n\nCada tarjeta puede definir **términos de aceptación**: palabras o frases que el documento final debe contener de manera literal. Esto permite verificar de forma objetiva si el entregable cumple lo pedido, sin depender de interpretaciones subjetivas.\n\nRecomendaciones:\n\n- Usá términos cortos y específicos (nombres de secciones, palabras clave del dominio).\n- No abuses de términos genéricos que no aporten valor de verificación.\n- Asegurate de que los términos elegidos realmente reflejen partes esenciales del contenido esperado.\n\nEstos términos forman parte de los **Criterios de aceptación** de la tarjeta, junto con la evaluación de un revisor independiente que determina si el documento responde adecuadamente a la consigna.\n\n## 3. Cómo se revisa el resultado\n\nUna vez que se entrega el documento, no es la persona que abrió la tarjeta quien decide manualmente si está completa: el propio tablero ejecuta un proceso de revisión automático.\n\nPrimero se comprueban dos cosas de forma automática:\n\n1. Que el contenido no esté vacío.\n2. Que los términos de aceptación aparezcan de forma literal en el texto.\n\nSi esas comprobaciones se superan, un **revisor independiente** evalúa si el documento cumple efectivamente la consigna del brief (por ejemplo, si la estructura y el contenido responden a lo pedido, y no solo contienen las palabras clave sueltas). Solo la aprobación de ese revisor completa la tarjeta.\n\nSi se necesitan cambios, el sistema admite hasta dos intentos de redacción por tarjeta y ciclo. Si esos intentos se agotan sin lograr la aprobación, la tarjeta queda bloqueada.\n\nComo guía general de lo que se va a evaluar en este proceso, conviene que el documento entregado cumpla con:\n\n- Contenido no vacío.\n- Los términos de aceptación presentes de forma literal.\n- Una estructura y un desarrollo que respondan al brief original, no solo a las palabras clave.\n- Ejemplos de código presentados como referencia, sin que se espere su ejecución ni la generación de archivos de imagen.\n\n**Evidencia** de que una tarjeta está bien preparada es, justamente, que el documento resultante pueda superar estas comprobaciones sin necesidad de reintentos.\n\n## Ejemplo concreto: tarjeta para documentar un producto\n\n```markdown\nTítulo: Documentar la API de notificaciones\n\nBrief: Redactá un documento que describa los endpoints principales\nde la API de notificaciones, incluyendo método HTTP, parámetros\nesperados y un ejemplo de respuesta en JSON para cada endpoint.\n\nTérminos requeridos: \"Endpoint\", \"Código de respuesta\"\n```\n\nEn este ejemplo:\n\n- El **brief** describe con precisión el entregable (qué endpoints, qué datos por endpoint).\n- Los términos requeridos (\"Endpoint\", \"Código de respuesta\") son comprobables de forma literal en el texto resultante y forman parte de los **Criterios de aceptación**.\n- Cualquier fragmento de código JSON que se incluya es solo ilustrativo: no se ejecuta ni genera archivos de imagen.\n- El documento entregado pasará primero por la comprobación automática de contenido y términos, y luego por la evaluación del revisor independiente, antes de que la tarjeta se considere completa.\n\n## En síntesis\n\nUna buena tarjeta combina tres elementos:\n\n- Una descripción clara del entregable.\n- **Criterios de aceptación** expresados como términos literales y verificables.\n- Un proceso de revisión automático (comprobación de contenido y términos, seguida de un revisor independiente) que busca **Evidencia** real de cumplimiento antes de completar la tarjeta.\n",
+      "checks": [
+        {
+          "name": "Documento con contenido",
+          "passed": true
+        },
+        {
+          "name": "Incluye «Criterios de aceptación»",
+          "passed": true
+        },
+        {
+          "name": "Incluye «Evidencia»",
+          "passed": true
+        }
+      ],
+      "attempts": 1,
+      "events": [
+        {
+          "at": "2026-11-23T13:25:07.335Z",
+          "role": "system",
+          "message": "Tarjeta creada."
+        },
+        {
+          "at": "2026-11-23T13:25:58.049Z",
+          "role": "planner",
+          "message": "Es la única tarjeta pendiente en la lista, por lo que se elige por defecto al no haber otras con las que comparar impacto y urgencia.",
+          "execution": {
+            "model": "claude/claude-sonnet-5",
+            "receiptId": "0cee7c5b-0a00-413c-91b7-443a287599e1",
+            "durationMs": 6067
+          }
+        },
+        {
+          "at": "2026-11-23T13:25:58.061Z",
+          "role": "writer",
+          "message": "Comenzó el intento 1."
+        },
+        {
+          "at": "2026-11-23T13:26:18.151Z",
+          "role": "writer",
+          "message": "Borrador 1 entregado.",
+          "execution": {
+            "model": "claude/claude-sonnet-5",
+            "receiptId": "9e853408-c6f6-49f0-a5e2-e915f71bd012",
+            "durationMs": 20084
+          }
+        },
+        {
+          "at": "2026-11-23T13:26:18.151Z",
+          "role": "checks",
+          "message": "Pasaron los 3 chequeos."
+        },
+        {
+          "at": "2026-11-23T13:27:09.022Z",
+          "role": "reviewer",
+          "message": "Pidió cambios. El documento cubre bien el brief (descripción del entregable, términos comprobables, ejemplo de tarjeta para documentar un producto) y contiene literalmente \"Criterios de aceptación\" y \"Evidencia\". Sin embargo, hay una inexactitud sustancial en la Sección 3 (\"Revisá el resultado antes de cerrar la tarjeta\") que hay que corregir antes de aprobar:\n\nEl texto da a entender que es la persona que abrió la tarjeta quien revisa el documento y decide \"cerrarla\" o \"considerarla completada\" (\"Antes de considerar completada una tarjeta, repasá el documento generado...\", \"es mejor corregir el borrador antes de avanzar que dejar pasar una tarjeta incompleta\"). Eso no refleja cómo funciona este tablero: la revisión y el cierre son automáticos. Primero se verifican el contenido no vacío y los términos literales, y después un revisor independiente evalúa si el documento cumple la consigna; solo esa aprobación completa la tarjeta. Si hace falta corregir, el sistema admite hasta dos intentos de redacción por tarjeta y ciclo, y si se agotan, la tarjeta queda bloqueada (no es algo que decida manualmente quien abrió la tarjeta.\n\nPedido concreto: reescribir la Sección 3 para que quede claro que, una vez entregado el documento, el propio tablero ejecuta las comprobaciones automáticas de contenido y términos y luego un revisor independiente evalúa el cumplimiento de la consigna; que la tarjeta se completa solo con esa aprobación; y que si se piden cambios hay hasta dos intentos de redacción antes de que la tarjeta quede bloqueada. La checklist actual (contenido no vacío, términos literales, estructura acorde al brief, código como referencia) puede conservarse como guía de qué va a evaluarse, pero sin sugerir que la persona que abre la tarjeta es quien la cierra manualmente.",
+          "execution": {
+            "model": "claude/claude-sonnet-5",
+            "receiptId": "c4e2eb54-b28f-41e4-a693-4d66931fe0a0",
+            "durationMs": 50854
+          }
+        },
+        {
+          "at": "2026-11-23T13:27:09.028Z",
+          "role": "writer",
+          "message": "Comenzó el intento 2."
+        },
+        {
+          "at": "2026-11-23T13:27:29.647Z",
+          "role": "writer",
+          "message": "Borrador 2 entregado.",
+          "execution": {
+            "model": "claude/claude-sonnet-5",
+            "receiptId": "62ca75fe-d9c5-42ec-bcc4-d55beb3b3f0d",
+            "durationMs": 20613
+          }
+        },
+        {
+          "at": "2026-11-23T13:27:29.647Z",
+          "role": "checks",
+          "message": "Pasaron los 3 chequeos."
+        },
+        {
+          "at": "2026-11-23T13:28:02.895Z",
+          "role": "reviewer",
+          "message": "Pidió cambios. El documento cubre bien la estructura pedida (describir el entregable, elegir términos comprobables, revisar el resultado, ejemplo de tarjeta) y contiene los términos requeridos (\"Criterios de aceptación\", \"Evidencia\"). Sin embargo, hay una afirmación inexacta que hay que corregir antes de aprobar:\n\n- En la sección \"Cómo se revisa el resultado\" y en el ejemplo, el documento afirma dos veces que los fragmentos de código \"no generan archivos\" en general (\"sin que se espere su ejecución ni la generación de archivos\", \"no se ejecuta ni genera archivos\"). Según el funcionamiento real del tablero, lo correcto es que los agentes no ejecutan el código ni generan archivos de imagen, no que no generen archivos de ningún tipo. Por favor ajustá esas dos menciones para que digan específicamente \"no generan archivos de imagen\" (en lugar de \"archivos\" en general), para que la guía no induzca a una interpretación más amplia y errónea de lo que efectivamente ocurre con el código de ejemplo.\n\nCon ese ajuste puntual, el resto del contenido es correcto y responde adecuadamente al brief.",
+          "execution": {
+            "model": "claude/claude-sonnet-5",
+            "receiptId": "9850256a-c7cc-44e8-8aca-ddd4e4ab1509",
+            "durationMs": 33240
+          }
+        },
+        {
+          "at": "2026-11-23T13:28:02.906Z",
+          "role": "system",
+          "message": "Se agotaron los dos intentos. Revisá el último borrador y la devolución."
+        },
+        {
+          "at": "2026-11-23T13:28:56.895Z",
+          "role": "system",
+          "message": "Reintento solicitado. La tarjeta vuelve a pendientes."
+        },
+        {
+          "at": "2026-11-23T13:29:03.716Z",
+          "role": "planner",
+          "message": "Es la única tarjeta pendiente en la lista, por lo que se elige por defecto al no haber otras con las que comparar impacto o urgencia.",
+          "execution": {
+            "model": "claude/claude-sonnet-5",
+            "receiptId": "cc83edf0-8c09-4049-943a-b207c5cee993",
+            "durationMs": 6591
+          }
+        },
+        {
+          "at": "2026-11-23T13:29:03.727Z",
+          "role": "writer",
+          "message": "Comenzó el intento 1."
+        },
+        {
+          "at": "2026-11-23T13:29:23.511Z",
+          "role": "writer",
+          "message": "Borrador 1 entregado.",
+          "execution": {
+            "model": "claude/claude-sonnet-5",
+            "receiptId": "edf9e281-935f-4af6-ad39-170619bcedcc",
+            "durationMs": 19780
+          }
+        },
+        {
+          "at": "2026-11-23T13:29:23.512Z",
+          "role": "checks",
+          "message": "Pasaron los 3 chequeos."
+        },
+        {
+          "at": "2026-11-23T13:29:50.109Z",
+          "role": "reviewer",
+          "message": "Aprobado. El documento cumple con la consigna: explica cómo describir el entregable, cómo elegir términos comprobables y cómo se revisa el resultado, e incluye un ejemplo concreto de tarjeta (documentar una API de notificaciones) con brief y términos requeridos. Contiene ambos términos obligatorios (\"Criterios de aceptación\" y \"Evidencia\") de forma literal y en contextos con sentido. La descripción del proceso de revisión es correcta y consistente con el funcionamiento real del tablero: primero se verifica contenido no vacío y términos literales, luego interviene un revisor independiente, solo su aprobación completa la tarjeta, hay hasta dos intentos de redacción por tarjeta y ciclo, y se aclara que los ejemplos de código son ilustrativos (no se ejecutan ni generan imágenes). No se detectan afirmaciones erróneas sobre el comportamiento del sistema. Se aprueba.",
+          "execution": {
+            "model": "claude/claude-sonnet-5",
+            "receiptId": "f9ad65ca-3af2-4aa8-a9ae-757feb868fdb",
+            "durationMs": 26588
+          }
+        }
+      ],
+      "artifactSha256": "22ccc4dd75340a0dd4f192eef95c5ebebaafce9db770bfb0203cd4492eadc2f5"
+    },
+    {
+      "id": "0e39b42d-f680-43a2-ac42-3e8f20030f61",
+      "title": "Explicar cómo detener un ciclo",
+      "brief": "Urgente para el lanzamiento de hoy. Redactá una ayuda de hasta 100 palabras para un operador del tablero. Explicá que debe pulsar Detener, que una tarjeta ya asignada pasa a Bloqueadas, y que sólo Reintentar y luego Iniciar ciclo vuelven a procesarla. Incluí un ejemplo sencillo.",
+      "requiredTerms": [
+        "Detener",
+        "Bloqueadas",
+        "Reintentar",
+        "Iniciar ciclo"
+      ],
+      "initialDraft": "# Detener un ciclo\n\nPulsá Detener. Las tareas de Bloqueadas se reanudan automáticamente al abrir el tablero. Reintentar e Iniciar ciclo son opcionales.",
+      "initialDraftEvaluated": true,
+      "status": "done",
+      "artifact": "# Detener un ciclo\n\nPulsá **Detener** para interrumpir el ciclo en curso. Si en ese momento hay una tarjeta asignada, esa tarjeta pasa a **Bloqueadas**. Las tarjetas que todavía esperaban conservan su estado Pendiente.\n\nPara volver a procesar la tarjeta bloqueada, primero pulsá **Reintentar**: esto la devuelve a Pendientes. Luego pulsá **Iniciar ciclo** para que el planificador la tome nuevamente.\n\n**Ejemplo:** la tarjeta \"Revisar informe\" está asignada y pulsás Detener. \"Revisar informe\" pasa a Bloqueadas. Pulsás Reintentar y vuelve a Pendientes. Pulsás Iniciar ciclo y se procesa de nuevo.\n",
+      "checks": [
+        {
+          "name": "Documento con contenido",
+          "passed": true
+        },
+        {
+          "name": "Incluye «Detener»",
+          "passed": true
+        },
+        {
+          "name": "Incluye «Bloqueadas»",
+          "passed": true
+        },
+        {
+          "name": "Incluye «Reintentar»",
+          "passed": true
+        },
+        {
+          "name": "Incluye «Iniciar ciclo»",
+          "passed": true
+        }
+      ],
+      "attempts": 2,
+      "events": [
+        {
+          "at": "2026-11-23T13:25:07.931Z",
+          "role": "system",
+          "message": "Tarjeta creada."
+        },
+        {
+          "at": "2026-11-23T13:25:13.985Z",
+          "role": "planner",
+          "message": "Esta tarjeta indica explícitamente urgencia (\"Urgente para el lanzamiento de hoy\"), mientras que la otra no menciona ninguna urgencia o impacto explícito, por lo que se prioriza.",
+          "execution": {
+            "model": "claude/claude-sonnet-5",
+            "receiptId": "047b9cfb-e589-440c-b312-e4eed9f364ce",
+            "durationMs": 6020
+          }
+        },
+        {
+          "at": "2026-11-23T13:25:14.012Z",
+          "role": "system",
+          "message": "Se recibió el borrador inicial para evaluación."
+        },
+        {
+          "at": "2026-11-23T13:25:14.012Z",
+          "role": "checks",
+          "message": "Pasaron los 5 chequeos."
+        },
+        {
+          "at": "2026-11-23T13:25:28.213Z",
+          "role": "reviewer",
+          "message": "Pidió cambios. No se aprueba. El documento contiene afirmaciones incorrectas y omite partes clave de la consigna, aunque pase los chequeos literales de términos:\n\n1. Afirmación falsa: \"Las tareas de Bloqueadas se reanudan automáticamente al abrir el tablero\". Esto no es así: una tarjeta bloqueada solo vuelve a Pendientes mediante Reintentar, y luego se la procesa pulsando Iniciar ciclo. No hay reanudación automática al abrir el tablero.\n\n2. Afirmación incorrecta: \"Reintentar e Iniciar ciclo son opcionales\". Según la consigna, estos son justamente los únicos pasos que permiten volver a procesar la tarjeta bloqueada, no son opcionales sino el procedimiento requerido.\n\n3. Falta explicar el efecto de pulsar Detener: que si hay una tarjeta asignada en ese momento, esa tarjeta pasa a Bloqueadas (y las que esperaban en Pendientes conservan su estado). El texto solo dice \"Pulsá Detener\" sin indicar esta consecuencia central pedida en el brief.\n\n4. Falta el ejemplo sencillo solicitado explícitamente en la consigna; el documento no incluye ninguno.\n\nPor favor reescribir la ayuda (máx. 100 palabras) indicando: pulsar Detener; que la tarjeta ya asignada en ese momento pasa a Bloqueadas; que para volver a procesarla hay que usar Reintentar (vuelve a Pendientes) y luego pulsar Iniciar ciclo; y agregar un ejemplo breve y concreto de este flujo.",
+          "execution": {
+            "model": "claude/claude-sonnet-5",
+            "receiptId": "2efd77b4-435d-4569-a393-a5b5491100dd",
+            "durationMs": 14182
+          }
+        },
+        {
+          "at": "2026-11-23T13:25:28.225Z",
+          "role": "writer",
+          "message": "Comenzó el intento 2."
+        },
+        {
+          "at": "2026-11-23T13:25:35.408Z",
+          "role": "writer",
+          "message": "Borrador 2 entregado.",
+          "execution": {
+            "model": "claude/claude-sonnet-5",
+            "receiptId": "0fa9b9eb-c2f5-4168-9ded-13f91485f2ae",
+            "durationMs": 7177
+          }
+        },
+        {
+          "at": "2026-11-23T13:25:35.408Z",
+          "role": "checks",
+          "message": "Pasaron los 5 chequeos."
+        },
+        {
+          "at": "2026-11-23T13:25:51.974Z",
+          "role": "reviewer",
+          "message": "Aprobado. El documento es correcto y completo: explica con precisión que Detener interrumpe el ciclo, que la tarjeta asignada pasa a Bloqueadas (y que las Pendientes mantienen su estado), que Reintentar la devuelve a Pendientes y que luego hay que pulsar Iniciar ciclo para procesarla de nuevo. Incluye un ejemplo claro y respeta el límite de 100 palabras. Aprobado.",
+          "execution": {
+            "model": "claude/claude-sonnet-5",
+            "receiptId": "af590b80-0d80-4c43-b4eb-5df2f57ba8d8",
+            "durationMs": 16550
+          }
+        }
+      ],
+      "artifactSha256": "70420a1e696e63fea883be9d21d567adac3f88e0bb311c2096551e9688935ec9"
+    }
+  ]
+}
