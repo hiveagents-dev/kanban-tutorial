@@ -1,4 +1,4 @@
-import { app, BrowserWindow, dialog, ipcMain, protocol, session } from 'electron';
+import { app, BrowserWindow, clipboard, dialog, ipcMain, protocol, session } from 'electron';
 import { readFile } from 'node:fs/promises';
 import { mkdirSync } from 'node:fs';
 import { isAbsolute, join } from 'node:path';
@@ -75,9 +75,11 @@ async function start() {
   const commands = {
     snapshot: () => board.snapshot(),
     create: input => board.create(input),
-    run: () => {
+    edit: (id, input) => board.edit(id, input),
+    copy: (id, receiptId) => clipboard.writeText(board.copyText(id, receiptId)),
+    run: id => {
       if (running) throw new Error('Ya hay un ciclo en curso.');
-      running = board.run().finally(() => { running = undefined; });
+      running = board.run(id).finally(() => { running = undefined; });
       return running;
     },
     stop: () => board.stop(),

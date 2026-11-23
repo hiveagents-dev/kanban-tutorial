@@ -3,6 +3,8 @@ import { randomUUID } from 'node:crypto';
 const BATCH_SIZE = 8;
 const ATTEMPTS_PER_CYCLE = 2;
 const INTERRUPTED = 'El ciclo se interrumpió. Podés revisar la evidencia y reintentar la tarjeta.';
+const RECEIPT_ID = /^[a-zA-Z0-9_-]{1,128}$/;
+const phases = new Map([['working', 'writing'], ['review', 'reviewing']]);
 
 const providerHints = new Map([
   ['USAGE_LIMIT', 'El proveedor informó que se agotó su cupo.'],
@@ -22,12 +24,31 @@ function text(value, label, max) {
   return value.trim();
 }
 
+function cardInput(input) {
+  const title = text(input?.title, 'El título', 120);
+  const brief = text(input?.brief, 'La consigna', 2000);
+  if (!Array.isArray(input.requiredTerms) || !input.requiredTerms.length || input.requiredTerms.length > 8) {
+    throw new Error('Ingresá entre 1 y 8 términos de aceptación.');
+  }
+  const requiredTerms = [...input.requiredTerms].map(term => text(term, 'Cada término', 80));
+  const { initialDraft } = input;
+  if (initialDraft !== undefined && (typeof initialDraft !== 'string' || initialDraft.length > 8000)) {
+    throw new Error('El borrador inicial debe ser texto de hasta 8000 caracteres.');
+  }
+  return {
+    title, brief, requiredTerms,
+    ...(initialDraft?.trim()
+      ? { initialDraft, initialDraftEvaluated: false, artifact: initialDraft }
+      : { artifact: '' }),
+  };
+}
+
 function event(role, message, execution) {
   const entry = { at: new Date().toISOString(), role, message };
   if (execution === undefined) return entry;
   const { model, receiptId, durationMs } = execution ?? {};
   if (typeof model !== 'string' || !/^[a-z][a-z0-9-]*\/[a-zA-Z0-9_.:+-]{1,180}$/.test(model)
-      || typeof receiptId !== 'string' || !/^[a-zA-Z0-9_-]{1,128}$/.test(receiptId)
+      || typeof receiptId !== 'string' || !RECEIPT_ID.test(receiptId)
       || !Number.isSafeInteger(durationMs) || durationMs < 0) {
     throw new Error('El turno devolvió una referencia de ejecución inválida.');
   }
@@ -50,7 +71,7 @@ function acceptance(markdown, terms) {
 // its external turn, so a restart can always identify interrupted work.
 export function createBoard({ store, agents, onChange = () => {} }) {
   let cards = store.load();
-  let controller = null;
+  let cycle = null;
   if (!Array.isArray(cards)) throw new Error('El archivo del tablero es inválido.');
 
   function notify() {
@@ -77,7 +98,7 @@ export function createBoard({ store, agents, onChange = () => {} }) {
   }
 
   function recover() {
-    const inFlight = card => card.status === 'working' || card.status === 'review';
+    const inFlight = card => phases.has(card.status);
     if (cards.some(inFlight)) {
       commit(cards.map(card => inFlight(card)
         ? { ...card, status: 'blocked', events: [...card.events, event('system', INTERRUPTED)] }
@@ -86,33 +107,66 @@ export function createBoard({ store, agents, onChange = () => {} }) {
   }
 
   function snapshot() {
-    return { cards: structuredClone(cards), active: controller !== null };
+    const result = { cards: structuredClone(cards), active: cycle !== null, cycle: null };
+    if (cycle) {
+      const current = cards.find(card => card.id === cycle.cardId);
+      const phase = cycle.controller.signal.aborted ? 'stopping' : phases.get(current?.status) ?? 'planning';
+      result.cycle = {
+        phase,
+        cardId: phase === 'planning' ? null : cycle.cardId,
+        total: cycle.batch.size,
+        processed: cards.filter(card => cycle.batch.has(card.id)
+          && (card.status === 'done' || card.status === 'blocked')).length,
+        startedAt: cycle.startedAt,
+      };
+    }
+    return result;
   }
 
   function create(input) {
-    const title = text(input?.title, 'El título', 120);
-    const brief = text(input?.brief, 'La consigna', 2000);
-    if (!Array.isArray(input.requiredTerms) || !input.requiredTerms.length || input.requiredTerms.length > 8) {
-      throw new Error('Ingresá entre 1 y 8 términos de aceptación.');
-    }
-    const requiredTerms = input.requiredTerms.map(term => text(term, 'Cada término', 80));
-    const { initialDraft } = input;
-    if (initialDraft !== undefined && (typeof initialDraft !== 'string' || initialDraft.length > 8000)) {
-      throw new Error('El borrador inicial debe ser texto de hasta 8000 caracteres.');
-    }
-    const hasDraft = Boolean(initialDraft?.trim());
     const card = {
-      id: randomUUID(), title, brief, requiredTerms,
-      ...(hasDraft ? { initialDraft, initialDraftEvaluated: false } : {}),
-      status: 'pending', artifact: hasDraft ? initialDraft : '', checks: [], attempts: 0,
+      id: randomUUID(), ...cardInput(input), status: 'pending', checks: [], attempts: 0,
       events: [event('system', 'Tarjeta creada.')],
     };
     commit([...cards, card]);
     return structuredClone(card);
   }
 
+  function edit(id, input) {
+    if (cycle) throw new Error('Esperá a que termine el ciclo activo.');
+    const card = cards.find(item => item.id === id && item.status === 'pending');
+    if (!card) throw new Error('Sólo se puede editar una tarjeta pendiente.');
+    if (card.events.some(entry => entry.role === 'planner')) {
+      throw new Error('Duplicá la tarjeta si querés cambiar un encargo que ya se asignó.');
+    }
+    const edited = {
+      ...card, ...cardInput(input),
+      events: [...card.events, event('system', 'Se editó el encargo.')],
+    };
+    if (!edited.artifact) {
+      delete edited.initialDraft;
+      delete edited.initialDraftEvaluated;
+    }
+    commit(cards.map(item => item.id === id ? edited : item));
+    return structuredClone(edited);
+  }
+
+  function copyText(id, receiptId) {
+    const card = cards.find(item => item.id === id);
+    if (!card) throw new Error('No se encontró la tarjeta.');
+    if (receiptId === undefined) {
+      if (!card.artifact.trim()) throw new Error('La tarjeta todavía no tiene Markdown para copiar.');
+      return card.artifact;
+    }
+    if (typeof receiptId !== 'string' || !RECEIPT_ID.test(receiptId)
+      || !card.events.some(entry => entry.execution?.receiptId === receiptId)) {
+      throw new Error('El recibo no pertenece a esta tarjeta.');
+    }
+    return receiptId;
+  }
+
   function retry(id) {
-    if (controller) throw new Error('Esperá a que termine el ciclo activo.');
+    if (cycle) throw new Error('Esperá a que termine el ciclo activo.');
     if (!cards.some(card => card.id === id && card.status === 'blocked')) {
       throw new Error('Sólo se puede reintentar una tarjeta bloqueada.');
     }
@@ -192,37 +246,38 @@ export function createBoard({ store, agents, onChange = () => {} }) {
       event('system', 'Se agotaron los dos intentos. Revisá el último borrador y la devolución.'));
   }
 
-  async function run() {
-    if (controller) throw new Error('Ya hay un ciclo activo.');
+  async function run(id) {
+    if (cycle) throw new Error('Ya hay un ciclo activo.');
+    const pending = cards.filter(card => card.status === 'pending' && (id === undefined || card.id === id));
+    if (id !== undefined && !pending.length) throw new Error('Elegí una tarjeta pendiente para procesarla.');
     recover();
-    const batch = cards.filter(card => card.status === 'pending').slice(0, BATCH_SIZE);
-    if (!batch.length) return snapshot();
-    const remaining = new Set(batch.map(card => card.id));
-    controller = new AbortController();
+    if (!pending.length) return snapshot();
+    const batch = new Set(pending.slice(0, BATCH_SIZE).map(card => card.id));
+    const controller = new AbortController();
+    cycle = { controller, batch, cardId: null, startedAt: new Date().toISOString() };
     const { signal } = controller;
-    let currentId = null;
     try {
       notify();
-      while (remaining.size) {
-        const eligible = cards.filter(card => remaining.has(card.id)).map(({ id, title, brief, requiredTerms }) =>
-          ({ id, title, brief, requiredTerms }));
+      for (let assigned = 0; assigned < batch.size; assigned++) {
+        const eligible = cards.filter(card => batch.has(card.id) && card.status === 'pending')
+          .map(({ id, title, brief, requiredTerms }) => ({ id, title, brief, requiredTerms }));
         const plan = await dispatch('plan', { cards: eligible }, signal);
         signal.throwIfAborted();
-        if (!remaining.has(plan?.cardId)) throw new Error('El planificador eligió una tarjeta fuera del lote.');
+        if (!eligible.some(card => card.id === plan?.cardId)) throw new Error('El planificador eligió una tarjeta fuera del lote.');
         const reason = text(plan.reason, 'El motivo del planificador', 2000);
+        cycle.cardId = plan.cardId;
         const selected = update(plan.cardId, { status: 'working' }, event('planner', reason, plan.execution));
-        currentId = selected.id;
-        remaining.delete(currentId);
         await deliver(selected, signal);
-        currentId = null;
+        cycle.cardId = null;
       }
     } catch (error) {
-      if (cards.some(card => card.id === currentId && card.status !== 'blocked')) {
-        update(currentId, { status: 'blocked' }, event('system', signal.aborted ? INTERRUPTED : error.message));
+      const current = cards.find(card => card.id === cycle.cardId);
+      if (phases.has(current?.status)) {
+        update(current.id, { status: 'blocked' }, event('system', signal.aborted ? INTERRUPTED : error.message));
       }
       if (!signal.aborted) throw error;
     } finally {
-      controller = null;
+      cycle = null;
       notify();
     }
     return snapshot();
@@ -230,10 +285,11 @@ export function createBoard({ store, agents, onChange = () => {} }) {
 
   recover();
   return {
-    snapshot, create, retry, run,
+    snapshot, create, edit, copyText, retry, run,
     stop() {
-      if (!controller || controller.signal.aborted) return;
-      controller.abort();
+      if (!cycle || cycle.controller.signal.aborted) return;
+      cycle.controller.abort();
+      notify();
       recover();
     },
   };

@@ -10,28 +10,72 @@
 </head>
 <body>
   <header class="topbar">
-    <div class="brand"><span class="mark" aria-hidden="true"><i></i><i></i><i></i></span>HiveAgents</div>
-    <span class="divider" aria-hidden="true"></span>
-    <span class="workspace">Kanban</span>
-    <span id="connection" class="connection" role="status"><i aria-hidden="true"></i><span>Cargando…</span></span>
+    <div class="bar-content">
+      <div class="brand"><span class="mark" aria-hidden="true"><i></i><i></i><i></i></span>HiveAgents</div>
+      <span class="divider" aria-hidden="true"></span>
+      <span class="workspace">Runtime Kanban</span>
+      <div class="bar-controls">
+        <span id="connection" class="connection" role="status"><i aria-hidden="true"></i><span>Cargando…</span></span>
+        <button type="button" id="help" class="help-button" aria-label="Cómo funciona el tablero" title="Cómo funciona el tablero">?</button>
+      </div>
+    </div>
   </header>
   <main>
     <div class="heading">
       <div>
         <h1>Tablero de agentes</h1>
-        <p class="lead">Cada tarjeta produce un documento Markdown. Iniciá un ciclo para que los agentes elijan, redacten y revisen las tareas pendientes.</p>
+        <p class="lead">Transformá consignas en documentos Markdown con pruebas y revisión.</p>
       </div>
       <div class="actions">
-        <button id="new-card" class="button secondary" disabled><span aria-hidden="true" class="plus">+</span> Nueva tarjeta</button>
-        <button id="run" class="button primary" disabled><span aria-hidden="true" class="play"></span> Iniciar ciclo</button>
-        <button id="stop" class="button secondary" hidden><span aria-hidden="true" class="stop-icon"></span> Detener</button>
+        <button id="new-card" class="button secondary" disabled><span aria-hidden="true" class="icon plus"></span>Nueva tarjeta</button>
+        <button id="run" class="button primary" disabled><span aria-hidden="true" class="icon play"></span> Iniciar ciclo</button>
+        <button id="stop" class="button danger" hidden><span aria-hidden="true" class="icon stop-icon"></span> Detener</button>
       </div>
     </div>
     <p id="error" class="error" role="alert" hidden></p>
-    <div id="columns" class="columns" aria-label="Columnas del tablero"></div>
-    <section id="blocked" class="blocked" hidden aria-labelledby="blocked-title">
-      <div class="column-heading"><span class="dot blocked-dot" aria-hidden="true"></span><h2 id="blocked-title">Bloqueadas</h2><span id="blocked-count" class="count"></span></div>
-      <div id="blocked-cards" class="blocked-grid"></div>
+    <p id="action-notice" class="notice" role="status" hidden></p>
+    <section id="cycle-panel" class="cycle-panel" aria-labelledby="cycle-title" data-active="false">
+      <div class="cycle-overview">
+        <div class="cycle-symbol" aria-hidden="true"><span></span><span></span><span></span></div>
+        <div class="cycle-text" role="status">
+          <h2 id="cycle-title">Ciclo en espera</h2>
+          <p id="cycle-summary">Cargando el tablero local.</p>
+        </div>
+      </div>
+      <ol id="cycle-stages" class="cycle-stages" aria-label="Etapas del ciclo">
+        <li data-phase="planning"><span class="step-marker" aria-hidden="true"></span><span>Planificación</span></li>
+        <li data-phase="writing"><span class="step-marker" aria-hidden="true"></span><span>Redacción</span></li>
+        <li data-phase="reviewing"><span class="step-marker" aria-hidden="true"></span><span>Revisión</span></li>
+      </ol>
+    </section>
+    <section class="board-section" aria-labelledby="board-heading">
+      <div class="toolbar">
+        <div class="toolbar-title">
+          <h2 id="board-heading">Tarjetas</h2>
+          <p id="filter-summary" role="status"></p>
+        </div>
+        <div class="filters" role="search">
+          <div class="search-control">
+            <span class="search-icon" aria-hidden="true"></span>
+            <input type="search" id="card-search" aria-label="Buscar tarjetas" placeholder="Buscar tarjetas" aria-keyshortcuts="/" disabled>
+            <kbd aria-hidden="true">/</kbd>
+          </div>
+          <select id="state-filter" aria-label="Filtrar por estado" disabled>
+            <option value="all">Todos los estados</option>
+            <option value="pending">Pendientes</option>
+            <option value="working">En curso</option>
+            <option value="review">En revisión</option>
+            <option value="done">Terminadas</option>
+            <option value="blocked">Bloqueadas</option>
+          </select>
+          <button type="button" id="reset-filters" class="button text-button" hidden>Limpiar filtros</button>
+        </div>
+      </div>
+      <div id="columns" class="columns" aria-label="Columnas del tablero"></div>
+      <section id="blocked" class="blocked" hidden aria-labelledby="blocked-title" data-state="blocked">
+        <div class="column-heading"><span class="dot" aria-hidden="true"></span><h2 id="blocked-title">Bloqueadas</h2><span id="blocked-count" class="count"></span></div>
+        <div id="blocked-cards" class="blocked-grid"></div>
+      </section>
     </section>
   </main>
   <dialog id="create-dialog" aria-labelledby="create-heading">
@@ -45,11 +89,11 @@
       <label for="brief">Consigna</label>
       <textarea id="brief" name="brief" maxlength="2000" rows="4" required placeholder="¿Qué tiene que explicar el documento y para quién?"></textarea>
       <label for="terms">Términos obligatorios</label>
-      <span class="hint" id="terms-hint">Escribí de 1 a 8 términos, uno por línea y de hasta 80 caracteres. El tablero los busca en el entregable.</span>
+      <span class="hint" id="terms-hint">Ingresá de 1 a 8 términos, uno por línea. Cada uno admite hasta 80 caracteres.</span>
       <textarea id="terms" name="terms" rows="3" required aria-describedby="terms-hint" placeholder="npm install"></textarea>
       <label for="initial-draft">Borrador inicial</label>
-      <span class="hint" id="draft-hint">Opcional. Los agentes lo revisan antes de reescribirlo.</span>
-      <textarea id="initial-draft" name="initialDraft" maxlength="8000" rows="3" aria-describedby="draft-hint"></textarea>
+      <span class="hint" id="draft-hint">Opcional. El ciclo lo prueba y revisa primero.</span>
+      <textarea id="initial-draft" name="initialDraft" maxlength="8000" rows="3" aria-describedby="draft-hint" placeholder="# Primer borrador"></textarea>
       <p id="form-error" class="error" role="alert" hidden></p>
       <div class="form-actions">
         <button type="button" class="button secondary" data-close>Cancelar</button>
@@ -59,29 +103,61 @@
   </dialog>
   <dialog id="detail-dialog" class="detail" aria-labelledby="detail-title">
     <div class="dialog-heading detail-heading">
-      <div><div id="detail-status" class="state"></div><h2 id="detail-title"></h2></div>
-      <button class="close" type="button" data-close aria-label="Cerrar">×</button>
+      <div class="detail-identity"><div id="detail-status" class="state"></div><h2 id="detail-title"></h2><p id="detail-summary" class="hint"></p></div>
+      <button class="close" type="button" data-close aria-label="Cerrar" autofocus>×</button>
     </div>
-    <div class="detail-grid">
-      <div>
-        <section><h3>Consigna</h3><p id="detail-brief" class="preserve"></p></section>
-        <section><h3>Términos obligatorios</h3><ul id="detail-terms" class="terms"></ul></section>
-        <section><h3>Validaciones</h3><ul id="detail-checks" class="checks"></ul></section>
-      </div>
-      <div>
-        <section>
-          <h3>Entregable Markdown</h3>
-          <pre id="detail-artifact" tabindex="0"></pre>
-          <details id="compare-draft" hidden>
-            <summary>Comparar con el borrador inicial</summary>
-            <pre id="detail-initial-draft" tabindex="0"></pre>
-          </details>
-        </section>
-        <section><h3>Historial de la tarjeta</h3><ol id="detail-events" class="timeline"></ol></section>
-      </div>
+    <div id="detail-actions" class="detail-actions" aria-label="Acciones de la tarjeta">
+      <button type="button" id="run-card" class="button primary" hidden><span aria-hidden="true" class="icon play"></span>Ejecutar tarjeta</button>
+      <button type="button" id="retry" class="button primary" hidden>Reintentar</button>
+      <button type="button" id="edit-card" class="button secondary" hidden>Editar</button>
+      <button type="button" id="duplicate-card" class="button secondary">Duplicar</button>
     </div>
     <p id="retry-error" class="error" role="alert" hidden></p>
-    <div class="form-actions"><button id="retry" class="button primary" hidden>Reintentar</button></div>
+    <p id="detail-notice" class="notice" role="status" hidden></p>
+    <div class="detail-grid">
+      <div>
+        <section class="detail-section">
+          <h3>Consigna</h3><p id="detail-brief" class="preserve"></p>
+          <h4>Términos obligatorios</h4><ul id="detail-terms" class="terms"></ul>
+        </section>
+        <section class="detail-section"><h3>Validaciones</h3><ul id="detail-checks" class="checks"></ul></section>
+        <section class="detail-section">
+          <h3>Último dictamen del revisor</h3>
+          <p id="detail-review" class="preserve muted"></p>
+        </section>
+      </div>
+      <div>
+        <section class="detail-section output-section">
+          <div class="section-heading">
+            <div><h3 id="artifact-heading">Entregable Markdown</h3><p id="artifact-status" class="hint"></p></div>
+            <button type="button" id="copy-markdown" class="button secondary compact" hidden>Copiar Markdown</button>
+          </div>
+          <pre id="detail-artifact" aria-labelledby="artifact-heading" tabindex="0"></pre>
+          <details id="compare-draft" hidden>
+            <summary>Comparar con el borrador inicial</summary>
+            <pre id="detail-initial-draft" aria-label="Texto del borrador inicial" tabindex="0"></pre>
+          </details>
+        </section>
+        <section class="detail-section">
+          <h3>Historial de la tarjeta</h3>
+          <ol id="detail-events" class="timeline"></ol>
+        </section>
+      </div>
+    </div>
+  </dialog>
+  <dialog id="help-dialog" aria-labelledby="help-heading">
+    <div class="dialog-heading">
+      <h2 id="help-heading">Cómo funciona el tablero</h2>
+      <button class="close" type="button" data-close aria-label="Cerrar" autofocus>×</button>
+    </div>
+    <ol class="help-steps">
+      <li><strong>Creá una tarjeta.</strong> Escribí qué debería explicar el documento y qué términos debe incluir. Si ya tenés un borrador, pegalo para revisarlo primero.</li>
+      <li><strong>Elegí qué procesar.</strong> Iniciá un ciclo para que el planificador elija entre las pendientes, o procesá una tarjeta desde su detalle.</li>
+      <li><strong>Seguí el progreso.</strong> Cuando un borrador pasa las pruebas locales, otro agente lo revisa. Si pide cambios, el redactor tiene un intento más.</li>
+      <li><strong>Inspeccioná la evidencia.</strong> Encontrá el documento, los resultados de las pruebas y los recibos de selección en el historial. Si el ciclo se detuvo, podés reintentar las tarjetas bloqueadas.</li>
+    </ol>
+    <p class="provider-hint">Los ciclos usan tu CLI autenticado y pueden consumir turnos de tu cuenta.</p>
+    <div class="form-actions"><button type="button" class="button primary" data-close>Volver al tablero</button></div>
   </dialog>
 </body>
 </html>

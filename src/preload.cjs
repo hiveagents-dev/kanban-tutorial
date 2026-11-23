@@ -3,7 +3,9 @@ const { contextBridge, ipcRenderer } = require('electron');
 contextBridge.exposeInMainWorld('kanban', {
   snapshot: () => ipcRenderer.invoke('board:snapshot'),
   create: input => ipcRenderer.invoke('board:create', input),
-  run: () => ipcRenderer.invoke('board:run'),
+  edit: (id, input) => ipcRenderer.invoke('board:edit', id, input),
+  copy: (id, receiptId) => ipcRenderer.invoke('board:copy', id, receiptId),
+  run: id => ipcRenderer.invoke('board:run', id),
   stop: () => ipcRenderer.invoke('board:stop'),
   retry: id => ipcRenderer.invoke('board:retry', id),
   onChange(callback) {
