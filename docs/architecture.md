@@ -14,6 +14,10 @@ flowchart LR
         bridge <-->|"IPC con origen verificado"| main["Proceso principal"]
         main --> board["createBoard<br/>Cola, estados y controles"]
         board --> roles["createAgents<br/>Planificar, redactar, revisar"]
+        main --> assistant["Asistente del tablero<br/>Alertas, chat y propuestas"]
+        board <-->|"Estado y acciones validadas"| assistant
+        assistant --> roles
+        assistant --> conversation[("assistant.json<br/>Conversación y decisiones")]
         roles --> sdk["HiveAgents Runtime<br/>Routing y Agent por exec"]
         board --> local[("board.json<br/>Tarjetas e historial")]
         sdk --> receipts[("receipts/<br/>Decisiones de selección")]
@@ -104,6 +108,8 @@ stateDiagram-v2
 Los datos viven en el directorio `userData` de Electron o en el directorio absoluto elegido con `KANBAN_DATA_DIR`. Éste es un tablero local de una persona. Si necesitás dependencias entre trabajos, verificación de efectos externos, cupos compartidos o un worker separado, los laboratorios muestran esas piezas del SDK por separado. [Laboratorios por capacidad](../labs/README.md)
 
 ## Del tablero a tu aplicación
+
+El asistente lee la cola completa, presenta alertas locales y valida las propuestas del chat antes de enviarlas a la cola. La memoria por columna recupera antecedentes de la misma historia del tablero. [Arquitectura del asistente y la memoria](assistant.md)
 
 | Si tu aplicación necesita… | Usá este recorrido |
 | --- | --- |

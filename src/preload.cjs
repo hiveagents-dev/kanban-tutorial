@@ -8,6 +8,10 @@ contextBridge.exposeInMainWorld('kanban', {
   run: id => ipcRenderer.invoke('board:run', id),
   stop: () => ipcRenderer.invoke('board:stop'),
   retry: id => ipcRenderer.invoke('board:retry', id),
+  findSimilar: input => ipcRenderer.invoke('board:findSimilar', input),
+  assistantSnapshot: () => ipcRenderer.invoke('board:assistantSnapshot'),
+  askAssistant: input => ipcRenderer.invoke('board:askAssistant', input),
+  decideAssistant: input => ipcRenderer.invoke('board:decideAssistant', input),
   onChange(callback) {
     const listener = () => callback();
     ipcRenderer.on('board:changed', listener);

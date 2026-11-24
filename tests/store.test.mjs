@@ -3,7 +3,7 @@ import { mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import test from 'node:test';
-import { openStore, tutorialCard } from '../src/store.mjs';
+import { openAssistantStore, openStore, tutorialCard } from '../src/store.mjs';
 
 function state(t) {
   const dir = mkdtempSync(join(tmpdir(), 'hive-store-'));
@@ -33,4 +33,19 @@ test('datos dañados o de otra versión se conservan en disco', t => {
     assert.throws(() => store.load());
     assert.equal(readFileSync(path, 'utf8'), input);
   }
+});
+
+test('la conversación del asistente tiene almacenamiento separado y conserva archivos dañados', t => {
+  const { store, dir } = state(t);
+  const path = join(dir, 'assistant.json');
+  const assistantStore = openAssistantStore(dir);
+  assert.equal(assistantStore.load(), undefined);
+  const saved = { version: 1, messages: [{ id: 'm1', role: 'user', at: '2026-11-24T00:00:00Z', text: '¿Qué pasó?' }] };
+  store.save([]);
+  assistantStore.save(saved);
+  assert.deepEqual(openAssistantStore(dir).load(), saved);
+  assert.deepEqual(store.load(), []);
+  writeFileSync(path, '{');
+  assert.throws(() => assistantStore.load());
+  assert.equal(readFileSync(path, 'utf8'), '{');
 });

@@ -1,0 +1,79 @@
+{
+  "checkedAt": "2026-11-24T14:08:09.206Z",
+  "scope": "Tarjeta A2 sintética abierta en Electron. CLI local autenticado.",
+  "alert": {
+    "id": "blocked-457b0261f6a61bcc8a6b1676b31e6104",
+    "type": "blocked",
+    "level": "critical",
+    "cardId": "A2",
+    "title": "A2 · Documentar cómo recuperar un ciclo",
+    "message": "La tarjeta está bloqueada hace 16 días."
+  },
+  "before": "blocked",
+  "assistant": {
+    "text": "La tarjeta A2 · Documentar cómo recuperar un ciclo se bloqueó porque agotó los dos intentos de borrador permitidos por ciclo sin lograr la aprobación del revisor. Según el historial, el documento sí cumplió el chequeo de contenido no vacío y mencionó \"Recuperación\", pero en ningún borrador se incluyó el término literal \"Reintentar\", que es uno de los dos términos requeridos. Al quedar sin intentos disponibles, el sistema marcó la tarjeta como bloqueada hace 16 días, y así quedó hasta ahora.\n\nPara corregir esto, lo que pedís es reintentar y ejecutar la misma tarjeta A2: eso la devolvería primero a Pendientes y luego la procesaría de nuevo, dándole intentos nuevos para que el próximo borrador incluya explícitamente la palabra \"Reintentar\" junto con \"Recuperación\", que es justo lo que faltó. Te confirmo que esta acción requiere tu aprobación antes de aplicarse, así que si estás de acuerdo avisame para proceder.",
+    "model": "claude/claude-sonnet-5",
+    "receiptId": "94e422e8-ef9d-4fb9-8d5c-75e35958ae7f",
+    "durationMs": 11811,
+    "proposal": "retryAndRun"
+  },
+  "action": {
+    "status": "applied",
+    "cardStatus": "done",
+    "alertsAfter": 0
+  },
+  "checks": [
+    {
+      "name": "Documento con contenido",
+      "passed": true
+    },
+    {
+      "name": "Incluye «Recuperación»",
+      "passed": true
+    },
+    {
+      "name": "Incluye «Reintentar»",
+      "passed": true
+    }
+  ],
+  "turns": [
+    {
+      "role": "planner",
+      "model": "claude/claude-sonnet-5",
+      "receiptId": "cb132c82-afee-4d7b-b087-4d86c21a73ac",
+      "durationMs": 6430
+    },
+    {
+      "role": "writer",
+      "model": "claude/claude-sonnet-5",
+      "receiptId": "ab77e29a-b400-4ef5-8057-f64ae5bc6de4",
+      "durationMs": 74959
+    },
+    {
+      "role": "reviewer",
+      "model": "claude/claude-sonnet-5",
+      "receiptId": "b805c2c6-218c-43d5-b5a3-d7685c72ce0b",
+      "durationMs": 19559
+    },
+    {
+      "role": "writer",
+      "model": "claude/claude-sonnet-5",
+      "receiptId": "13ddc132-c6a4-4de5-9be1-2d865cbee0db",
+      "durationMs": 10572
+    },
+    {
+      "role": "reviewer",
+      "model": "claude/claude-sonnet-5",
+      "receiptId": "c92db0bc-d209-4762-81c5-66ea0f0e3c94",
+      "durationMs": 10225
+    }
+  ],
+  "related": [
+    {
+      "id": "A2",
+      "title": "A2 · Documentar cómo recuperar un ciclo",
+      "status": "done",
+      "reason": "El título coincide."
+    }
+  ]
+}

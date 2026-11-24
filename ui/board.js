@@ -203,6 +203,7 @@ function renderCards() {
   container.hidden = !groups.length;
   container.replaceChildren(...groups);
   controls();
+  document.dispatchEvent(new Event('kanban:cards-rendered'));
   if (active?.card) focusCard(active.card);
   if (active?.action) {
     const button = [...document.querySelectorAll('button[data-action]')].find(item =>
@@ -313,6 +314,7 @@ async function refresh() {
 
 function openForm(card = null, mode = 'create') {
   editing = mode === 'edit' ? card.id : null;
+  byId('create-form').dataset.excludeId = editing ?? '';
   byId('create-form').reset();
   const labels = { create: ['Nueva tarjeta', 'Crear tarjeta'], edit: ['Editar tarjeta', 'Guardar cambios'], duplicate: ['Duplicar tarjeta', 'Crear copia'] };
   const [heading, submit] = labels[mode];
@@ -328,6 +330,7 @@ function openForm(card = null, mode = 'create') {
   report('form-error');
   if (byId('detail-dialog').open) byId('detail-dialog').close();
   byId('create-dialog').showModal();
+  document.dispatchEvent(new Event('kanban:form-shown'));
 }
 
 function openCard(id) {
@@ -341,6 +344,8 @@ function openCard(id) {
   controls();
   byId('detail-dialog').showModal();
 }
+
+document.addEventListener('kanban:open-card', event => openCard(event.detail));
 
 async function runCard(id, errorTarget = 'error') {
   if (starting || board.active) return;

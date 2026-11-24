@@ -4,7 +4,7 @@ Encargá un documento Markdown desde un tablero de escritorio. Dale al planifica
 
 ![Tablero de HiveAgents durante la redacción de una tarjeta en la demo de escritorio](evidence/kanban-workspace.png)
 
-[Abrí el tablero](#1-abrí-el-tablero) · [Operación y acciones](#operá-el-tablero) · [Diagramas del tablero](docs/architecture.md) · [Arquitectura del SDK](docs/runtime-architecture.md) · [Laboratorios de las 11 entradas del SDK](labs/README.md) · [Descargas](https://github.com/hiveagents-dev/kanban-tutorial/releases)
+[Abrí el tablero](#1-abrí-el-tablero) · [Operación y acciones](#operá-el-tablero) · [Asistente y memoria](docs/assistant.md) · [Diagramas del tablero](docs/architecture.md) · [Arquitectura del SDK](docs/runtime-architecture.md) · [Laboratorios de las 11 entradas del SDK](labs/README.md) · [Descargas](https://github.com/hiveagents-dev/kanban-tutorial/releases)
 
 El tablero usa dos perfiles que cumplen su contrato de salida estructurada. Si querés que el SDK elija desde todo el catálogo, compare calidad por tarea o interactúe con herramientas nativas, empezá por el laboratorio correspondiente. [Selección sin indicar modelo](labs/auto-model.md) · [Comparación medida](labs/benchmark.md) · [Aprendizaje, Hosted y Control](labs/README.md#recorridos-avanzados)
 
@@ -47,6 +47,16 @@ npm start
 | **Copiar Markdown** y copiar recibo | Llevá el último documento al portapapeles o copiá un ID para buscar su recibo en la carpeta de datos. |
 
 La barra del ciclo muestra si el tablero está planificando, redactando, revisando o deteniéndose. En el detalle podés leer juntos el motivo del planificador, el borrador, los controles, el dictamen y la evidencia de cada turno. La duración corresponde al turno informado por la app y el recibo identifica la selección del modelo. [Vista del entregable y su evidencia](evidence/kanban-evidence.png)
+
+## Probá el asistente y la memoria
+
+El asistente del tablero señala tarjetas trabadas, explica su historial y propone acciones desde el chat. Al crear una tarjeta, el formulario busca trabajos parecidos que ya estén en curso o terminados.
+
+```sh
+npm run demo:assistant
+```
+
+Abrí la alerta de **A2**, respondela y revisá la acción propuesta. La alerta y las coincidencias funcionan sin credenciales. Enviar el mensaje y ejecutar la propuesta usan tu CLI autenticado. [Recorrido y diagramas del asistente](docs/assistant.md)
 
 ## 2. Dale una decisión real al planificador
 

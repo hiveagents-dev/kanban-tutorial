@@ -24,9 +24,9 @@ function validCard(card) {
     && Array.isArray(card.checks) && card.checks.every(check => check && typeof check.name === 'string' && typeof check.passed === 'boolean');
 }
 
-export function openStore(directory) {
+function openJson(directory, name) {
   mkdirSync(directory, { recursive: true, mode: 0o700 });
-  const file = join(directory, 'board.json');
+  const file = join(directory, name + '.json');
   return {
     exists: () => existsSync(file),
     load() {
@@ -34,22 +34,17 @@ export function openStore(directory) {
       try {
         source = readFileSync(file, 'utf8');
       } catch (error) {
-        if (error.code === 'ENOENT') return [];
+        if (error.code === 'ENOENT') return undefined;
         throw error;
       }
-      const data = JSON.parse(source);
-      if (data?.version !== 1 || !Array.isArray(data.cards) || !data.cards.every(validCard)
-          || new Set(data.cards.map(card => card.id)).size !== data.cards.length) {
-        throw new Error('Formato de tablero desconocido o dañado. Conservá board.json para poder recuperarlo.');
-      }
-      return data.cards;
+      return JSON.parse(source);
     },
-    save(cards) {
-      const temporary = join(directory, `board-${randomUUID()}.tmp`);
+    save(data) {
+      const temporary = join(directory, `${name}-${randomUUID()}.tmp`);
       try {
         const fd = openSync(temporary, 'wx', 0o600);
         try {
-          writeFileSync(fd, JSON.stringify({ version: 1, cards }), 'utf8');
+          writeFileSync(fd, JSON.stringify(data), 'utf8');
           fsyncSync(fd);
         } finally {
           closeSync(fd);
@@ -60,4 +55,25 @@ export function openStore(directory) {
       }
     },
   };
+}
+
+export function openStore(directory) {
+  const file = openJson(directory, 'board');
+  return {
+    exists: file.exists,
+    load() {
+      const data = file.load();
+      if (data === undefined) return [];
+      if (data?.version !== 1 || !Array.isArray(data.cards) || !data.cards.every(validCard)
+          || new Set(data.cards.map(card => card.id)).size !== data.cards.length) {
+        throw new Error('Formato de tablero desconocido o dañado. Conservá board.json para poder recuperarlo.');
+      }
+      return data.cards;
+    },
+    save: cards => file.save({ version: 1, cards }),
+  };
+}
+
+export function openAssistantStore(directory) {
+  return openJson(directory, 'assistant');
 }

@@ -6,7 +6,9 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; script-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
   <title>Tablero de agentes · HiveAgents</title>
   <link rel="stylesheet" href="./board.css">
+  <link rel="stylesheet" href="./assistant.css">
   <script src="./board.js" defer></script>
+  <script src="./assistant.js" defer></script>
 </head>
 <body>
   <header class="topbar">
@@ -16,6 +18,9 @@
       <span class="workspace">Runtime Kanban</span>
       <div class="bar-controls">
         <span id="connection" class="connection" role="status"><i aria-hidden="true"></i><span>Cargando…</span></span>
+        <button type="button" id="assistant-open" class="assistant-open" aria-haspopup="dialog" aria-controls="assistant-dialog" hidden>
+          <span class="assistant-icon" aria-hidden="true"></span><span>Asistente del tablero</span><span id="assistant-count" class="assistant-count" hidden></span>
+        </button>
         <button type="button" id="help" class="help-button" aria-label="Cómo funciona el tablero" title="Cómo funciona el tablero">?</button>
       </div>
     </div>
@@ -34,6 +39,10 @@
     </div>
     <p id="error" class="error" role="alert" hidden></p>
     <p id="action-notice" class="notice" role="status" hidden></p>
+    <div id="board-alert-strip" class="board-alert-strip" hidden>
+      <p id="board-alert-summary" role="status"></p>
+      <button id="board-view-alerts" type="button" class="button secondary compact">Ver alertas</button>
+    </div>
     <section id="cycle-panel" class="cycle-panel" aria-labelledby="cycle-title" data-active="false">
       <div class="cycle-overview">
         <div class="cycle-symbol" aria-hidden="true"><span></span><span></span><span></span></div>
@@ -91,6 +100,11 @@
       <label for="terms">Términos obligatorios</label>
       <span class="hint" id="terms-hint">Ingresá de 1 a 8 términos, uno por línea. Cada uno admite hasta 80 caracteres.</span>
       <textarea id="terms" name="terms" rows="3" required aria-describedby="terms-hint" placeholder="npm install"></textarea>
+      <section id="related-cards" class="related-cards" aria-labelledby="related-heading" hidden>
+        <h3 id="related-heading">Tarjetas parecidas</h3>
+        <p class="hint">Podés abrir una para revisar el trabajo previo o seguir con tu encargo.</p>
+        <ul id="related-list" aria-live="polite"></ul>
+      </section>
       <label for="initial-draft">Borrador inicial</label>
       <span class="hint" id="draft-hint">Opcional. El ciclo lo prueba y revisa primero.</span>
       <textarea id="initial-draft" name="initialDraft" maxlength="8000" rows="3" aria-describedby="draft-hint" placeholder="# Primer borrador"></textarea>
@@ -155,9 +169,49 @@
       <li><strong>Elegí qué procesar.</strong> Iniciá un ciclo para que el planificador elija entre las pendientes, o procesá una tarjeta desde su detalle.</li>
       <li><strong>Seguí el progreso.</strong> Cuando un borrador pasa las pruebas locales, otro agente lo revisa. Si pide cambios, el redactor tiene un intento más.</li>
       <li><strong>Inspeccioná la evidencia.</strong> Encontrá el documento, los resultados de las pruebas y los recibos de selección en el historial. Si el ciclo se detuvo, podés reintentar las tarjetas bloqueadas.</li>
+      <li><strong>Consultá al asistente.</strong> Revisá alertas del tablero y respondé sobre una tarjeta. Las consultas usan tu CLI y las acciones propuestas necesitan tu confirmación. Al escribir un encargo vas a ver coincidencias con tarjetas anteriores.</li>
     </ol>
     <p class="provider-hint">Los ciclos usan tu CLI autenticado y pueden consumir turnos de tu cuenta.</p>
     <div class="form-actions"><button type="button" class="button primary" data-close>Volver al tablero</button></div>
+  </dialog>
+  <dialog id="assistant-dialog" class="assistant-dialog" aria-labelledby="assistant-title">
+    <header class="assistant-heading">
+      <div class="assistant-heading-text">
+        <span class="assistant-icon" aria-hidden="true"></span>
+        <div>
+          <h2 id="assistant-title">Asistente del tablero</h2>
+          <p>Alertas, contexto y acciones para tus tarjetas</p>
+        </div>
+      </div>
+      <button class="close" type="button" data-close aria-label="Cerrar asistente" autofocus>×</button>
+    </header>
+    <details id="assistant-alerts-section" class="assistant-alerts-section" open>
+      <summary>Alertas actuales <span id="assistant-alerts-total" class="count"></span></summary>
+      <div class="assistant-alerts-content">
+        <p id="assistant-no-alerts" class="muted">Todavía no se cargaron las alertas.</p>
+        <ul id="assistant-alerts" class="assistant-alerts"></ul>
+      </div>
+    </details>
+    <section class="assistant-chat" aria-labelledby="assistant-chat-title">
+      <h3 id="assistant-chat-title">Conversación</h3>
+      <div id="assistant-thread-scroll" class="assistant-thread-scroll" tabindex="0" role="region" aria-label="Historial de la conversación">
+        <p id="assistant-thread-empty" class="muted">Preguntá qué necesita atención o respondé una alerta para trabajar sobre esa tarjeta.</p>
+        <ol id="assistant-thread" class="assistant-thread" role="log" aria-live="polite" aria-relevant="additions text"></ol>
+      </div>
+    </section>
+    <form id="assistant-form" class="assistant-form">
+      <div id="assistant-reply" class="assistant-reply" hidden>
+        <p id="assistant-reply-text"></p>
+        <button id="assistant-cancel-reply" class="button secondary compact" type="button">Quitar alerta</button>
+      </div>
+      <p id="assistant-error" class="error" role="alert" hidden></p>
+      <label for="assistant-message">Mensaje</label>
+      <textarea id="assistant-message" name="message" rows="2" required maxlength="1000" placeholder="¿Qué está trabado y cuál es el siguiente paso?"></textarea>
+      <div class="assistant-submit">
+        <p id="assistant-status" class="hint" role="status">Las alertas se calculan localmente. Enviar un mensaje usa tu CLI.</p>
+        <button id="assistant-send" class="button primary" type="submit" aria-keyshortcuts="Control+Enter Meta+Enter" disabled>Enviar</button>
+      </div>
+    </form>
   </dialog>
 </body>
 </html>
