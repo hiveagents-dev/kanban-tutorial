@@ -3,7 +3,7 @@ import { mkdtemp, readdir, readFile, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import test from 'node:test';
-import { Agent } from 'hiveagents-runtime';
+import { Agent, Runtime } from 'hiveagents-runtime';
 import { createAgents } from '../src/agents.mjs';
 
 const card = {
@@ -45,9 +45,12 @@ test('tries Codex after a Claude preflight abstention and sends only the eligibl
     return { status: 'completed', output: { cardId: 'guia', reason: 'Es urgente.' } };
   });
   const result = await agents.plan({ cards: [card] });
-  assert.deepEqual(probes, ['claude', 'codex']);
+  const runtime = new Runtime();
+  const claudeModels = (await runtime.models('claude')).filter(model => model.availability !== 'unavailable');
+  const [codexModel] = (await runtime.models('codex')).filter(model => model.availability !== 'unavailable');
+  assert.deepEqual(probes, [...claudeModels.map(() => 'claude'), 'codex']);
   assert.equal(result.cardId, 'guia');
-  assert.equal(result.execution.model, 'codex/gpt-5.6-sol');
+  assert.equal(result.execution.model, 'codex/' + codexModel.id);
   assert.deepEqual(Object.keys(sent.cards[0]).sort(), ['brief', 'id', 'requiredTerms', 'title']);
   const files = await readdir(receiptDirectory);
   assert.equal(files.length, 2);

@@ -3,6 +3,7 @@ import { dirname, join } from 'node:path';
 import { Runtime } from 'hiveagents-runtime';
 import { FileWorkflowStore } from 'hiveagents-runtime/orchestration';
 import { createAgent, RoutingSelectionError, WorkflowRoutingReceiptStore } from 'hiveagents-runtime/routing';
+import { boardRoutingDefinition, boardRoutingProfiles } from './board-routing.mjs';
 import { columnContext, findSimilarCards } from './column-memory.mjs';
 
 const roles = {
@@ -57,36 +58,17 @@ function stageMemory(boardCards, column, card, includeCompleted = false) {
   return { column, related, ...(completed.length ? { completed } : {}) };
 }
 
-// The SDK negotiates these policies before a model receives the task.
-function providerOptions(provider) {
-  if (provider === 'claude') {
-    return {
-      permissions: { mode: 'respond' },
-      context: { profile: 'clean', memory: 'off' },
-      providerOptions: { claude: { systemPromptMode: 'replace', tools: [] } },
-    };
-  }
-  return {
-    permissions: { mode: 'analyze', minimumEnforcement: 'sandbox' },
-    context: { profile: 'native', memory: 'off' },
-    providerOptions: { codex: { skipGitRepoCheck: true, ignoreRules: true, ignoreUserConfig: true, ephemeral: true } },
-  };
-}
-
 /** cwd is an app-owned, empty directory, separate from board data and routing receipts. */
 export function createAgents({
-  cwd, model, receiptDirectory = join(dirname(cwd), 'routing'), onTurn, timeoutMs = 120_000, getCards = () => [],
+  cwd, model, receiptDirectory = join(dirname(cwd), 'routing'), onTurn, timeoutMs = 120_000,
+  getCards = () => [], runtime = new Runtime(), learning, learningProvider,
 }) {
-  const runtime = new Runtime();
   const receipts = new WorkflowRoutingReceiptStore(new FileWorkflowStore(receiptDirectory));
-  const candidates = !model || model === 'auto' ? ['claude/sonnet', 'codex/gpt-5.6-sol'] : [model];
-  const routes = candidates.map(candidate => {
-    const { provider, id } = runtime.resolveModel(candidate);
-    if (provider !== 'claude' && provider !== 'codex') {
-      throw new Error('Este tablero necesita schema nativo y permisos de respuesta o solo lectura. Elegí Claude o Codex.');
-    }
-    return { provider, candidate: provider + '/' + id };
-  });
+  const profiles = boardRoutingProfiles(runtime, model);
+  const chosenLearningProfile = profiles.find(profile => profile.provider === learningProvider && !profile.explicit);
+  const writingProfiles = learning && chosenLearningProfile
+    ? [chosenLearningProfile, ...profiles.filter(profile => profile !== chosenLearningProfile)]
+    : profiles;
   if (!Number.isSafeInteger(timeoutMs) || timeoutMs < 1 || timeoutMs > 2_147_483_647) {
     throw new RangeError('El plazo por turno debe ser un entero positivo en milisegundos.');
   }
@@ -102,15 +84,17 @@ export function createAgents({
     const remaining = () => Math.max(1, Math.floor(timeoutMs - (performance.now() - started)));
 
     let selection;
-    for (const { candidate, provider } of routes) {
+    let selectedProfile;
+    for (const profile of role === 'write' ? writingProfiles : profiles) {
       signal.throwIfAborted();
       try {
-        selection = await createAgent({
-          cwd, transport: 'exec', model: { mode: 'auto', candidates: [candidate], allowUnverifiedModels: true },
-          instructions, environment: { mode: 'minimal' }, memory: false, ...providerOptions(provider),
-        }, {
+        const definition = boardRoutingDefinition(profile, {
+          cwd, instructions, environment: { mode: 'minimal' }, memory: false,
+        });
+        selection = await createAgent(definition, {
           runtime, receipts, signal, timeoutMs: remaining(), task: { id: role, version: '1', inputDigest },
         });
+        selectedProfile = profile;
         break;
       } catch (error) {
         // Only an abstention at preflight is safe for trying a different provider.
@@ -123,6 +107,18 @@ export function createAgents({
     const { agent, receipt } = selection;
     try {
       signal.throwIfAborted();
+      // A learned writer may decline only before dispatch. Propagate its errors as-is,
+      // since replaying with the native route could send the same task twice.
+      if (role === 'write' && learning && !selectedProfile.explicit) {
+        const learned = await learning.write({
+          role, data, instructions, runtime, cwd, signal, timeoutMs: remaining(), profile: selectedProfile, outputSchema,
+        });
+        signal.throwIfAborted();
+        if (learned !== undefined) {
+          onTurn?.({ role, ...learned.execution, status: 'completed' });
+          return learned;
+        }
+      }
       const result = await agent.run(payload, { signal, timeoutMs: remaining(), awaitSettlement: true, outputSchema });
       if (result.status !== 'completed' || !result.output) throw new Error('El turno terminó sin un resultado validado.');
       signal.throwIfAborted();

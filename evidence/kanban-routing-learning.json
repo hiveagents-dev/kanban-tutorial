@@ -1,0 +1,578 @@
+{
+  "format": 1,
+  "sdk": "hiveagents-runtime@0.1.0-beta.3",
+  "live": {
+    "scope": "Redactor del Kanban, JSON validado localmente, perfil Codex exec y consignas sintéticas.",
+    "models": [
+      "codex/gpt-5.6-sol",
+      "codex/gpt-5.6-terra"
+    ],
+    "measure": "Calidad mediante líneas esperadas exactas y términos obligatorios.",
+    "training": {
+      "turns": 8,
+      "distinctCases": 4,
+      "initial": {
+        "provider": "codex",
+        "policyBefore": {
+          "generation": 0,
+          "active": null,
+          "previous": null
+        },
+        "policyAfter": {
+          "generation": 0,
+          "active": null,
+          "previous": null
+        },
+        "objective": "quality",
+        "corpusDigest": "2f005d8ed358d8ccce3410043ee9f273db8ddbd120eda5e07371378fc182f53f",
+        "sourceDigest": "93b4e8c49d067af9e3c8a691531ac0d25e719c93ec286ec792b86b70e061c602",
+        "turns": 4,
+        "results": [
+          {
+            "case": "train-cuotas",
+            "model": "codex/gpt-5.6-sol",
+            "quality": {
+              "state": "verified",
+              "value": 1,
+              "passed": true
+            },
+            "latency": {
+              "state": "observed",
+              "durationMs": 5595.494124999999
+            },
+            "receiptId": "be61a716-2a81-45f0-9859-7bb1faecd2e3"
+          },
+          {
+            "case": "train-cuotas",
+            "model": "codex/gpt-5.6-terra",
+            "quality": {
+              "state": "verified",
+              "value": 1,
+              "passed": true
+            },
+            "latency": {
+              "state": "observed",
+              "durationMs": 6284.332083
+            },
+            "receiptId": "329fca92-54e0-4ed0-9310-df458353dd32"
+          },
+          {
+            "case": "train-reintentos",
+            "model": "codex/gpt-5.6-sol",
+            "quality": {
+              "state": "verified",
+              "value": 0.8,
+              "passed": false
+            },
+            "latency": {
+              "state": "observed",
+              "durationMs": 4230.2930830000005
+            },
+            "receiptId": "e10960e5-3943-48f2-a0bd-910de8f6379c"
+          },
+          {
+            "case": "train-reintentos",
+            "model": "codex/gpt-5.6-terra",
+            "quality": {
+              "state": "verified",
+              "value": 1,
+              "passed": true
+            },
+            "latency": {
+              "state": "observed",
+              "durationMs": 5269.550457999998
+            },
+            "receiptId": "1f970179-ca94-4854-a0f9-c1a8fc57128d"
+          }
+        ],
+        "shadow": {
+          "digest": "a86c899cafe1bb1c644c3a97071295f8cc7c0daf41901e932f20335f292de643",
+          "rows": 4
+        }
+      },
+      "continuation": {
+        "provider": "codex",
+        "policyBefore": {
+          "generation": 0,
+          "active": null,
+          "previous": null
+        },
+        "policyAfter": {
+          "generation": 0,
+          "active": null,
+          "previous": null
+        },
+        "objective": "quality",
+        "sourceDigest": "93b4e8c49d067af9e3c8a691531ac0d25e719c93ec286ec792b86b70e061c602",
+        "results": [
+          {
+            "case": "train-criterios",
+            "model": "codex/gpt-5.6-sol",
+            "quality": {
+              "state": "verified",
+              "value": 1,
+              "passed": true
+            },
+            "latency": {
+              "state": "observed",
+              "durationMs": 5103.375417
+            },
+            "receiptId": "493e6920-ba14-4817-bf9e-c0abe5d405e5"
+          },
+          {
+            "case": "train-criterios",
+            "model": "codex/gpt-5.6-terra",
+            "quality": {
+              "state": "verified",
+              "value": 1,
+              "passed": true
+            },
+            "latency": {
+              "state": "observed",
+              "durationMs": 6745.0004579999995
+            },
+            "receiptId": "1eabe4a1-0dce-4565-8a13-4245a4a94dc4"
+          },
+          {
+            "case": "train-lotes",
+            "model": "codex/gpt-5.6-sol",
+            "quality": {
+              "state": "verified",
+              "value": 0.8,
+              "passed": false
+            },
+            "latency": {
+              "state": "observed",
+              "durationMs": 3898.633416999999
+            },
+            "receiptId": "d90274ea-7778-4ae3-98a0-a688f1cb8d24"
+          },
+          {
+            "case": "train-lotes",
+            "model": "codex/gpt-5.6-terra",
+            "quality": {
+              "state": "verified",
+              "value": 0.8,
+              "passed": false
+            },
+            "latency": {
+              "state": "observed",
+              "durationMs": 4677.192167000001
+            },
+            "receiptId": "11152bce-9e06-4cc3-a801-cf273d52d8fc"
+          }
+        ],
+        "turns": 4,
+        "corpusDigest": "03895a02d68fdc1b8dfb62b2833ad274f2ceebf3f1ca2d02fb86e58ab961aa08",
+        "shadow": {
+          "digest": "2a142e25f2879e6484b139406b4fd931cbfb4655710a8666ae6a99ee8e4fe8df",
+          "rows": 8
+        }
+      }
+    },
+    "evaluation": {
+      "provider": "codex",
+      "policyBefore": {
+        "generation": 0,
+        "active": null,
+        "previous": null
+      },
+      "policyAfter": {
+        "generation": 0,
+        "active": null,
+        "previous": null
+      },
+      "objective": "quality",
+      "sourceDigest": "93b4e8c49d067af9e3c8a691531ac0d25e719c93ec286ec792b86b70e061c602",
+      "status": "kept",
+      "reason": "INSUFFICIENT",
+      "gateId": "decision-138c41c8-8959-4974-9c92-94f37c70b432",
+      "corpusDigest": "c5af16a9c2b4773d3a8122d6b678680d95623eac161eb4935c4add0628ec773b",
+      "turns": 16,
+      "fixed": {
+        "episodeId": "fixed-6f39d59a300b6e18a474cc1d5f0273c3",
+        "episodeDigest": "0d208813220dbeb65a6cf03cc968e275dbf301b35be4864609c5308d85706602",
+        "observationDigests": [
+          "1a8e9246637250ca779d46ef1a09ba227aeeb175f8184a7f560fb976ec71138e",
+          "d1eba5343031fa9dfa5aafe80d500b8af397417125afc1d4a522cea9988a8e63",
+          "50db9c15e4f7fcbaf1ada9a7309ba4b9a840c23da92f5a02204244bc30efbd1d",
+          "be5e39c3f3317387ef7f4045faeb81600b18dfadc83707314c32c10d203e06dd"
+        ],
+        "expectedCells": 4,
+        "verifiedCells": 4,
+        "tasks": [
+          {
+            "taskDigest": "7d93dc317265bc97c4a411c259fb87c884c03abc5b7aa08c0b41cb99dec11f48",
+            "fromAction": "f2e0821c1766962a0013f6c02a2fc9855454bf89991a2c74f9f35fa1bbbe4a46",
+            "toAction": "f2e0821c1766962a0013f6c02a2fc9855454bf89991a2c74f9f35fa1bbbe4a46",
+            "qualityDelta": 0,
+            "passRateDelta": 0,
+            "objectiveGain": 0
+          },
+          {
+            "taskDigest": "a1c496895a657c9cd2ecaabf378fa85be58795f2c2cc822e1a796e9db4d3c2b8",
+            "fromAction": "f2e0821c1766962a0013f6c02a2fc9855454bf89991a2c74f9f35fa1bbbe4a46",
+            "toAction": "f2e0821c1766962a0013f6c02a2fc9855454bf89991a2c74f9f35fa1bbbe4a46",
+            "qualityDelta": 0,
+            "passRateDelta": 0,
+            "objectiveGain": 0
+          }
+        ],
+        "wins": 0,
+        "losses": 0,
+        "ties": 2,
+        "meanGain": 0,
+        "pValue": 1
+      },
+      "fresh": {
+        "episodeId": "fresh-138c41c8-8959-4974-9c92-94f37c70b432",
+        "episodeDigest": "9206d7c489434477c66a10fd8fd212f2090ab3675b5f7ff70941e1fbf47a7217",
+        "observationDigests": [
+          "bca0c6994b167e7cf5240e798682f995b9f8e34f73227724627bd92c2cd97eee",
+          "8b45daf9d376472229b4de4b1b2e73fb6690e1304365fb49c0b5229950c98692",
+          "321e0434ede9a3d189408fbc28b010e5b0456ccfc010cc12248379ae973174cc",
+          "82ea7f29301e1c895df8b978dbcb2eb60bbe3eff23e01e2e69a65e7042e41786",
+          "33bb3fb48566fec9518f4f6dcf5a3153aba01e89c89c5c7815aa3fc67b145385",
+          "2498a8f94d1aa7ab8f550a544bb7bb27244b99bf9f665bb2ffc6bdc3035d61d0",
+          "7df395db0615660f65cd9b0efb99e6524a17cc9a01e2655ab005436b1468444b",
+          "32cd886c5bea60a02262e86a4997b2d4ba78a40272a0beb8c025028cffa832b2",
+          "a330b38aa86b426dd861d5b2c550ba4ce157f58d0c2bc9c1ba0a42bf331f18ef",
+          "629c79d9eeeb4a5fa51e0ddb083119244d21e6fe103621c47bff27b2faa55f4d",
+          "5ac8a65dbf734d78c5054a37b0c6c2fed73417b07f18ad9ac0e3af055e9cd311",
+          "74a8a53a588aeac2ea4ab70f5e6e8119a9823af01f44294c13c820054a47cc10"
+        ],
+        "expectedCells": 12,
+        "verifiedCells": 12,
+        "tasks": [
+          {
+            "taskDigest": "fcabb017f82b735c39952d9213b530694eff30c009c822c0df445a5e53eade71",
+            "fromAction": "f2e0821c1766962a0013f6c02a2fc9855454bf89991a2c74f9f35fa1bbbe4a46",
+            "toAction": "f2e0821c1766962a0013f6c02a2fc9855454bf89991a2c74f9f35fa1bbbe4a46",
+            "qualityDelta": 0,
+            "passRateDelta": 0,
+            "objectiveGain": 0
+          },
+          {
+            "taskDigest": "f1104d6b1ae411760be5bc3b0e5ffa39b8c2079156d61b6cb7f1632877067124",
+            "fromAction": "f2e0821c1766962a0013f6c02a2fc9855454bf89991a2c74f9f35fa1bbbe4a46",
+            "toAction": "f2e0821c1766962a0013f6c02a2fc9855454bf89991a2c74f9f35fa1bbbe4a46",
+            "qualityDelta": 0,
+            "passRateDelta": 0,
+            "objectiveGain": 0
+          },
+          {
+            "taskDigest": "a5391edb5ab6d9bb597352a244e6d11d2473df4ba454217f7c1bf359573b242b",
+            "fromAction": "f2e0821c1766962a0013f6c02a2fc9855454bf89991a2c74f9f35fa1bbbe4a46",
+            "toAction": "f2e0821c1766962a0013f6c02a2fc9855454bf89991a2c74f9f35fa1bbbe4a46",
+            "qualityDelta": 0,
+            "passRateDelta": 0,
+            "objectiveGain": 0
+          },
+          {
+            "taskDigest": "20f2c21efe4d53b9d6f90f1d2834b58bcb0a69963484c1e74a6ad149afad3e06",
+            "fromAction": "f2e0821c1766962a0013f6c02a2fc9855454bf89991a2c74f9f35fa1bbbe4a46",
+            "toAction": "f2e0821c1766962a0013f6c02a2fc9855454bf89991a2c74f9f35fa1bbbe4a46",
+            "qualityDelta": 0,
+            "passRateDelta": 0,
+            "objectiveGain": 0
+          },
+          {
+            "taskDigest": "03d22ea37ef98a4ed735503fba7e48e5a03334e8aca6b68c104853c2cba14086",
+            "fromAction": "f2e0821c1766962a0013f6c02a2fc9855454bf89991a2c74f9f35fa1bbbe4a46",
+            "toAction": "f2e0821c1766962a0013f6c02a2fc9855454bf89991a2c74f9f35fa1bbbe4a46",
+            "qualityDelta": 0,
+            "passRateDelta": 0,
+            "objectiveGain": 0
+          },
+          {
+            "taskDigest": "4a03d76496b6bd5a232b2b24deb9a426a91e9e450d26fbe2d9cc7634d9c8e7fd",
+            "fromAction": "f2e0821c1766962a0013f6c02a2fc9855454bf89991a2c74f9f35fa1bbbe4a46",
+            "toAction": "f2e0821c1766962a0013f6c02a2fc9855454bf89991a2c74f9f35fa1bbbe4a46",
+            "qualityDelta": 0,
+            "passRateDelta": 0,
+            "objectiveGain": 0
+          }
+        ],
+        "wins": 0,
+        "losses": 0,
+        "ties": 6,
+        "meanGain": 0,
+        "pValue": 1
+      },
+      "results": [
+        {
+          "case": "fixed-cupos",
+          "model": "codex/gpt-5.6-sol",
+          "quality": {
+            "state": "verified",
+            "value": 0.6,
+            "passed": false
+          },
+          "latency": {
+            "state": "observed",
+            "durationMs": 4513.422875
+          },
+          "receiptId": "7854535a-8160-40d9-b288-51b4ec33809c"
+        },
+        {
+          "case": "fixed-cupos",
+          "model": "codex/gpt-5.6-terra",
+          "quality": {
+            "state": "verified",
+            "value": 0.8,
+            "passed": false
+          },
+          "latency": {
+            "state": "observed",
+            "durationMs": 5692.12775
+          },
+          "receiptId": "02c73c0d-abae-470b-a77d-93cdf14b9e3b"
+        },
+        {
+          "case": "fixed-alertas",
+          "model": "codex/gpt-5.6-sol",
+          "quality": {
+            "state": "verified",
+            "value": 1,
+            "passed": true
+          },
+          "latency": {
+            "state": "observed",
+            "durationMs": 6350.564667000001
+          },
+          "receiptId": "71ee4f5f-e5ff-4330-8d84-309230c3394a"
+        },
+        {
+          "case": "fixed-alertas",
+          "model": "codex/gpt-5.6-terra",
+          "quality": {
+            "state": "verified",
+            "value": 1,
+            "passed": true
+          },
+          "latency": {
+            "state": "observed",
+            "durationMs": 5052.753584000002
+          },
+          "receiptId": "bf96334f-3d6f-494b-beaf-0b215d895f5f"
+        },
+        {
+          "case": "fresh-activos-138c41c8-8959-4974-9c92-94f37c70b432",
+          "model": "codex/gpt-5.6-sol",
+          "quality": {
+            "state": "verified",
+            "value": 1,
+            "passed": true
+          },
+          "latency": {
+            "state": "observed",
+            "durationMs": 5572.09
+          },
+          "receiptId": "dbef0955-d040-4cab-b9a4-24387bd45646"
+        },
+        {
+          "case": "fresh-activos-138c41c8-8959-4974-9c92-94f37c70b432",
+          "model": "codex/gpt-5.6-terra",
+          "quality": {
+            "state": "verified",
+            "value": 1,
+            "passed": true
+          },
+          "latency": {
+            "state": "observed",
+            "durationMs": 5219.012584000004
+          },
+          "receiptId": "e46d0955-874e-450f-b136-e5ff6b7b374e"
+        },
+        {
+          "case": "fresh-lotes-138c41c8-8959-4974-9c92-94f37c70b432",
+          "model": "codex/gpt-5.6-sol",
+          "quality": {
+            "state": "verified",
+            "value": 1,
+            "passed": true
+          },
+          "latency": {
+            "state": "observed",
+            "durationMs": 5085.425541999997
+          },
+          "receiptId": "e8bce806-eed9-45fc-9633-47f27e4efc40"
+        },
+        {
+          "case": "fresh-lotes-138c41c8-8959-4974-9c92-94f37c70b432",
+          "model": "codex/gpt-5.6-terra",
+          "quality": {
+            "state": "verified",
+            "value": 1,
+            "passed": true
+          },
+          "latency": {
+            "state": "observed",
+            "durationMs": 5484.742791999997
+          },
+          "receiptId": "bc33b861-e2dd-437c-a55f-ddf2d8331bfd"
+        },
+        {
+          "case": "fresh-controles-138c41c8-8959-4974-9c92-94f37c70b432",
+          "model": "codex/gpt-5.6-sol",
+          "quality": {
+            "state": "verified",
+            "value": 0.6,
+            "passed": false
+          },
+          "latency": {
+            "state": "observed",
+            "durationMs": 6600.133791999993
+          },
+          "receiptId": "c691f24e-f3bc-45fe-b4a7-f7e35d4e15d9"
+        },
+        {
+          "case": "fresh-controles-138c41c8-8959-4974-9c92-94f37c70b432",
+          "model": "codex/gpt-5.6-terra",
+          "quality": {
+            "state": "verified",
+            "value": 0.8,
+            "passed": false
+          },
+          "latency": {
+            "state": "observed",
+            "durationMs": 4715.1341660000035
+          },
+          "receiptId": "6d3c3081-7d1f-4180-8f72-590f668fb3e8"
+        },
+        {
+          "case": "fresh-reintentos-138c41c8-8959-4974-9c92-94f37c70b432",
+          "model": "codex/gpt-5.6-sol",
+          "quality": {
+            "state": "verified",
+            "value": 1,
+            "passed": true
+          },
+          "latency": {
+            "state": "observed",
+            "durationMs": 5366.4955000000045
+          },
+          "receiptId": "87258641-45f7-4dfb-8515-e8b5f0ed6064"
+        },
+        {
+          "case": "fresh-reintentos-138c41c8-8959-4974-9c92-94f37c70b432",
+          "model": "codex/gpt-5.6-terra",
+          "quality": {
+            "state": "verified",
+            "value": 1,
+            "passed": true
+          },
+          "latency": {
+            "state": "observed",
+            "durationMs": 7246.125500000009
+          },
+          "receiptId": "b3f48265-d1d8-401f-8425-5c314accf052"
+        },
+        {
+          "case": "fresh-capacidad-138c41c8-8959-4974-9c92-94f37c70b432",
+          "model": "codex/gpt-5.6-sol",
+          "quality": {
+            "state": "verified",
+            "value": 0.6,
+            "passed": false
+          },
+          "latency": {
+            "state": "observed",
+            "durationMs": 5667.606291999997
+          },
+          "receiptId": "4990203f-f838-4b1e-afa9-868268d76f94"
+        },
+        {
+          "case": "fresh-capacidad-138c41c8-8959-4974-9c92-94f37c70b432",
+          "model": "codex/gpt-5.6-terra",
+          "quality": {
+            "state": "verified",
+            "value": 0.8,
+            "passed": false
+          },
+          "latency": {
+            "state": "observed",
+            "durationMs": 5481.302624999997
+          },
+          "receiptId": "9dfa1438-8a30-4e8d-b90c-a6bc5e00bc36"
+        },
+        {
+          "case": "fresh-empates-138c41c8-8959-4974-9c92-94f37c70b432",
+          "model": "codex/gpt-5.6-sol",
+          "quality": {
+            "state": "verified",
+            "value": 1,
+            "passed": true
+          },
+          "latency": {
+            "state": "observed",
+            "durationMs": 4008.1103329999896
+          },
+          "receiptId": "fec0cfa1-6928-4a31-b6f9-53e64c422f34"
+        },
+        {
+          "case": "fresh-empates-138c41c8-8959-4974-9c92-94f37c70b432",
+          "model": "codex/gpt-5.6-terra",
+          "quality": {
+            "state": "verified",
+            "value": 1,
+            "passed": true
+          },
+          "latency": {
+            "state": "observed",
+            "durationMs": 10134.466165999998
+          },
+          "receiptId": "e68d3ba7-68a9-4d20-92d9-b64a2dec246e"
+        }
+      ],
+      "shadow": {
+        "digest": "886d2924af620d2db36ef5c969eb127118b77806da9fda6aad9ae6c42dea2c66",
+        "rows": 8
+      },
+      "protocolNote": "Piloto con cuatro casos por candidato. El comando publicado exige al menos ocho por candidato antes de lanzar el gate."
+    },
+    "sqliteVerified": {
+      "gateDigest": "747b6ff909d8c80c57e1f578f7f62ae10cd953d0316a3de4561bc4b7eeb76b7d",
+      "commitDigest": "4e4cb4670095e53a9f5d798e8640f5818f9b80e019913f6eafbe65a050d580b3"
+    },
+    "boardWriter": {
+      "verified": true,
+      "model": "codex/gpt-5.6-sol",
+      "reason": "INCUMBENT",
+      "receiptId": "d762e0f7-275c-4637-8c95-6f0be91dd539",
+      "observationDigest": "b8991d9ebd98da66f99a18ff6f032e88836aafee8e39a5ab2ee0ee2dfbb22d59",
+      "quality": {
+        "state": "verified",
+        "value": 1,
+        "passed": true
+      }
+    }
+  },
+  "offline": {
+    "baseline": "base",
+    "shadowObservations": 16,
+    "incomplete": {
+      "status": "kept",
+      "reason": "INCOMPLETE",
+      "generation": 0
+    },
+    "promotion": {
+      "status": "promoted",
+      "generation": 1,
+      "freshWins": 6,
+      "fixedCells": 4,
+      "freshCells": 12
+    },
+    "restartVerified": true,
+    "learned": "especialista",
+    "rollback": {
+      "status": "rolled-back",
+      "generation": 2,
+      "freshWins": 6,
+      "restartVerified": true
+    },
+    "restored": "base",
+    "fixtureTurns": 50,
+    "commercialTurns": 0
+  }
+}

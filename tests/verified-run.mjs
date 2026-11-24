@@ -1,9 +1,11 @@
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
+import { existsSync } from 'node:fs';
 import { readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { createRequire } from 'node:module';
 import { readRoutingReceipt, WorkflowRoutingReceiptStore } from 'hiveagents-runtime/routing';
+import { SqliteLearningStore } from 'hiveagents-runtime/routing/learning';
 import { FileWorkflowStore } from 'hiveagents-runtime/orchestration';
 const require = createRequire(import.meta.url);
 
@@ -20,7 +22,6 @@ export async function captureVerifiedRun(page, directory, extra) {
   assert.ok(reviews[0].message.startsWith('Pidió cambios'));
   assert.ok(reviews[1].message.startsWith('Aprobado'));
   const receipts = new WorkflowRoutingReceiptStore(new FileWorkflowStore(join(directory, 'receipts')));
-  const routingReceipts = [];
   for (const card of cards) {
     const lastReview = card.events.filter(event => event.role === 'reviewer').at(-1);
     if (card.status === 'done') {
@@ -35,17 +36,32 @@ export async function captureVerifiedRun(page, directory, extra) {
     for (const role of roles) {
       assert.ok(card.events.some(event => event.role === role && event.execution), 'Falta evidencia del rol ' + role);
     }
-    for (const { execution } of card.events.filter(event => event.execution)) {
+  }
+  const routingReceipts = [];
+  const learningDecisions = [];
+  const learningPath = join(directory, 'routing-learning', 'evidence.sqlite');
+  const learning = existsSync(learningPath) ? new SqliteLearningStore(learningPath) : undefined;
+  try {
+    for (const execution of cards.flatMap(card => card.events.flatMap(event => event.execution ? [event.execution] : []))) {
       const receipt = await readRoutingReceipt(receipts, execution.receiptId);
-      assert.equal(receipt.selected.model, execution.model);
-      routingReceipts.push(receipt);
+      if (receipt) {
+        assert.equal(receipt.selected?.model, execution.model);
+        routingReceipts.push(receipt);
+      } else {
+        const decision = await learning?.get('decision', execution.receiptId);
+        assert.equal(decision?.selected?.model, execution.model, 'Falta evidencia de selección para ' + execution.receiptId);
+        learningDecisions.push(decision);
+      }
     }
+  } finally {
+    learning?.close();
   }
   const installed = JSON.parse(await readFile(new URL('../package.json', import.meta.resolve('hiveagents-runtime')), 'utf8'));
   const report = {
     verifiedAt: new Date().toISOString(), sdk: installed.name + '@' + installed.version,
     electron: require('electron/package.json').version, platform: process.platform, arch: process.arch,
     routingReceipts,
+    ...(learningDecisions.length ? { learningDecisions } : {}),
     cards: cards.map(card => ({
       ...card, artifactSha256: createHash('sha256').update(card.artifact).digest('hex'),
     })),

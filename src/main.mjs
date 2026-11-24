@@ -1,12 +1,13 @@
 import { app, BrowserWindow, clipboard, dialog, ipcMain, protocol, session } from 'electron';
 import { readFile } from 'node:fs/promises';
-import { mkdirSync } from 'node:fs';
+import { mkdirSync, realpathSync } from 'node:fs';
 import { isAbsolute, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { openAssistantStore, openStore, tutorialCard } from './store.mjs';
 import { createBoard } from './board.mjs';
 import { createAgents } from './agents.mjs';
 import { createAssistant } from './assistant.mjs';
+import { createBoardLearning } from './board-learning.mjs';
 import { findSimilarCards } from './column-memory.mjs';
 
 const home = 'kanban://board/';
@@ -90,13 +91,21 @@ async function start() {
   session.defaultSession.setPermissionRequestHandler((_webContents, _permission, callback) => callback(false));
   session.defaultSession.setPermissionCheckHandler(() => false);
   const data = app.getPath('userData');
-  const cwd = join(data, 'agent-workspace');
-  mkdirSync(cwd, { recursive: true, mode: 0o700 });
+  const workspace = join(data, 'agent-workspace');
+  mkdirSync(workspace, { recursive: true, mode: 0o700 });
+  const cwd = realpathSync(workspace);
   const store = openStore(data);
   const firstLaunch = !store.exists();
+  const model = process.env.KANBAN_MODEL || undefined;
+  const learningProvider = !model || model === 'auto' ? process.env.KANBAN_LEARNING_PROVIDER || undefined : undefined;
+  const learningDirectory = join(data, 'routing-learning');
+  if (learningProvider) mkdirSync(learningDirectory, { recursive: true, mode: 0o700 });
+  const learning = learningProvider
+    ? createBoardLearning({ databasePath: join(learningDirectory, 'evidence.sqlite'), provider: learningProvider })
+    : undefined;
   const agents = createAgents({
-    cwd, receiptDirectory: join(data, 'receipts'), model: process.env.KANBAN_MODEL || undefined,
-    getCards: () => board?.snapshot().cards ?? [],
+    cwd, receiptDirectory: join(data, 'receipts'), model,
+    getCards: () => board?.snapshot().cards ?? [], learning, learningProvider,
   });
   board = createBoard({ store, agents, onChange: notify });
   if (firstLaunch) board.create(tutorialCard);

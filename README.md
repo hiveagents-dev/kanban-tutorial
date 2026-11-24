@@ -4,9 +4,9 @@ Encargá un documento Markdown desde un tablero de escritorio. Dale al planifica
 
 ![Tablero de HiveAgents durante la redacción de una tarjeta en la demo de escritorio](evidence/kanban-workspace.png)
 
-[Abrí el tablero](#1-abrí-el-tablero) · [Operación y acciones](#operá-el-tablero) · [Asistente y memoria](docs/assistant.md) · [Diagramas del tablero](docs/architecture.md) · [Arquitectura del SDK](docs/runtime-architecture.md) · [Laboratorios de las 11 entradas del SDK](labs/README.md) · [Descargas](https://github.com/hiveagents-dev/kanban-tutorial/releases)
+[Abrí el tablero](#1-abrí-el-tablero) · [Operación y acciones](#operá-el-tablero) · [Asistente y memoria](docs/assistant.md) · [Routing y aprendizaje](docs/model-routing.md) · [Diagramas del tablero](docs/architecture.md) · [Arquitectura del SDK](docs/runtime-architecture.md) · [Laboratorios de las 11 entradas del SDK](labs/README.md) · [Descargas](https://github.com/hiveagents-dev/kanban-tutorial/releases)
 
-El tablero usa dos perfiles que cumplen su contrato de salida estructurada. Si querés que el SDK elija desde todo el catálogo, compare calidad por tarea o interactúe con herramientas nativas, empezá por el laboratorio correspondiente. [Selección sin indicar modelo](labs/auto-model.md) · [Comparación medida](labs/benchmark.md) · [Aprendizaje, Hosted y Control](labs/README.md#recorridos-avanzados)
+El tablero pide al SDK que elija desde el catálogo de cada proveedor compatible. Podés activar aprendizaje para los turnos de redacción y comparar resultados con un verificador independiente. [Selección y aprendizaje en el tablero](docs/model-routing.md) · [Comparación medida](labs/benchmark.md) · [Laboratorios avanzados](labs/README.md#recorridos-avanzados)
 
 ## 1. Abrí el tablero
 
@@ -116,7 +116,7 @@ En este fragmento, `notifyWindow` representa una notificación a la vista. En El
 | Pruebas locales | Documento exacto y términos de la tarjeta | Un resultado por control. Verifican contenido y coincidencias literales con normalización Unicode, sin distinguir mayúsculas |
 | Revisor | Consigna, documento y resultados de las pruebas | Aprobación u observaciones concretas sobre qué falta para que el documento le sirva a su destinatario |
 
-Cada rol abre un agente independiente. `createAgent` del módulo de routing comprueba el candidato y registra un recibo antes de devolver el agente. La llamada que **ejecuta** el CLI es `agent.run`. Todos los roles piden salida estructurada y comparten la señal de detención del ciclo.
+Cada rol abre un agente independiente. `createAgent` del módulo de routing comprueba el candidato y registra un recibo antes de devolver el agente. La llamada que **ejecuta** el CLI es `agent.run`. Los roles usan el esquema nativo de su proveedor y comparten la señal de detención del ciclo. El modo optativo de aprendizaje del redactor usa JSON validado por la aplicación.
 
 ```js
 const result = await agent.run(JSON.stringify(data), {
@@ -128,7 +128,7 @@ Si la tarjeta ya incluye un borrador, ese texto ocupa el primer intento y pasa d
 
 ### Qué CLI usa la app
 
-El SDK incluye Claude Code, Codex, Gemini CLI y Antigravity CLI. Para este tutorial elegimos dos perfiles compatibles con el contrato de salida estructurada y los permisos del tablero. La app intenta primero Claude Sonnet con contexto limpio y cero herramientas. Si la selección previa declara que no hay ruta, prueba Codex en un directorio dedicado con sandbox de solo lectura y sesión efímera. Si una ejecución ya empezó, un error detiene el ciclo para que puedas inspeccionarlo. Cada perfil admite explícitamente candidatos de catálogo sin verificación individual y exige autenticación conocida. Un recibo registra la selección del modelo. El retorno validado, los controles y la revisión quedan en la tarjeta.
+El SDK incluye Claude Code, Codex, Gemini CLI y Antigravity CLI. La app usa dos perfiles compatibles con su esquema de salida y permisos. Primero consulta el catálogo de Claude Code con contexto limpio y sin herramientas. Si el SDK se queda sin ruta antes de ejecutar, consulta el de Codex con sandbox de sólo lectura y sesión efímera. Cada perfil exige autenticación conocida y permite comprobar candidatos cuyo catálogo todavía figura como no verificado. El mismo modelo puede atender varios roles. [Cómo se selecciona el modelo y se mide su desempeño](docs/model-routing.md)
 
 En esta beta el adaptador de Gemini CLI no admite el esquema nativo de salida usado por estos roles, y el de Antigravity requiere permiso de edición. Podés elegir Codex para todo el recorrido con este comando.
 
