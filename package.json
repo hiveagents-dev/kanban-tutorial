@@ -1,6 +1,6 @@
 {
   "name": "hiveagents-kanban-tutorial",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "private": true,
   "description": "Tablero Kanban de escritorio con entregables y revisión de agentes",
   "type": "module",
@@ -16,7 +16,14 @@
     "demo:replay": "node scripts/replay.mjs",
     "demo:live": "node tests/live-demo.mjs"
   },
-  "engines": {"node": ">=22.16.0"},
-  "dependencies": {"hiveagents-runtime": "0.1.0-beta.3"},
-  "devDependencies": {"electron": "45.4.1", "playwright-core": "1.65.1"}
+  "engines": {
+    "node": ">=22.16.0"
+  },
+  "dependencies": {
+    "hiveagents-runtime": "0.1.0-beta.3"
+  },
+  "devDependencies": {
+    "electron": "45.4.1",
+    "playwright-core": "1.65.1"
+  }
 }

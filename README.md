@@ -6,7 +6,7 @@ Encargá un documento Markdown desde un tablero de escritorio. Dale al planifica
 
 [Abrí el tablero](#1-abrí-el-tablero) · [Operación y acciones](#operá-el-tablero) · [Asistente y memoria](docs/assistant.md) · [Routing y aprendizaje](docs/model-routing.md) · [Diagramas del tablero](docs/architecture.md) · [Arquitectura del SDK](docs/runtime-architecture.md) · [Laboratorios de las 11 entradas del SDK](labs/README.md) · [Descargas](https://github.com/hiveagents-dev/kanban-tutorial/releases)
 
-El tablero pide al SDK que elija desde el catálogo de cada proveedor compatible. Podés activar aprendizaje para los turnos de redacción y comparar resultados con un verificador independiente. [Selección y aprendizaje en el tablero](docs/model-routing.md) · [Comparación medida](labs/benchmark.md) · [Laboratorios avanzados](labs/README.md#recorridos-avanzados)
+El tablero pide al SDK que elija desde el catálogo de cada proveedor compatible. Podés aplicar una política aprobada al redactor y evaluar nuevas políticas con un corpus reproducible y un verificador independiente. [Selección y aprendizaje en el tablero](docs/model-routing.md) · [Comparación medida](labs/benchmark.md) · [Laboratorios avanzados](labs/README.md#recorridos-avanzados)
 
 ## 1. Abrí el tablero
 

@@ -7,14 +7,15 @@ La app define dos perfiles. Prueba el catálogo de Claude Code con contexto limp
 ```mermaid
 flowchart TD
     accTitle: Selección y aprendizaje del redactor
-    accDescr: La selección normal recorre el catálogo. El redactor experimental puede guardar observaciones verificadas en una base SQLite y usar una política aprobada.
+    accDescr: El redactor puede usar una política aprobada. Un comando independiente verifica casos sintéticos y alimenta la evaluación de promoción.
     turn["Turno del Kanban"] --> policy{"¿Redactor con aprendizaje habilitado?"}
     policy -->|"No"| router["Routing del SDK<br/>Catálogo y preflight"]
     router --> native["Turno por CLI<br/>Esquema nativo y recibo"]
     policy -->|"Sí"| learning["LearningRouter del SDK<br/>Catálogo del perfil y política vigente"]
-    learning --> text["Turno por CLI<br/>JSON validado localmente"]
-    text --> verify["Verificador independiente"]
-    verify --> sql[("SQLite<br/>Observaciones y política en sombra")]
+    learning --> text["Turno por CLI<br/>Recibo de selección"]
+    text --> board["Tarjeta<br/>Controles y revisión del tablero"]
+    sample["Comando routing:train<br/>Casos sintéticos"] --> verify["Oráculo independiente"]
+    verify --> sql[("SQLite<br/>Mediciones del corpus y política en sombra")]
     sql --> gate["Evaluación con casos reservados"]
     gate -->|"Mejora comprobada"| active["Política aprobada"]
     active --> learning
@@ -33,13 +34,13 @@ npm run routing:train -- --live --data-dir "$state_dir" --provider codex --max-t
 KANBAN_DATA_DIR="$state_dir" KANBAN_LEARNING_PROVIDER=codex npm start
 ```
 
-El comando explícito usa la sesión del CLI indicado y un presupuesto máximo de turnos. Sin `--live` muestra candidatos y política con cero turnos. La medición toma dos candidatos del catálogo y compara los mismos casos. Trabaja con tarjetas sintéticas y comprobaciones independientes. Guarda la evidencia en `routing-learning/evidence.sqlite` del directorio indicado. Al abrir el tablero con el mismo directorio y proveedor, sus redacciones optativas guardan observaciones de ese mismo contrato. El planificador, el revisor y el asistente siguen usando la selección normal.
+El comando explícito usa la sesión del CLI indicado y un presupuesto máximo de turnos. Sin `--live` muestra candidatos y política con cero turnos. La medición toma dos candidatos del catálogo y compara los mismos casos. Trabaja con tarjetas sintéticas y guarda sus observaciones en `routing-learning/evidence.sqlite`. Al abrir el tablero con el mismo directorio y proveedor, el redactor consulta esa política y guarda un recibo de selección. La tarjeta conserva sus comprobaciones y la revisión. Sólo el comando de medición aporta observaciones al dominio de promoción. El planificador, el revisor y el asistente usan la selección normal.
 
-El router guarda calidad verificada, latencia y uso cuando están disponibles. La medición de calidad cubre los requisitos del caso. Los chequeos literales en una tarjeta propia miden si aparecen los términos, y el revisor del tablero todavía comprueba el documento antes de marcarlo como terminado. Una corrida corta genera observaciones y una política en sombra. Podés repetir el comando en el mismo directorio para agregar casos pendientes. El SDK considera la cantidad y similitud de casos y la calidad que pudo verificar.
+El oráculo de calidad comprueba que la respuesta tenga un único campo JSON `markdown` y que sus líneas de resultado coincidan con las esperadas, en orden. Las líneas extra, los duplicados y las contradicciones fallan aunque incluyan la respuesta correcta. Las referencias se conservan en el corpus y el modelo recibe sólo la consigna. El router guarda calidad verificada, latencia y uso cuando están disponibles. Una corrida corta genera observaciones y una política en sombra. Podés repetir el comando en el mismo directorio para agregar casos pendientes.
 
-## Resultado medido
+## Resultado del piloto anterior
 
-El piloto ejecutó cuatro consignas de entrenamiento con dos modelos de Codex. GPT-5.6 Terra pasó tres y GPT-5.6 Sol pasó dos. Al evaluarlos sobre ocho consignas reservadas, cada modelo pasó cinco. El gate verificó las 16 ejecuciones de la matriz y conservó la política vigente con el motivo `INSUFFICIENT`. El informe contiene los recibos, los controles y la duración de cada turno. [Evidencia del piloto y del gate](../evidence/kanban-routing-learning.json)
+El piloto anterior ejecutó cuatro consignas de entrenamiento con dos modelos de Codex. GPT-5.6 Terra pasó tres y GPT-5.6 Sol pasó dos. En ocho consignas reservadas, cada modelo pasó cinco. El gate conservó la política vigente con el motivo `INSUFFICIENT`. Ese informe corresponde al oráculo anterior. El corpus exacto usa un dominio nuevo y requiere nuevas mediciones antes de promover una política. [Evidencia del piloto y del gate](../evidence/kanban-routing-learning.json)
 
 ## Evaluá antes de cambiar la política
 
@@ -49,7 +50,13 @@ Evaluá la política en sombra con casos reservados y un presupuesto explícito.
 npm run routing:train -- --live --evaluate --data-dir "$state_dir" --provider codex --max-turns 16
 ```
 
-La primera evaluación toma dos casos de regresión y seis casos nuevos. Cada candidato ejecuta todos los casos. El SDK exige evidencia comparable y tareas reservadas antes de activar una política. Una evaluación completa compara la candidata con la política vigente, exige una mejora y busca regresiones. Para el rollback vuelve a pedir evidencia nueva. Un cambio de CLI, perfil, contrato o protocolo puede dejar sin aplicación una política anterior.
+La primera evaluación toma dos casos de regresión y seis casos nuevos. Las familias de reglas de ambos grupos quedan reservadas por completo. Por ejemplo, en entrenamiento se suman cupos y se filtran estados. En evaluación nueva se comprueban dependencias, órdenes por vencimiento, medianas y reproducción de eventos. Cada candidato ejecuta todos los casos. El informe incluye las mediciones nuevas y los recibos reutilizados del grupo fijo. El SDK exige evidencia comparable, busca regresiones y activa la candidata cuando hay una mejora. Para el rollback vuelve a pedir evidencia nueva.
+
+Podés generar el manifiesto del corpus sin inicializar proveedores ni ejecutar modelos. Conservá el ID de la versión del tutorial, la semilla y el manifiesto con los hashes de consignas y referencias. Para repetir los insumos de un informe, pasá su semilla con `--seed`. Cada evaluación nueva en la misma base requiere una semilla diferente.
+
+```sh
+npm run routing:train -- --manifest --seed tutorial-v2
+```
 
 Podés recorrer promoción y rollback con dos modelos de prueba, sin CLIs comerciales.
 
